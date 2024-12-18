@@ -1,0 +1,415 @@
+
+/* -------------------base styles----------------- */
+@font-face {
+    font-family: 'canva-font-1';
+    src: url(assets/fonts/762fe37b99d49707e783d6281412d12f.woff2);
+}
+@font-face {
+    font-family: 'canva-font-2';
+    src:url(assets/fonts/cff149ee1e9d2be50ac77bcd86769d05.woff2)
+}
+*{
+    box-sizing: border-box;
+}
+html,body,p,h1,h2,h3,h4,h5,h6,nav,ul,li,button{
+    padding: 0;
+    margin: 0;
+}
+
+
+/* -------------------header---------------------- */
+.header{
+    background-color: #fff;
+    box-shadow: 0 2px 4px -1px rgba(57,76,96,.15);
+}
+.header-container{
+    padding: 0 16px;
+    width: 100%;
+}
+.header-contents-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding: 16px 0;
+}
+.hamburger-menu-container{
+    flex-shrink: 0;
+    margin-left: -12px;
+    margin-right: 4px;
+}
+.hamburger-menu-btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    max-width: 100%;
+    padding: 0 16px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(13,18,22,0);
+    color: #0d1216;
+    vertical-align: middle;
+}
+.canva-logo-container{
+    flex-shrink: 0;
+    width: 64px;
+    margin-right: 8px;
+}
+.canva-logo{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.header-searchbar-container{
+    flex-grow: 1;
+    flex-shrink: 2;
+    flex-basis: auto;
+    height: 40px;
+    width: 100%;
+    z-index: 1;
+}
+.header-searchbar{
+    min-height: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.searchbar-container{
+    height: 40px;
+    padding-right: 12px;
+    background-color: #fff;
+    border: 1px solid rgba(53,71,90,.2);
+    border-radius: 8px;
+    color: #0d1216;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    cursor: text;
+    width: 100%;
+}
+.search-icon-container{
+    flex: 1 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+    padding-right: 4px;
+}
+.search-icon{
+    display: inline-flex;
+    align-items: center;
+    margin: 0 4px;
+    width: 24px;
+    height: 24px;
+}
+.header-search-icon{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.header-input{
+    padding: 0 0 1px;
+    border: 0;
+    margin:0;
+    min-width: 8px;
+    width: 100%;
+    background-color: #fff;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 400;
+    font-variant-ligatures: none;
+    font-variation-settings: "opsz" 0;
+    line-height: 22px;
+    letter-spacing: normal;
+    outline: none;
+}
+.header-nav-container{
+    display: none;
+}
+.header-buttons-container{
+    display: none;
+}
+
+
+/* ------------ media queries ----------- */
+@media screen and (min-width: 600px){
+
+    /* ------------header-------------- */
+    .header-container{
+        padding: 0 32px;
+    }
+    .hamburger-menu-container{
+        margin-right: 16px;
+        margin-left: 0;
+    }
+    .canva-logo-container{
+        width: 80px;
+        min-width: 80px;
+    }
+    .header-searchbar-container{
+        margin-left: 16px;
+        margin-right: auto;
+    }
+    .header-buttons-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap:16px ;
+        flex-shrink: 0;
+        margin-left: 16px;
+    }
+    .btn{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        height: 40px;
+        max-width: 100%;
+        min-width: 80px;
+        vertical-align: middle;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+        font-variation-settings: "opsz" 0;
+    }
+    .login-btn{
+        padding: 0 15px;
+        background-color: rgba(13,18,22,0);
+        border: 1px solid rgba(53,71,90,.2);
+    }
+    .signup-btn{
+        padding: 0 16px;
+        background-color: #8b3dff;
+        border: 0px solid transparent;
+    }
+    .header-btn-text{
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: auto;
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+        letter-spacing: normal;
+        font-variation-settings: "opsz" 0;
+    }
+    .login-text {
+        color: #0d1216;
+    }
+    .signup-text{
+        color: #fff;
+    }
+}
+
+@media screen and (min-width:900px){
+
+    /* --------------header------------------- */
+    .header-contents-container{
+        padding: 8px 0;
+    }
+    .hamburger-menu-container{
+        display: none;
+    }
+    .header-nav-container{
+        display: block;
+        flex:1 1 auto;
+        width: 100%;
+        max-width: max-content;
+        min-width: 0;
+        margin-left: 16px;
+        margin-right: 48px;
+        display: flex;
+        position: relative;
+    }
+    .header-nav-container nav{
+        overflow-x: visible;
+        position: relative;
+        width: 100%;
+    }
+    .header-nav-container nav ul {
+        display: flex;
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-variation-settings: "opsz" 0;
+        font-weight: 400;
+        line-height: 22px;
+        overflow-wrap: break-word;
+    }
+    .nav-list-item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        list-style: none;
+        margin-right: 4px;
+        position: relative;
+    }
+    .nav-list-item::after{
+        content: '';
+        width: 100%;
+        height: calc(100% + 32px);
+        position: absolute;
+        left: 0;
+    }
+    .nav-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        max-width: 100%;
+        height: 40px;
+        vertical-align: middle;
+        padding: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        cursor: pointer;
+        background-color: rgba(13,18,22,0);
+        color: #0d1216;
+        border: 0px solid transparent;
+        border-radius: 8px;
+
+        transition: background-color .1s linear, border-color .1s linear, color .1s linear;
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-variation-settings: "opsz" 0;
+        font-weight: 600;
+        line-height: 22px;
+    }
+    .nav-btn-content-container{
+        margin: auto;
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .nav-btn-content{
+        display: flex;
+        align-items: center;
+    }
+    .nav-btn-text-container{
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'canva-font-2';
+        font-variation-settings: "opsz" 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        overflow-wrap: break-word;
+        white-space: nowrap;
+    }
+    .hidden-text{
+        font-weight: 700;
+        overflow: hidden;
+        height: 0;
+        pointer-events: none;
+        user-select: none;
+    }
+    .nav-btn-icon{
+        margin-left: 2px;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .nav-btn-icon img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .nav-btn-hide{
+        visibility: hidden;
+    }
+
+    .nav-last-list-item{
+        display: block;
+        list-style: none;
+    }
+    .show-more-btn-container{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(165px, -50%);
+    }
+    .show-more-btn{
+        height: 38px;
+        width: 38px;
+        max-width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        vertical-align: middle;
+        border-radius: 8px;
+        background-color: rgba(13,18,22,0);
+        border: 0px solid transparent;
+        padding: 0 16px;
+    }
+    .show-more-btn-icon-container{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+    .show-more-btn-icon-container img{
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .header-searchbar-container{
+        margin-left: auto;
+        min-width: 240px;
+    }
+
+}
+
+@media screen and (min-width:966px){
+    .header-nav-container nav ul .nav-list-item:nth-child(2) {
+        visibility: visible;
+    }
+    .show-more-btn-container{
+        transform: translate(279px,-50%);
+    }
+}
+
+@media screen and (min-width:1090px){
+    .header-nav-container nav ul .nav-list-item:nth-child(3){
+        visibility: visible;
+    }
+    .show-more-btn-container{
+        transform: translate(403px, -50%);
+    }
+}
+
+@media screen and (min-width:1261px){
+    .header-nav-container nav ul .nav-list-item:nth-child(4){
+        visibility: visible;
+    }
+    .show-more-btn-container{
+        transform: translate(574px, -50%);
+    }
+}
+
+@media screen and (min-width:1316px){
+    .header-nav-container nav ul .nav-list-item:nth-child(5){
+        visibility: visible;
+    }
+    .show-more-btn-container{
+        transform: translate(0px, -50%);
+    }
+    .nav-last-list-item{
+        display: none;
+    }
+}
