@@ -15,7 +15,9 @@ html,body,p,h1,h2,h3,h4,h5,h6,nav,ul,li,button{
     padding: 0;
     margin: 0;
 }
-
+body{
+    margin-bottom: 3000px;
+}
 
 /* -------------------header---------------------- */
 .header{
@@ -295,6 +297,146 @@ main{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+/* --------------- filters section -------------------- */
+.filters-sticky-container{
+    position: sticky;
+    top: 72px;
+    z-index: 1;
+}
+.filters-section-wrapper{
+    background:#Fff;
+    margin: 0 -16px;
+    padding: 16px;
+}
+.filters-section-container{
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 -16px;
+    isolation: isolate;
+    min-width: 0;
+    position: relative;
+}
+.filters-overflow-container{
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    z-index: 0;
+}
+.filters-btn-section{
+    padding-left: 16px;
+    padding-right: 8px;
+    flex: none;
+    scroll-snap-align: start;
+}
+.filter-btn{
+    width: 40px;
+    max-width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    background-color: rgba(13,18,22,0);
+    border: 1px solid rgba(53,71,90,.2);
+    border-radius: 8px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'canva-font-1';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    overflow-wrap: break-word;
+    text-size-adjust: none;
+    font-variation-settings: "opsz" 0;
+}
+.filter-icon-container{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+.filter-icon{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.filters-section{
+    padding-right: 16px;
+    flex: none;
+    scroll-snap-align: start;
+}
+.filters{
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+}
+.filter-category-btn{
+    border: none;
+    user-select: none;
+    background: none;
+    outline: none;
+    background-color: rgba(13,18,22,0);
+    box-shadow: inset 0 0 0 1px rgba(53,71,90,.2);
+    padding: 0 12px;
+    max-width: 200px;
+    width: auto;
+    height: 40px;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    font: inherit;
+    font-weight: 400;
+    transition: .15s ease-in-out;
+    transition-property: color, background, color, box-shadow;
+}
+.filter-btn-text{
+    text-align: start;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 38px;
+    text-size-adjust: none;
+    font-variation-settings: "opsz" 0;
+    overflow-wrap: break-word;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.filter-btn-icon{
+    margin-left: 8px;
+    margin-right: -2px;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+}
+.filter-arrow-icon{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ------------ media queries ----------- */
