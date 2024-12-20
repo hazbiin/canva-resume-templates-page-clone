@@ -845,6 +845,217 @@ main{
     margin-bottom:0px;
 }
 
+/* -----------------footer section---------------- */
+.footer-container{
+    margin-top: 32px;
+}
+.desktop-footer-section{
+    display: none;
+}
+.mobile-footer{
+    background: #fff;
+    width: 100%;
+    max-width: 2560px;
+    margin: 0 auto;
+    /* font-family: 'canva-font-2'; */
+}
+.footer-navbar{
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    border-top: 1px solid rgba(53,71,90,.2);
+}
+.footer-nav-item{
+    background-color: #fff;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.footer-nav-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.footer-nav-btn h3{
+    color: #0d1216;
+    text-align: start;
+    font-family: 'canva-font-2';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-size-adjust: none;
+    overflow-wrap: break-word;
+    font-variation-settings: "opsz" 0;
+}
+.footer-nav-icon{
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    width: 24px;
+}
+.footer-nav-icon img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.footer-bottom{
+    background-color: #fff;
+    min-height: 334px;
+}
+.footer-bottom-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    border-top: 1px solid rgba(53,71,90,.2);
+}
+.language-select-box-container{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-auto-flow: row;
+}
+.select-box{
+    display: inline-block;
+    max-width: 100%;
+}
+.select-box-btn{
+    display: inline-flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid rgba(53,71,90,.2);
+    border-radius: 8px;
+    padding: 0 12px;
+    outline: none;
+    user-select: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 80px;
+    height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+    text-size-adjust:none;
+    overflow-wrap: break-word;
+}
+.network-icon{
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+}
+.network-icon img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.empty-space{
+    display: block;
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+}
+.select-box-btn-text{
+    flex: 1;
+    padding-right: 8px;
+    text-align: start;
+    color: #0d1216;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-size-adjust: none;
+    font-variation-settings: "opsz" 0;
+    overflow-wrap: break-word;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.select-box-icon{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+.select-box-icon img{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.social-media-links-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+.social-media-link{
+    margin-right: 8px;
+    cursor: pointer;
+    height: 24px;
+}
+.social-media-link:last-child{
+    margin-right: 0px;
+}
+.social-media-icon{
+    display: inline-flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+}
+.social-media-icon img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.copyright-section-container{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.copy-right{
+    margin-bottom: 8px;
+    color: rgba(13,18,22,.7); 
+    text-align: center;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-size-adjust: none;
+    font-variation-settings: "opsz" 0;
+    overflow-wrap: break-word; 
+}
+.copy-right-bottom{
+    display: grid;
+    grid-gap: 8px;
+    grid-auto-flow: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.copy-right-link{
+    color:#0d1216; 
+    text-align: center;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-size-adjust: none;
+    font-variation-settings: "opsz" 0;
+    overflow-wrap: break-word; 
+}
+
 
 /* ------------ media queries ----------- */
 @media screen and (min-width: 600px){
