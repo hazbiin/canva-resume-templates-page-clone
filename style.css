@@ -443,6 +443,9 @@ main{
     height: 100%;
     width: 100%;
 }
+.all-filters-text-container{
+    display: none;
+}
 /* ------------------main content grid--------------- */
 .main-content-grid-container{
     display: grid;
@@ -1292,6 +1295,12 @@ main{
         padding-left: 0;
     }
 
+    .blank-resume-container{
+        margin-bottom: 24px;
+    }
+    .resume-wrapper{
+        margin-bottom: 24px;
+    }
 
     .image-btn:first-child{
         display: flex;
@@ -1565,6 +1574,49 @@ main{
         min-width: 240px;
     }
 
+    .main-container{
+        padding: 0 32px;
+    }
+    .main-contents-container{
+        padding-top: 24px;
+    }
+    .filters-section-wrapper{
+        padding-bottom: 8px;
+    }
+    .filter-category-btn:nth-child(n+4):nth-child(-n+6){
+        display: none;
+    }
+    .filter-btn{
+        min-width: 80px;
+        width: unset;
+    }
+    .filter-icon-container{
+        margin-right: 8px;
+        margin-left: -8px;
+    }
+    .all-filters-text-container{
+        display: inline;
+        margin: auto;
+    }
+    .all-filters-text{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-left: -8px;
+        margin-top: -8px;
+        white-space: nowrap;
+    }
+    .all-filters{
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-weight: 600;
+        overflow-wrap: break-word;
+        margin-left: 8px;
+        margin-top: 8px;
+    }
+
     .resumes-grid{
         grid-template-columns: repeat(4, minmax(0px, 1fr));
         column-gap: 24px;
@@ -1576,6 +1628,7 @@ main{
     .pagination-section nav ul li:nth-child(4){
         display: block;
         width: 40px;
+        margin:0;
     }
     .pagination-dots{
         color: #0d1216;
@@ -1587,10 +1640,107 @@ main{
         text-size-adjust: none;
         font-variation-settings: "opsz" 0;
         overflow-wrap: break-word;
-
     }
-
-
+    .mobile-footer-section{
+        display: none;
+    }
+    .desktop-footer-section{
+        display: block;
+    }
+    .desktop-footer{
+        background-color: #fff;
+        border-top: 1px solid rgba(53,71,90,.2);
+        width: 100%;
+    }
+    .desktop-footer-container{
+        margin: 0 auto;
+        padding: 0 32px;
+        max-width: 2560px;
+    }
+    .desktop-footer-navbar{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 48px;
+    }
+    .desktop-footer-nav-item{
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+    .nav-item-heading{
+        display: flex;
+        justify-content: space-between;
+        padding: 48px 0 0;
+    }
+    .nav-item-heading h3{
+        font-family: 'canva-font-2';
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        text-align: start;
+        overflow-wrap: break-word;
+        text-size-adjust: 100%;
+        color: #0d1216;
+        font-variation-settings: "opsz" 0;
+    }
+    .footer-list{
+        list-style: none;
+        margin: 16px 0;
+        padding: 0 0 8px;
+        padding-bottom: 0;
+        padding-right: 16px;
+    }
+    .footer-list li{
+        margin-bottom: 8px;
+    }
+    .footer-list-item-text{
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: start;
+        overflow-wrap: break-word;
+        text-size-adjust: 100%;
+        font-variation-settings: "opsz" 0;
+    }
+    .footer-list-item-text a{
+        color: #0d1216;
+    }
+    .desktop-footer-bottom{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 0;
+        border-top: 1px solid rgba(53,71,90,.2);
+    }
+    .copy-right-bottom{
+        grid-auto-flow: column;
+    }
+    .partition-line{
+        background-color: #0d1216;
+        height: 16px;
+        width: 1px;
+    }
+    .social-media-links-container{
+        margin-top: unset;
+    }
+    .language-select-box-container{
+        flex-basis: 0;
+        flex-grow: 1;
+        grid-auto-flow: column;
+        grid-gap: 8px;
+        justify-content: flex-start;
+        white-space: nowrap;
+    }
+    .copyright-section-container{
+        margin-top: unset;
+        flex-basis: 0;
+        flex-grow: 4;
+    }
+    .social-media-links-container{
+        flex-grow: 1;
+        flex-basis: 0;
+    }
 }
 
 @media screen and (min-width:967px){
