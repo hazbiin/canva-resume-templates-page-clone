@@ -503,6 +503,7 @@ main{
 .resumes-grid{
     display: grid;
     grid-template-columns: repeat(2, minmax(0px, 1fr));
+    grid-template-rows: auto;
     column-gap: 16px;
 }
 .blank-resume-container{
@@ -574,7 +575,7 @@ main{
 }
 .resume-image-section{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     overflow: hidden;
 }
 .image-section-outer-flex{
@@ -732,7 +733,7 @@ main{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.sub-title{
+.author{
     color: rgba(13,18,22,.7);
     text-align: start;
     font-family: 'canva-font-2';

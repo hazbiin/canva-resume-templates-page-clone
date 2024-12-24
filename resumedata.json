@@ -1,0 +1,375 @@
+{
+    "resumes" : [
+        {
+            "title" : "Simple Professional CV Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAFszEvkM50/1/0/1131w/canva-simple-professional-cv-resume-J74DKa9D3nk.jpg 1131w, https://marketplace.canva.com/EAFszEvkM50/1/0/283w/canva-simple-professional-cv-resume-d-uWgEOuWPE.jpg 283w, https://marketplace.canva.com/EAFszEvkM50/1/0/566w/canva-simple-professional-cv-resume-BQULGCAMWls.jpg 566w, https://marketplace.canva.com/EAFszEvkM50/1/0/71w/canva-simple-professional-cv-resume-s5lacn7mgHo.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFszEvkM50/1/0/1131w/canva-simple-professional-cv-resume-J74DKa9D3nk.jpg"
+            },
+            "author" : {
+                "name" : "Mosalama",
+                "bio" : "UI&UX designer with a strong background in design. +7 years of experience in creating Website Design, Print Design, Instagram & Facebook ad creatives, banners ads, and more.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
+                "bannerPic": "",
+                "followers" : "100K"
+            }
+        },
+        {
+            "title" : "Minimalist White and Grey Professional Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFSLI7n6x4/1/0/1131w/canva-minimalist-white-and-grey-professional-resume-KjN0Z-p3Mo8.jpg 1131w, https://marketplace.canva.com/EAFSLI7n6x4/1/0/283w/canva-minimalist-white-and-grey-professional-resume-fClG-MZQvvI.jpg 283w, https://marketplace.canva.com/EAFSLI7n6x4/1/0/566w/canva-minimalist-white-and-grey-professional-resume-gZsEJNnf4UY.jpg 566w, https://marketplace.canva.com/EAFSLI7n6x4/1/0/71w/canva-minimalist-white-and-grey-professional-resume--fwu3UpAvpM.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFSLI7n6x4/1/0/1131w/canva-minimalist-white-and-grey-professional-resume-KjN0Z-p3Mo8.jpg"
+            },
+            "author" : {
+                "name" : "Saga Design Studio",
+                "bio" : "Reach out for custom work:",
+                "profilePic":"https://avatar.canva.com/avatars/brands/3d6a2079-10c9-4d5c-ae78-57d98840fa75/200.jpg",
+                "bannerPic":"",
+                "followers":"33K"
+            }
+        },
+        {
+            "title" : "White Simple Student CV Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFBL8KRmSA/1/0/1131w/canva-white-simple-student-cv-resume-NXs7xSf0K8I.jpg 1131w, https://marketplace.canva.com/EAFBL8KRmSA/1/0/283w/canva-white-simple-student-cv-resume-GOJBk2J4YA4.jpg 283w, https://marketplace.canva.com/EAFBL8KRmSA/1/0/566w/canva-white-simple-student-cv-resume-gOQnc1xwcB4.jpg 566w, https://marketplace.canva.com/EAFBL8KRmSA/1/0/71w/canva-white-simple-student-cv-resume-0k0vfYORjX0.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFBL8KRmSA/1/0/1131w/canva-white-simple-student-cv-resume-NXs7xSf0K8I.jpg"
+            },
+            "author" : {
+                "name" : "Malena Indart",
+                "bio":"• CANVA CREATOR desde 2021 • 🌟 Creo plantillas originales, visualmente atractivas y por sobre todo simples y fáciles de usar para toda la comunidad. 💜 Descarga mis plantillas y edítalas como más te guste 💜",
+                "profilePic":"https://avatar.canva.com/avatars/brands/4f1486e5-cbeb-48be-9cef-f86369c50030/200.png",
+                "bannerPic":"",
+                "followers":"71K"
+            }
+        },
+        {
+            "title" : "Blue Simple Professional CV Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFzfwx_Qik/3/0/1131w/canva-blue-simple-professional-cv-resume-HZVmncd0LSs.jpg 1131w, https://marketplace.canva.com/EAFzfwx_Qik/3/0/283w/canva-blue-simple-professional-cv-resume-GLS7iCH3mUA.jpg 283w, https://marketplace.canva.com/EAFzfwx_Qik/3/0/566w/canva-blue-simple-professional-cv-resume-kR_codRlzwY.jpg 566w, https://marketplace.canva.com/EAFzfwx_Qik/3/0/71w/canva-blue-simple-professional-cv-resume-qyg9Oy8wEAM.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFzfwx_Qik/3/0/1131w/canva-blue-simple-professional-cv-resume-HZVmncd0LSs.jpg"
+            },
+            "author" : {
+                "name" : "Qwaleb | قوالب",
+                "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "bannerPic":"",
+                "followers" : "36K"
+            }
+        },
+        {
+            "title" : "Black and White Simple Business School Graduate Corporate Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg 1131w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/283w/canva-black-and-white-simple-business-school-graduate-corporate-resume-ZO0ujx3qy-I.jpg 283w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/566w/canva-black-and-white-simple-business-school-graduate-corporate-resume-KNZaNyT2LIQ.jpg 566w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/71w/canva-black-and-white-simple-business-school-graduate-corporate-resume-Wu8Xm4zcF_g.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg"
+            },
+            "author" : {
+                "name" : "Take Care Creative",
+                "bio" : "Simplify and speed up your work flow with my professional templates. Sign up at the link below for updates 👇👇👇",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/f9507a9f-fd19-4854-8e39-394d33911787/200.png",
+                "bannerPic":"",
+                "followers": "36K"
+            }
+        },
+        {
+            "title" : "Black and White Simple Business School Graduate Corporate Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg 1131w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/283w/canva-black-and-white-simple-business-school-graduate-corporate-resume-ZO0ujx3qy-I.jpg 283w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/566w/canva-black-and-white-simple-business-school-graduate-corporate-resume-KNZaNyT2LIQ.jpg 566w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/71w/canva-black-and-white-simple-business-school-graduate-corporate-resume-Wu8Xm4zcF_g.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg"
+            },
+            "author" : {
+                "name" : "Take Care Creative",
+                "bio" : "Simplify and speed up your work flow with my professional templates. Sign up at the link below for updates 👇👇👇",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/f9507a9f-fd19-4854-8e39-394d33911787/200.png",
+                "bannerPic":"",
+                "followers": "36K"
+            }
+        },
+        {
+            "title" : "Gray and White Simple Clean Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFfKk6Kmck/1/0/1131w/canva-gray-and-white-simple-clean-resume-C_dNdg7kOQg.jpg 1131w, https://marketplace.canva.com/EAFfKk6Kmck/1/0/283w/canva-gray-and-white-simple-clean-resume-NFBy3RgH0e8.jpg 283w, https://marketplace.canva.com/EAFfKk6Kmck/1/0/566w/canva-gray-and-white-simple-clean-resume-Q8M9_MueOj4.jpg 566w, https://marketplace.canva.com/EAFfKk6Kmck/1/0/71w/canva-gray-and-white-simple-clean-resume-690Mt7l5j6E.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFfKk6Kmck/1/0/1131w/canva-gray-and-white-simple-clean-resume-C_dNdg7kOQg.jpg"
+            },
+            "author" : {
+                "name" : "Taina De Castro Rodrigues",
+                "bio" : "Olá, seja bem vindo :)Diretora de Arte com mais de 15 anos de atuação em grandes agências de publicidade. Criar templates no Canva para mim é a forma que encontrei de colocar a criatividade em prática sem amarras. Espero que eles possam te ajudar e facilitar a sua vida. :)",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/add61bd2-5b1d-4cdd-a9da-5db95bdee1be/200.png",
+                "bannerPic":"",
+                "followers": "27K"
+            }
+        },
+        {
+            "title" : "Modern Minimalist cv Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFzSzKZZsg/1/0/1131w/canva-modern-minimalist-cv-resume-oTDK4_esRiU.jpg 1131w, https://marketplace.canva.com/EAFzSzKZZsg/1/0/283w/canva-modern-minimalist-cv-resume-I0ZkaS26Luk.jpg 283w, https://marketplace.canva.com/EAFzSzKZZsg/1/0/566w/canva-modern-minimalist-cv-resume-kXbXbX9dsBs.jpg 566w, https://marketplace.canva.com/EAFzSzKZZsg/1/0/71w/canva-modern-minimalist-cv-resume-8Cu4DaDDRas.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFzSzKZZsg/1/0/1131w/canva-modern-minimalist-cv-resume-oTDK4_esRiU.jpg"
+            },
+           "author" : {
+                "name" : "Mosalama",
+                "bio" : "UI&UX designer with a strong background in design. +7 years of experience in creating Website Design, Print Design, Instagram & Facebook ad creatives, banners ads, and more.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
+                "bannerPic": "",
+                "followers" : "100K"
+            }
+        },
+        {
+            "title" : "Blue and White Professional Corporate Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAGDNOIuRgo/1/0/1131w/canva-blue-and-white-professional-corporate-resume-rXppN-W2O80.jpg 1131w, https://marketplace.canva.com/EAGDNOIuRgo/1/0/283w/canva-blue-and-white-professional-corporate-resume-Q690auAgASU.jpg 283w, https://marketplace.canva.com/EAGDNOIuRgo/1/0/566w/canva-blue-and-white-professional-corporate-resume-_qyqiR7PUi0.jpg 566w, https://marketplace.canva.com/EAGDNOIuRgo/1/0/71w/canva-blue-and-white-professional-corporate-resume-45OwKx_GUG4.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAGDNOIuRgo/1/0/1131w/canva-blue-and-white-professional-corporate-resume-rXppN-W2O80.jpg"
+            },
+            "author" : {
+                "name" : "WissCreative Design",
+                "bio" : "I craft Canva Templates & Elements for smoother, swifter workflows. 🌟",
+                "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
+                "bannerPic":"",
+                "followers":"13K"
+            }
+        },
+        {
+            "title" : "Elegant Minimalist cv Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAE4mb3_yUs/1/0/1131w/canva-elegant-minimalist-cv-resume-TP46smzU0OM.jpg 1131w, https://marketplace.canva.com/EAE4mb3_yUs/1/0/283w/canva-elegant-minimalist-cv-resume-L1GhwjK0HPE.jpg 283w, https://marketplace.canva.com/EAE4mb3_yUs/1/0/566w/canva-elegant-minimalist-cv-resume-j6mA7NPdbzU.jpg 566w, https://marketplace.canva.com/EAE4mb3_yUs/1/0/71w/canva-elegant-minimalist-cv-resume-Il9SbJfaoOE.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAE4mb3_yUs/1/0/1131w/canva-elegant-minimalist-cv-resume-TP46smzU0OM.jpg"
+            },
+            "author" : {
+                "name" : "Jaruka",
+                "bio" : "",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/fa6f57c9-2e80-47cf-a203-fa6bd28f480f/200.jpg",
+                "bannerPic" : "",
+                "followers": "43K"
+            }
+        },
+        {
+            "title" : "Blue and White Clean and Professional Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAF3qAOv9JM/1/0/1131w/canva-blue-and-white-clean-and-professional-resume-XdsVgcqKVIA.jpg 1131w, https://marketplace.canva.com/EAF3qAOv9JM/1/0/283w/canva-blue-and-white-clean-and-professional-resume-D1zO5YEwv84.jpg 283w, https://marketplace.canva.com/EAF3qAOv9JM/1/0/566w/canva-blue-and-white-clean-and-professional-resume-6akHklJ3jkI.jpg 566w, https://marketplace.canva.com/EAF3qAOv9JM/1/0/71w/canva-blue-and-white-clean-and-professional-resume-Bz6vMz2aCGY.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAF3qAOv9JM/1/0/1131w/canva-blue-and-white-clean-and-professional-resume-XdsVgcqKVIA.jpg"
+            },
+            "author" : {
+                "name" : "WissCreative Design",
+                "bio" : "I craft Canva Templates & Elements for smoother, swifter workflows. 🌟",
+                "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
+                "bannerPic":"",
+                "followers":"13K"
+            }
+        },
+        {
+            "title" : "blue professional modern cv Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFcO7DTEHM/1/0/1131w/canva-blue-professional-modern-cv-resume-pPAKwLoiobE.jpg 1131w, https://marketplace.canva.com/EAFcO7DTEHM/1/0/283w/canva-blue-professional-modern-cv-resume-dL748wTwcRo.jpg 283w, https://marketplace.canva.com/EAFcO7DTEHM/1/0/566w/canva-blue-professional-modern-cv-resume-9mPm5aQmsHU.jpg 566w, https://marketplace.canva.com/EAFcO7DTEHM/1/0/71w/canva-blue-professional-modern-cv-resume-thJqlkb53kY.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFcO7DTEHM/1/0/1131w/canva-blue-professional-modern-cv-resume-pPAKwLoiobE.jpg"
+            },
+            "author" : {
+                "name" : "Carlos Olmos",
+                "bio": "Hire my design services: https://es.fiverr.com/olmos_carlos",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/2babe3d2-0b84-4b43-bee9-0e1a0c875de7/200.png",
+                "bannerPic": "",
+                "followers": "159K"
+            }
+        },
+        {
+            "title" : "Minimalist White and Grey Professional Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAGB2-hwc2A/1/0/1131w/canva-minimalist-white-and-grey-professional-resume-7wI4I6L9Vfc.jpg 1131w, https://marketplace.canva.com/EAGB2-hwc2A/1/0/283w/canva-minimalist-white-and-grey-professional-resume-ia0iv2trjuE.jpg 283w, https://marketplace.canva.com/EAGB2-hwc2A/1/0/566w/canva-minimalist-white-and-grey-professional-resume-YMKbym6mkQo.jpg 566w, https://marketplace.canva.com/EAGB2-hwc2A/1/0/71w/canva-minimalist-white-and-grey-professional-resume-62JiLPlZYdY.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAGB2-hwc2A/1/0/1131w/canva-minimalist-white-and-grey-professional-resume-7wI4I6L9Vfc.jpg"
+            },
+           "author" : {
+                "name" : "Qwaleb | قوالب",
+                "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "bannerPic":"",
+                "followers" : "36K"
+            }
+        },
+        {
+            "title" : "White and Green Simple Student CV Resume",
+            "image" : {
+                "srcset": "https://marketplace.canva.com/EAFqT5-53BA/1/0/1131w/canva-white-and-green-simple-student-cv-resume-KZWMremeNF8.jpg 1131w, https://marketplace.canva.com/EAFqT5-53BA/1/0/283w/canva-white-and-green-simple-student-cv-resume-x07d6sVwZ2U.jpg 283w, https://marketplace.canva.com/EAFqT5-53BA/1/0/566w/canva-white-and-green-simple-student-cv-resume-AtqcIbVSAeg.jpg 566w, https://marketplace.canva.com/EAFqT5-53BA/1/0/71w/canva-white-and-green-simple-student-cv-resume-_BPsdXAK3rU.jpg 71w",
+                "src": "https://marketplace.canva.com/EAFqT5-53BA/1/0/1131w/canva-white-and-green-simple-student-cv-resume-KZWMremeNF8.jpg"
+            },
+            "author" : {
+                "name" : "Malena Indart",
+                "bio":"• CANVA CREATOR desde 2021 • 🌟 Creo plantillas originales, visualmente atractivas y por sobre todo simples y fáciles de usar para toda la comunidad. 💜 Descarga mis plantillas y edítalas como más te guste 💜",
+                "profilePic":"https://avatar.canva.com/avatars/brands/4f1486e5-cbeb-48be-9cef-f86369c50030/200.png",
+                "bannerPic":"",
+                "followers":"71K"
+            }
+
+        },
+        {
+            "title" : "Blue Simple Professional cv Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAF5Qm_OeNA/4/0/1131w/canva-blue-simple-professional-cv-resume--si0uK3NNow.jpg 1131w, https://marketplace.canva.com/EAF5Qm_OeNA/4/0/283w/canva-blue-simple-professional-cv-resume-Qg_BhEV4IlE.jpg 283w, https://marketplace.canva.com/EAF5Qm_OeNA/4/0/566w/canva-blue-simple-professional-cv-resume-3p8tJIPM2NQ.jpg 566w, https://marketplace.canva.com/EAF5Qm_OeNA/4/0/71w/canva-blue-simple-professional-cv-resume-wqbIXVASeMs.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAF5Qm_OeNA/4/0/1131w/canva-blue-simple-professional-cv-resume--si0uK3NNow.jpg"
+            },
+            "author" : {
+                "name" : "Qwaleb | قوالب",
+                "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "bannerPic":"",
+                "followers" : "36K"
+            }
+        },
+        {
+            "title" : "Black Modern Professional Resume",
+            "image" : {
+                "srcset": "https://marketplace.canva.com/EAFk2sEzxO8/2/0/1131w/canva-black-modern-professional-resume-dZr9WsdAK8c.jpg 1131w, https://marketplace.canva.com/EAFk2sEzxO8/2/0/283w/canva-black-modern-professional-resume-4PHLNC4jvNo.jpg 283w, https://marketplace.canva.com/EAFk2sEzxO8/2/0/566w/canva-black-modern-professional-resume-yJIAvkg9xmA.jpg 566w, https://marketplace.canva.com/EAFk2sEzxO8/2/0/71w/canva-black-modern-professional-resume--EBialw_HTY.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFk2sEzxO8/2/0/1131w/canva-black-modern-professional-resume-dZr9WsdAK8c.jpg"
+            },
+            "author" : {
+                "name" : "Carlos Olmos",
+                "bio": "Hire my design services: https://es.fiverr.com/olmos_carlos",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/2babe3d2-0b84-4b43-bee9-0e1a0c875de7/200.png",
+                "bannerPic": "",
+                "followers": "159K"
+            }
+        },
+        {
+            "title": "Purple and White Clean and Professional Resume",
+            "image" : {
+                "srcset": "https://marketplace.canva.com/EAF0xMTCI-k/2/0/1131w/canva-purple-and-white-clean-and-professional-resume-frY8T1MGKoM.jpg 1131w, https://marketplace.canva.com/EAF0xMTCI-k/2/0/283w/canva-purple-and-white-clean-and-professional-resume-PuuMF16yxSM.jpg 283w, https://marketplace.canva.com/EAF0xMTCI-k/2/0/566w/canva-purple-and-white-clean-and-professional-resume-9aITsPALYWI.jpg 566w, https://marketplace.canva.com/EAF0xMTCI-k/2/0/71w/canva-purple-and-white-clean-and-professional-resume--lKDks4BnVY.jpg 71w",
+                "src": "https://marketplace.canva.com/EAF0xMTCI-k/2/0/1131w/canva-purple-and-white-clean-and-professional-resume-frY8T1MGKoM.jpg"
+            },
+            "author" : {
+                "name" : "WissCreative Design",
+                "bio" : "I craft Canva Templates & Elements for smoother, swifter workflows. 🌟",
+                "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
+                "bannerPic":"",
+                "followers":"13K"
+            }
+        },
+        {
+            "title": "Black and White Corporate Resume",
+            "image" : {
+                "srcset" : "https://marketplace.canva.com/EAFtv3WShcY/1/0/1131w/canva-black-and-white-corporate-resume-SFKBA-xgtTs.jpg 1131w, https://marketplace.canva.com/EAFtv3WShcY/1/0/283w/canva-black-and-white-corporate-resume-pVO20LBLGB0.jpg 283w, https://marketplace.canva.com/EAFtv3WShcY/1/0/566w/canva-black-and-white-corporate-resume-4WxyzpIn8Z0.jpg 566w, https://marketplace.canva.com/EAFtv3WShcY/1/0/71w/canva-black-and-white-corporate-resume-ZmW46aPKmQo.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFtv3WShcY/1/0/1131w/canva-black-and-white-corporate-resume-SFKBA-xgtTs.jpg"
+            },
+            "author" : {
+                "name" : "ג'אנטיקו קריאייטיב",
+                "bio": "Designer & Illustrator",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/fe92b09d-7960-4e67-8fb5-7091d6030b95/200.png",
+                "bannerPic": "",
+                "followers" : "6.2K"
+            }
+        },
+        {
+            "title" : "Black & White Minimalistic Professional Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAE-b4_Ubw4/1/0/1131w/canva-black-%26-white-minimalistic-professional-resume-Ga_4CIsD1gU.jpg 1131w, https://marketplace.canva.com/EAE-b4_Ubw4/1/0/283w/canva-black-%26-white-minimalistic-professional-resume-bCwSFTrZ4Lg.jpg 283w, https://marketplace.canva.com/EAE-b4_Ubw4/1/0/566w/canva-black-%26-white-minimalistic-professional-resume--_LlhjxwOyI.jpg 566w, https://marketplace.canva.com/EAE-b4_Ubw4/1/0/71w/canva-black-%26-white-minimalistic-professional-resume-TqrpiXTNHs4.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAE-b4_Ubw4/1/0/1131w/canva-black-%26-white-minimalistic-professional-resume-Ga_4CIsD1gU.jpg"
+            },
+            "author" : {
+                "name" : "ARP Creation",
+                "bio" : "Templates & Graphic Elements Creator for Entrepreneurs and Content Creators.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/a9491963-50d6-4b9c-bd55-8fe14850af6a/200.jpg",
+                "bannerPic": "",
+                "followers":"36K"
+            }
+        },
+        {
+            "title" : "Professional Minimalist CV Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAFuy_EwAJs/1/0/1131w/canva-professional-minimalist-cv-resume-SIuomcjZoUY.jpg 1131w, https://marketplace.canva.com/EAFuy_EwAJs/1/0/283w/canva-professional-minimalist-cv-resume-C251mDOQ8Ao.jpg 283w, https://marketplace.canva.com/EAFuy_EwAJs/1/0/566w/canva-professional-minimalist-cv-resume-kzlZQIR3XF8.jpg 566w, https://marketplace.canva.com/EAFuy_EwAJs/1/0/71w/canva-professional-minimalist-cv-resume-8NhLQgfAAbI.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFuy_EwAJs/1/0/1131w/canva-professional-minimalist-cv-resume-SIuomcjZoUY.jpg"
+            },
+            "author" : {
+                "name" : "Mosalama",
+                "bio" : "UI&UX designer with a strong background in design. +7 years of experience in creating Website Design, Print Design, Instagram & Facebook ad creatives, banners ads, and more.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
+                "bannerPic": "",
+                "followers" : "100K"
+            }
+        }
+    ],
+    "resumeStyles" : [
+        "Professional",
+        "Modern",
+        "Simple",
+        "Infographic",
+        "Minimalist",
+        "Corporate",
+        "Creative",
+        "Photo",
+        "Colorful",
+        "Acting",
+        "Academic",
+        "Graphic Design",
+        "College",
+        "High School",
+        "Scholarship",
+        "SEEK",
+        "Babysitter Resumes",
+        "Freelance Resume",
+        "Business Analyst Resumes",
+        "Sales Resume",
+        "Writer Resume",
+        "Tech Resume",
+        "Internship Resume",
+        "Accounting Resumes",
+        "Teacher Resume"
+    ],
+    "navigationLinks" : [
+        "Docs",
+        "Whiteboard",
+        "Presentations",
+        "Logos",
+        "Videos",
+        "Zoom Virtual Backgrounds",
+        "Infographics",
+        "Business Cards",
+        "T-Shirts",
+        "Instagram Stories",
+        "Instagram Posts",
+        "Brochures",
+        "Desktop Wallpapers",
+        "Book Covers",
+        "Letterheads",
+        "Album Covers",
+        "Magazine Covers",
+        "ID Cards",
+        "Newsletters",
+        "Calendars",
+        "Social Graphics",
+        "Photo Collages",
+        "Postcards",
+        "Labels",
+        "Announcements",
+        "Storyboards",
+        "Gift Certificates",
+        "Tags",
+        "Programs",
+        "Tickets",
+        "Bookmarks",
+        "Class Schedules",
+        "Coupons",
+        "Reports",
+        "Proposals",
+        "Media Kits",
+        "Worksheets",
+        "Invoices",
+        "Recipe Cards",
+        "Rack Cards",
+        "Planners",
+        "Report Cards",
+        "Letters",
+        "Lesson Plans",
+        "Web Banners",
+        "Web Ads",
+        "Websites",
+        "Checklists",
+        "Memos",
+        "Table Of Contents",
+        "Twitter",
+        "Facebook Posts",
+        "Facebook Stories",
+        "Memes",
+        "Podcast",
+        "Facebook Cover",
+        "Phone Wallpapers",
+        "Stickers",
+        "Mugs",
+        "WhatsApp Statuses",
+        "Lemon8 Posts"
+    ]
+}
