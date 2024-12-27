@@ -371,5 +371,10 @@
         "Mugs",
         "WhatsApp Statuses",
         "Lemon8 Posts"
+    ],
+    "filterCategory" : [
+        {
+            "filterName" : "Animation"
+        }
     ]
 }
