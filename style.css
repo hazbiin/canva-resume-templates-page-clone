@@ -1843,8 +1843,7 @@ main{
 @media screen and (min-width:1220px){
     
     .icon-absolute-container{
-        visibility: hidden;
-        /* display: none; */
+        display: none;
     }
 }
 @media screen and (min-width:1261px){
@@ -1911,6 +1910,9 @@ main{
     align-items: center;
     cursor: pointer;
     padding: 8px 4px;
+}
+.inner-filters .style-category-label:nth-child(n+7):nth-child(-n+10){
+    display: none;
 }
 .checkbox-section{
     display: inline-flex;
@@ -2331,4 +2333,267 @@ main{
     min-width: auto;
     height: 24px;
 }
+/* -------------all filters pop-up ---------------- */
+.pop-up-overlay{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28,39,48,.5);
+    pointer-events: auto;
+    clip-path: inset(-100vw -100vw -100vw 0);
+}
+.pop-up-overlay.remove{
+    transition: background-color 0.3s ease-in-out;
+    pointer-events: unset;
+}
+.all-filters-absolute-container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-64px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.all-filters-absolute-container.show{
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+.all-filters-flex-wrapper{
+    display: flex;
+    height: 100%;
+    padding: 8px;
+    pointer-events: none;
+    position: relative;
+}
+.all-filters-overflow-container{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    width: 280px;
+    background: #fff;
+    box-shadow: 0px 0px 0px 1px rgba(64,87,109,.04),0px 6px 20px -4px rgba(64,87,109,.3);
+    border-radius: 12px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    pointer-events: auto;
+}
+.container-head-section{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.container-head-section hr{
+    border: none;
+    border-bottom: 1px solid rgba(57,76,96,.15);
+    height: 1px;
+    margin: 0;
+}
+.filters-head-flex-container{
+    width: 100%;
+    padding:12px;
+    display: flex;
+}
+.filters-heading{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 32px;
+    min-width: 0;
+    padding: 0 4px;
+    text-align: start;
+}
+.filters-heading h5{
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    font-variation-settings: "opsz" 0;
+    text-align: center;
+    color: #0d1216;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: start;
+}
+.close-btn-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-left: 4px;
+    min-height: 32px;
+}
+.close-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    max-width: 100%;
+    padding: 0 8px;
+    background-color: rgba(13,18,22,0);
+    border: 0px solid transparent;
+    border-radius: 8px;
+    color:#0d1216;
+    cursor: pointer;
+    vertical-align: middle;
+    outline: none;
+    transition:background-color .1s linear, border-color .1s linear, color .1s linear;
+}
+.close-btn:hover{
+    background-color: rgba(64,87,109,.07);
+}
+.close-icon{
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d1216;
+    width:16px;
+    height: 16px;
+}
+.container-middle-section{
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    z-index: 0;
+}
+.container-middle-section ul{
+    padding: 0 4px;
+    width: auto;
+    list-style: none;
+    overflow-wrap: normal;
+}
+.inner-filter-btn{
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    padding: 8px 4px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color .1s linear;
+}
+.inner-filter-btn:hover{
+    background-color: rgba(64,87,109,.07);
+}
+.btn-contents-flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 1.6;
+    height: 100%;
+    min-width: 0;
+    margin: 0 8px;
+    overflow: hidden;
+    text-align: start;
+    text-overflow: ellipsis;
+    transition: color .1s ease-in-out;
+    white-space: nowrap;
+}
+.btn-contents-flex-container h3{
+    text-align: start;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    font-variation-settings: "opsz" 0;
+    text-size-adjust: none;
+    overflow-wrap: break-word;
+    height: 24px;
+    color: rgb(13, 18, 22);
+}
+.filter-nav-icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+    margin-left: 4px;
+}
+.inner-filters-container{
+    margin-bottom: 16px;
+}
+.inner-filters{
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+}
+.view-more-btn{
+    background-color: rgba(13,18,22,0);
+    color: rgba(17,23,29,.6);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 80px;
+    height: 40px;
+    border-radius: 8px;
+    border:0px solid transparent;
+    outline: none;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 0 16px;
+}
+.view-more-btn:hover{
+    background-color:  rgba(64,87,109,.07);
+}
+.view-more-icon{
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-right: 8px;
+    color: rgba(17,23,29,.6);
+}
+.view-more-text{
+    text-align: start;
+    font-family: 'canva-font-2';
+    font-weight: 600;
+    font-size: 14px;
+    text-size-adjust: none;
+    line-height: 22px;
+    font-variation-settings: "opsz" 0;
+}
 
+.inner-filters-container .price-filter-container{
+    padding:0 8px;
+}
+.inner-filters-container .colors-grid-container{
+    padding: 4px 12px;
+}
+
+.container-bottom-section{
+    border-top: 1px solid rgba(57,76,96,.15);
+    position: sticky;
+    bottom: 0;
+}
+.filters-btn-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    padding: 16px;
+}
+.pop-up-container .login-btn{
+    cursor: not-allowed;
+    background-color: rgba(13,18,22,0);
+    color: rgba(36,49,61,.4);
+}

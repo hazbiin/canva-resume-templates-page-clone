@@ -372,9 +372,34 @@
         "WhatsApp Statuses",
         "Lemon8 Posts"
     ],
-    "filterCategory" : [
-        {
-            "filterName" : "Animation"
-        }
+    "Languages" : [
+        "(العربية (مصر",
+        "中文 (中國香港特別行政區)",
+        "中文 (台灣)",
+        "Dansk (Danmark)",
+        "Nederlands (Nederland)",
+        "English (US)",
+        "Français (France)",
+        "Deutsch (Deutschland)",
+        "हिन्दी (भारत)",
+        "Bahasa Indonesia (Indonesia)",
+        "Italiano (Italia)",
+        "日本語 (日本)",
+        "한국어 (대한민국)",
+        "Melayu (Malaysia)",
+        "Norsk bokmål (Norge)",
+        "Polski (Polska)",
+        "Português (Brasil)",
+        "Русский (Россия)",
+        "Español (Argentina)",
+        "Español (Colombia)",
+        "Español (México)",
+        "Español (España)",
+        "Español (Estados Unidos)",
+        "Svenska (Sverige)",
+        "ไทย (ไทย)",
+        "Türkçe (Türkiye)",
+        "Українська (Україна)",
+        "Tiếng Việt (Việt Nam)"
     ]
 }
