@@ -12,6 +12,27 @@ const priceBtn = document.getElementById('price-btn');
 const colorBtn = document.getElementById('color-btn');
 const languageSelectBtn = document.getElementById('language-select-btn');
 
+const slidingTabs = document.querySelectorAll('.nav-items-container');
+const nextBtns = document.querySelectorAll('.next');
+const prevBtns = document.querySelectorAll('.prev');
+
+
+// const filtersStickyHeader = document.querySelector('.filters-sticky-container');
+// const stickyStart = 72;
+
+// window.addEventListener("scroll", () => {
+
+//     if (window.scrollY > stickyStart + 20) {
+//         filtersStickyHeader.classList.add('show-box-shadow');
+//     } else {
+//         filtersStickyHeader.classList.remove('show-box-shadow');
+//     }
+
+// });
+
+
+
+
 
 getResumeTemplates();
 async function getResumeTemplates(){
@@ -27,7 +48,6 @@ async function getResumeTemplates(){
 function showResumeStyles(resumeStylesData){
 
     resumeStylesData.forEach((style) => {
-
         const markup = `
             <div class="nav-item-container">
                 <div class="nav-item">
@@ -42,8 +62,71 @@ function showResumeStyles(resumeStylesData){
         resumeStyles.insertAdjacentHTML("beforeend",markup);
     });
 }
+
+function showNavigationLinks(navigationLinksData){
+
+    navigationLinksData.forEach((navigationLink) => {
+        const markup = `
+            <div class="nav-item-container">
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <button class="section-nav-btn">
+                            <span class="nav-text">${navigationLink}</span>
+                        </button>                                                        
+                    </a>
+                </div>
+            </div>
+        `;
+        navigationLinks.insertAdjacentHTML("beforeend", markup);
+    });
+}
+
+// ---------------------navigations slider----------------------------
+nextBtns.forEach((nextBtn) => {
+    nextBtn.classList.add('active');
+});
+
+slidingTabs.forEach((slidingTab) => {
+
+    slidingTab.addEventListener("scroll" , () => {
+        if(slidingTab.scrollLeft > 0){
+            prevBtns.forEach((prevBtn) => {
+                prevBtn.classList.add('active');
+            });
+        } else {
+            prevBtns.forEach((prevBtn) => {
+                prevBtn.classList.remove('active');
+            });
+        }
+
+        let maxScrollWidth = slidingTab.scrollWidth - slidingTab.clientWidth;
+        if(slidingTab.scrollLeft >= maxScrollWidth){
+            nextBtns.forEach((nextBtn) => {
+                nextBtn.classList.remove('active');
+            });
+        } else {
+            nextBtns.forEach((nextBtn) => {
+                nextBtn.classList.add('active');
+            });
+        }
+    });
+
+    nextBtns.forEach((nextBtn) => {
+        nextBtn.addEventListener("click", () => {
+            slidingTab.scrollLeft += 1341;
+        });
+    });
+    prevBtns.forEach((prevBtn) => {
+        prevBtn.addEventListener("click", () => {
+            slidingTab.scrollLeft -= 1382;
+        });
+    });
+});
+
 function showResumeTemplates(resumesData){
 
+    // const proResumes = resumesData.filter((resume) => resume.pricePlan === "pro");
+    
     // resumesGrid.innerHTML = '';
     resumesData.forEach((resume) => {
 
@@ -100,8 +183,25 @@ function showResumeTemplates(resumesData){
         `;
         resumesGrid.appendChild(resumeEl);
 
+        if(resume.pricePlan === "pro") {
+
+            const imageAbsoluteContainer = resumeEl.querySelector('.image-absolute-container');
+            const markup = `
+                <span class="pro-label-container">
+                    <span class="pro-icon-container">
+                        <span class="pro-icon">
+                            <img src="assets/svgs/resume-pro-icon.svg" alt="">
+                        </span>
+                        <span class="pro-text-container">
+                            Pro
+                        </span>
+                    </span>
+                </span>
+            `;
+            imageAbsoluteContainer.insertAdjacentHTML("beforebegin", markup);
+        }
+
         hoverOnResumeTemplates(resumeEl);
-        
     });
 }
 
@@ -109,32 +209,21 @@ function hoverOnResumeTemplates(resume){
 
     const resumeImage = resume.querySelector('.resume-image-section');
     const imageIcon = resume.querySelector('.icon-absolute-container');
+    const proText = resume.querySelector('.pro-text-container');
 
     resumeImage.addEventListener("mouseenter", () => {
         imageIcon.style.display = 'flex';
-    });
 
+        if(proText){
+            proText.style.display = "inline";
+        }
+    });
     resumeImage.addEventListener("mouseleave", () => {
         imageIcon.style.display = 'none';
-    });
-}
 
-function showNavigationLinks(navigationLinksData){
-
-    navigationLinksData.forEach((navigationLink) => {
-
-        const markup = `
-            <div class="nav-item-container">
-                <div class="nav-item">
-                    <a class="nav-link" href="#">
-                        <button class="section-nav-btn">
-                            <span class="nav-text">${navigationLink}</span>
-                        </button>                                                        
-                    </a>
-                </div>
-            </div>
-        `;
-        navigationLinks.insertAdjacentHTML("beforeend", markup);
+        if(proText){
+            proText.style.display = "none";
+        }
     });
 }
 
@@ -338,14 +427,15 @@ styleBtn.addEventListener("click", (e) => {
     const popUpEl = bodyEl.querySelector('.pop-up-container');
 
     if(!popUpEl){
-
+       
         bodyEl.insertAdjacentHTML("afterbegin", markup);
 
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         hoverCheckMarks(styleCategoryLabels,checkMarks);
         
-    }else{
+    }
+    else{
         popUpEl.remove();
     }
 });
@@ -597,7 +687,7 @@ priceBtn.addEventListener("click" , (e) => {
                     <div class="price-filter-container">
                         <div class="price-filter-grid">
                             <div class="free-section">
-                                <button class="price-filter-btn">
+                                <button id="free-btn" class="price-filter-btn">
                                     <div class="price-filter-wrapper">
                                         <div class="filter-btn-contents-grid">
                                             <span class="price-filter-icon">
@@ -609,7 +699,7 @@ priceBtn.addEventListener("click" , (e) => {
                                 </button>
                             </div>
                             <div class="pro-section">
-                                <button class="price-filter-btn">
+                                <button id="pro-btn" class="price-filter-btn">
                                     <div class="price-filter-wrapper">
                                         <div class="filter-btn-contents-grid">
                                             <span class="price-filter-icon">

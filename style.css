@@ -265,6 +265,7 @@ main{
     overflow-y: hidden;
     z-index: 0;
     scrollbar-width: none;
+    scroll-behavior: smooth;
 }
 .nav-item-container{
     padding-right: 8px;
@@ -329,6 +330,15 @@ main{
     position: sticky;
     top: 72px;
     z-index: 1;
+    opacity: 1;
+    transition: transform .2s ease, opacity .2s ease;
+}
+.filters-sticky-container.show-box-shadow{
+    box-shadow: 0 0 0 -1px rgba(64,87,109,.04),0px 6px 10px -8px rgba(64,87,109,.3);
+}
+.filters-sticky-container.hide{
+    opacity: 0;
+    transform: translateY(-100%);
 }
 .filters-section-wrapper{
     background:#Fff;
@@ -584,6 +594,9 @@ main{
     overflow-wrap: break-word;
     color: #0d1216;
 }
+.create-blank-text::before{
+    content: "Create blank";
+}
 .resume-wrapper{
     display: flex;
     flex-direction: column;
@@ -672,6 +685,52 @@ main{
     z-index: 3;
     display: inline-flex;
     line-height: 16px;
+}
+.pro-label-container{
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 3;
+    display: inline-flex;
+    line-height: 16px;
+}
+.pro-icon-container{
+    display: inline-flex;
+    height: 16px;
+    line-height: 16px;
+    background-color: rgba(17,23,29,.6);
+    color: #fff;
+    border-radius: 99999px;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 0 6px;
+}
+.pro-icon{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -1px;
+    width: 16px;
+    height: 16px;
+    color: #fdbc68;
+}
+.pro-icon img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.pro-text-container{
+    display: none;
+    font-family: 'canva-font-2';
+    font-size: 11px;
+    font-weight: 600;
+    font-variation-settings: "opsz" 0;
+    text-size-adjust: none;
+    line-height: 16px;
+    margin-left: 2px;
+}
+.pro-text-container.show {
+    display: inline;
 }
 .image-btn:first-child{
     display: none;
@@ -1351,6 +1410,9 @@ main{
     .nav-item-container:first-child{
         padding-left: 0;
     }
+    .nav-item-container:last-child{
+        padding-right: 0;
+    }
 
     .blank-resume-container{
         margin-bottom: 24px;
@@ -1382,7 +1444,7 @@ main{
 
 
     .sliding-btn{
-        display: flex;
+        /* display: flex; */
         align-items: center;
         background-color: transparent;
         color: #0d1216;
@@ -1409,7 +1471,7 @@ main{
         background: linear-gradient(to right, hsla(0,0%,100%,0), #fff);
     }
     .prev{
-        display: none;
+        /* display: none; */
         justify-content: flex-start;
         left: -1px;
     }
@@ -1421,6 +1483,12 @@ main{
         height: 100%;
         pointer-events: none;
         background: linear-gradient(to left, hsla(0,0%,100%,0), #fff);
+    }
+    .next.active{
+        display: flex;
+    }
+    .prev.active{
+        display: flex;
     }
     .arrow-icon-container{
         position: relative;
@@ -1811,6 +1879,11 @@ main{
     }
 }
 
+@media screen and (min-width:953px){
+    .create-blank-text::before{
+        content: 'Create a blank Resume';
+    }
+}
 @media screen and (min-width:967px){
     .header-nav-container nav ul .nav-list-item:nth-child(2) {
         visibility: visible;

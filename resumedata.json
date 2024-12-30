@@ -12,7 +12,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
                 "bannerPic": "",
                 "followers" : "100K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Minimalist White and Grey Professional Resume",
@@ -26,7 +27,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/3d6a2079-10c9-4d5c-ae78-57d98840fa75/200.jpg",
                 "bannerPic":"",
                 "followers":"33K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "White Simple Student CV Resume",
@@ -40,7 +42,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/4f1486e5-cbeb-48be-9cef-f86369c50030/200.png",
                 "bannerPic":"",
                 "followers":"71K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Blue Simple Professional CV Resume",
@@ -54,7 +57,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
                 "bannerPic":"",
                 "followers" : "36K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Black and White Simple Business School Graduate Corporate Resume",
@@ -68,21 +72,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/f9507a9f-fd19-4854-8e39-394d33911787/200.png",
                 "bannerPic":"",
                 "followers": "36K"
-            }
-        },
-        {
-            "title" : "Black and White Simple Business School Graduate Corporate Resume",
-            "image" : {
-                "srcset" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg 1131w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/283w/canva-black-and-white-simple-business-school-graduate-corporate-resume-ZO0ujx3qy-I.jpg 283w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/566w/canva-black-and-white-simple-business-school-graduate-corporate-resume-KNZaNyT2LIQ.jpg 566w, https://marketplace.canva.com/EAFmmI9TNiU/1/0/71w/canva-black-and-white-simple-business-school-graduate-corporate-resume-Wu8Xm4zcF_g.jpg 71w",
-                "src" : "https://marketplace.canva.com/EAFmmI9TNiU/1/0/1131w/canva-black-and-white-simple-business-school-graduate-corporate-resume-B7jRAL1zLDc.jpg"
             },
-            "author" : {
-                "name" : "Take Care Creative",
-                "bio" : "Simplify and speed up your work flow with my professional templates. Sign up at the link below for updates 👇👇👇",
-                "profilePic" : "https://avatar.canva.com/avatars/brands/f9507a9f-fd19-4854-8e39-394d33911787/200.png",
-                "bannerPic":"",
-                "followers": "36K"
-            }
+            "pricePlan" : "free"
         },
         {
             "title" : "Gray and White Simple Clean Resume",
@@ -96,7 +87,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/add61bd2-5b1d-4cdd-a9da-5db95bdee1be/200.png",
                 "bannerPic":"",
                 "followers": "27K"
-            }
+            },
+            "pricePlan":"free"
         },
         {
             "title" : "Modern Minimalist cv Resume",
@@ -110,7 +102,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
                 "bannerPic": "",
                 "followers" : "100K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Blue and White Professional Corporate Resume",
@@ -124,7 +117,8 @@
                 "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
                 "bannerPic":"",
                 "followers":"13K"
-            }
+            },
+            "pricePlan" : "pro"
         },
         {
             "title" : "Elegant Minimalist cv Resume",
@@ -138,7 +132,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/fa6f57c9-2e80-47cf-a203-fa6bd28f480f/200.jpg",
                 "bannerPic" : "",
                 "followers": "43K"
-            }
+            },
+            "pricePlan": "pro"
         },
         {
             "title" : "Blue and White Clean and Professional Resume",
@@ -152,7 +147,8 @@
                 "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
                 "bannerPic":"",
                 "followers":"13K"
-            }
+            },
+            "pricePlan": "pro"
         },
         {
             "title" : "blue professional modern cv Resume",
@@ -166,7 +162,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/2babe3d2-0b84-4b43-bee9-0e1a0c875de7/200.png",
                 "bannerPic": "",
                 "followers": "159K"
-            }
+            },
+            "pricePlan": "free"
         },
         {
             "title" : "Minimalist White and Grey Professional Resume",
@@ -180,7 +177,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
                 "bannerPic":"",
                 "followers" : "36K"
-            }
+            },
+            "pricePlan": "free"
         },
         {
             "title" : "White and Green Simple Student CV Resume",
@@ -194,7 +192,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/4f1486e5-cbeb-48be-9cef-f86369c50030/200.png",
                 "bannerPic":"",
                 "followers":"71K"
-            }
+            },
+            "pricePlan" : "free"
 
         },
         {
@@ -209,7 +208,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
                 "bannerPic":"",
                 "followers" : "36K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Black Modern Professional Resume",
@@ -223,7 +223,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/2babe3d2-0b84-4b43-bee9-0e1a0c875de7/200.png",
                 "bannerPic": "",
                 "followers": "159K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title": "Purple and White Clean and Professional Resume",
@@ -237,7 +238,8 @@
                 "profilePic": "https://avatar.canva.com/avatars/brands/e7860fa6-5712-4c32-bd99-d196ad7318d9/200.png",
                 "bannerPic":"",
                 "followers":"13K"
-            }
+            },
+            "pricePlan": "free"
         },
         {
             "title": "Black and White Corporate Resume",
@@ -251,7 +253,8 @@
                 "profilePic" : "https://avatar.canva.com/avatars/brands/fe92b09d-7960-4e67-8fb5-7091d6030b95/200.png",
                 "bannerPic": "",
                 "followers" : "6.2K"
-            }
+            },
+            "pricePlan" : "pro"
         },
         {
             "title" : "Black & White Minimalistic Professional Resume",
@@ -265,7 +268,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/a9491963-50d6-4b9c-bd55-8fe14850af6a/200.jpg",
                 "bannerPic": "",
                 "followers":"36K"
-            }
+            },
+            "pricePlan" : "free"
         },
         {
             "title" : "Professional Minimalist CV Resume",
@@ -279,7 +283,8 @@
                 "profilePic":"https://avatar.canva.com/avatars/brands/3ff32341-bf28-4b85-b352-46a41811dd9a/200.png",
                 "bannerPic": "",
                 "followers" : "100K"
-            }
+            },
+            "pricePlan" :"free"
         }
     ],
     "resumeStyles" : [
