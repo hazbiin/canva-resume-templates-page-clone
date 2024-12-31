@@ -19,7 +19,6 @@ const prevBtns = document.querySelectorAll('.prev');
 
 // const filtersStickyHeader = document.querySelector('.filters-sticky-container');
 // const stickyStart = 72;
-
 // window.addEventListener("scroll", () => {
 
 //     if (window.scrollY > stickyStart + 20) {
@@ -30,10 +29,6 @@ const prevBtns = document.querySelectorAll('.prev');
 
 // });
 
-
-
-
-
 getResumeTemplates();
 async function getResumeTemplates(){
 
@@ -43,7 +38,7 @@ async function getResumeTemplates(){
     showResumeStyles(data.resumeStyles);
     showResumeTemplates(data.resumes);
     showNavigationLinks(data.navigationLinks);
-}
+}   
 
 function showResumeStyles(resumeStylesData){
 
@@ -123,11 +118,34 @@ slidingTabs.forEach((slidingTab) => {
     });
 });
 
-function showResumeTemplates(resumesData){
+// ---------------------------updating resumes templates gird---------------------------
+function addBlankResumeContainer(){
+    const markup = `
+        <div class="blank-resume-container">
+            <div class="blank-container-relative">
+                <div class="blank-container-absolute">
+                    <div class="extra-div">
+                        <div class="blank-container-flex">
+                            <div class="blank-contents">
+                                <span class="create-icon-container">
+                                    <img class="create-icon" src="assets/svgs/create-blank-icon.svg" alt="">
+                                </span>
+                                <p class="create-blank-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    resumesGrid.insertAdjacentHTML("afterbegin", markup);
+}
 
-    // const proResumes = resumesData.filter((resume) => resume.pricePlan === "pro");
-    
-    // resumesGrid.innerHTML = '';
+function showResumeTemplates(resumesData){
+   
+    resumesGrid.innerHTML = '';
+    addBlankResumeContainer();
+
     resumesData.forEach((resume) => {
 
         const resumeEl = document.createElement('div');
@@ -183,7 +201,7 @@ function showResumeTemplates(resumesData){
         `;
         resumesGrid.appendChild(resumeEl);
 
-        if(resume.pricePlan === "pro") {
+        if(resume.pricePlan === "Pro") {
 
             const imageAbsoluteContainer = resumeEl.querySelector('.image-absolute-container');
             const markup = `
@@ -213,20 +231,19 @@ function hoverOnResumeTemplates(resume){
 
     resumeImage.addEventListener("mouseenter", () => {
         imageIcon.style.display = 'flex';
-
         if(proText){
             proText.style.display = "inline";
         }
     });
     resumeImage.addEventListener("mouseleave", () => {
         imageIcon.style.display = 'none';
-
         if(proText){
             proText.style.display = "none";
         }
     });
 }
 
+// ------------------------click events on filter category buttons ------------------
 filterCategoryBtns.forEach((filterCategoryBtn) => {
 
     filterCategoryBtn.addEventListener("click", () => {
@@ -247,7 +264,7 @@ function removeBackgroundToggleClass(){
     });
 }
 
-
+// --------------------hovering checkmarks on pop-ups-----------------------------
 function hoverCheckMarks(styleCategoryLabels,checkMarks){
 
     styleCategoryLabels.forEach((label,index) => {
@@ -270,462 +287,403 @@ function hoverCheckMarks(styleCategoryLabels,checkMarks){
 }
 
 // -------------------style filter btn-------------------------------
+function loadStyleFilters(styleFilters){
+
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('scroll-item-container');
+
+    styleFilters.forEach((styleFilter) => {
+        for(let key in styleFilter) {
+            
+            stylesContainer.innerHTML += `
+                 <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${styleFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
+
 styleBtn.addEventListener("click", (e) => {
-
     e.stopPropagation();
-    const markup = `
-        <div class="pop-up-container">
-        <div class="pop-up" style="transform: translate(160px, 93.6px);">
-            <div class="pop-up-background">
-                <div class="scrollbar-section">
-                    <div class="scroll-item-container">
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Professional</p>
-                                <p class="style-count">&nbsp;(10K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Modern</p>
-                                <p class="style-count">&nbsp;(9.2K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Simple</p>
-                                <p class="style-count">&nbsp;(7.2K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Minimalist</p>
-                                <p class="style-count">&nbsp;(7.2K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Corporate</p>
-                                <p class="style-count">&nbsp;(5.3K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Creative</p>
-                                <p class="style-count">&nbsp;(4.7K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Elegant</p>
-                                <p class="style-count">&nbsp;(2.7K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Clean</p>
-                                <p class="style-count">&nbsp;(2.4K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Minimal</p>
-                                <p class="style-count">&nbsp;(1.5K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Aesthetic</p>
-                                <p class="style-count">&nbsp;(1.1K)</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <div class="btn-section">
-                    <hr class="horizontal-line">
-                    <div class="btn-container">
-                        <button class="clear-btn">
-                            <span class="clear-text">Clear</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
 
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
+    getData();
+    async function getData(){
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
 
-    if(!popUpEl){
-       
-        bodyEl.insertAdjacentHTML("afterbegin", markup);
-
-        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
+        const styleFilters = data.filters.styleFilters;
+        const allStyleFilters = loadStyleFilters(styleFilters);
         
-    }
-    else{
-        popUpEl.remove();
-    }
-});
-
-// -------------------theme filter btn -------------------
-themeBtn.addEventListener("click", (e) => {
-
-    e.stopPropagation();
     const markup = `
-        <div class="pop-up-container">
-        <div class="pop-up" style="transform: translate(248.8px, 93.6px);">
-            <div class="pop-up-background">
-                <div class="scrollbar-section">
-                    <div class="scroll-item-container">
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Work</p>
-                                <p class="style-count">&nbsp;(6K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Corporate</p>
-                                <p class="style-count">&nbsp;(5.3K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Business</p>
-                                <p class="style-count">&nbsp;(4.1K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Black</p>
-                                <p class="style-count">&nbsp;(4K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Portfolio</p>
-                                <p class="style-count">&nbsp;(2.8K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>hiring</p>
-                                <p class="style-count">&nbsp;(2.3K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Company</p>
-                                <p class="style-count">&nbsp;(2.2K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Career</p>
-                                <p class="style-count">&nbsp;(1.9K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Graphic Design</p>
-                                <p class="style-count">&nbsp;(1.7K)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Pink</p>
-                                <p class="style-count">&nbsp;(1.3K)</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <div class="btn-section">
-                    <hr class="horizontal-line">
-                    <div class="btn-container">
-                        <button class="clear-btn">
-                            <span class="clear-text">Clear</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
-
-    if(!popUpEl){
-
-        bodyEl.insertAdjacentHTML("afterbegin", markup);
-
-        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
-
-    }else{
-        popUpEl.remove();
-    }
-});
-
-// ------------------feature-filter-btn----------------------
-featureBtn.addEventListener("click", (e) => {
-
-    e.stopPropagation();
-    const markup = `
-        <div class="pop-up-container">
-        <div class="pop-up" style="transform: translate(348px, 520px);">
-            <div class="pop-up-background">
-                <div class="scrollbar-section">
-                    <div class="scroll-item-container">
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Animation</p>
-                                <p class="style-count">&nbsp;(4)</p>
-                            </div>
-                        </label>
-                        <label class="style-category-label">
-                            <div class="checkbox-section">
-                                <input class="checkbox" type="checkbox">
-                                <span class="checkbox-box">
-                                    <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                </span>
-                            </div>
-                            <span class="small-width"></span>
-                            <div class="text-section">
-                                <p>Audio</p>
-                                <p class="style-count">&nbsp;(1)</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <div class="btn-section">
-                    <hr class="horizontal-line">
-                    <div class="btn-container">
-                        <button class="clear-btn">
-                            <span class="clear-text">Clear</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
-
-    if(!popUpEl){
-
-        bodyEl.insertAdjacentHTML("afterbegin", markup);
-
-        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
-       
-    }else{
-        popUpEl.remove();
-    }
-});
-
-// ---------------------price-filter-btn------------------------------
-priceBtn.addEventListener("click" , (e) => {
-
-    e.stopPropagation();
-    const markup = `
-        <div class="pop-up-container">
-            <div class="pop-up" style="transform: translate(453.6px, 520px);">
+        <div id="style-pop-up" class="pop-up-container">
+            <div class="pop-up" style="transform: translate(160px, 93.6px);">
                 <div class="pop-up-background">
-                    <div class="price-filter-container">
-                        <div class="price-filter-grid">
-                            <div class="free-section">
-                                <button id="free-btn" class="price-filter-btn">
-                                    <div class="price-filter-wrapper">
-                                        <div class="filter-btn-contents-grid">
-                                            <span class="price-filter-icon">
-                                                <img src="assets/svgs/free-icon.svg" alt="free-icon">
-                                            </span>
-                                            <p class="price-text">Free</p>
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="pro-section">
-                                <button id="pro-btn" class="price-filter-btn">
-                                    <div class="price-filter-wrapper">
-                                        <div class="filter-btn-contents-grid">
-                                            <span class="price-filter-icon">
-                                                <img src="assets/svgs/pro-icon.svg" alt="pro-icon">
-                                            </span>
-                                            <p class="price-text">Pro</p>
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
+                    <div class="scrollbar-section"></div>
+                    <div class="btn-section">
+                        <hr class="horizontal-line">
+                        <div class="btn-container">
+                            <button class="clear-btn">
+                                <span class="clear-text">Clear</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     `;
+    const popUpEl = document.querySelector('.pop-up-container');
+    const stylePopUp = document.getElementById('style-pop-up');
 
-    addPopUp(markup);
+    if(!stylePopUp){
+        
+        if(popUpEl){
+            popUpEl.remove();
+        }
+
+        bodyEl.insertAdjacentHTML("afterbegin", markup);
+        const stylesWrapper = document.querySelector('.scrollbar-section');
+        stylesWrapper.appendChild(allStyleFilters)
+
+        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkMarks = bodyEl.querySelectorAll('.check-mark');
+        hoverCheckMarks(styleCategoryLabels,checkMarks);
+
+        // ------------filtering styles----------------
+        const professionalFilter = document.getElementById('Professional');
+        const modernFilter = document.getElementById('Modern');
+        const simpleFilter = document.getElementById('Simple');
+
+        professionalFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Professional");
+        });
+
+        modernFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Modern");
+        });
+
+        simpleFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Simple");
+        });
+
+    }else{
+        stylePopUp.remove();
+    }
+}
 });
 
-// ---------------------color-filter-btn------------------------
-colorBtn.addEventListener("click", (e) => {
+// -------------------theme filter btn -------------------
 
+function loadThemeFilters(themeFilters){
+
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('scroll-item-container');
+
+    themeFilters.forEach((themeFilter) => {
+        for(let key in themeFilter){
+            stylesContainer.innerHTML += `
+                <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${themeFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
+
+themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
+
+    getData();
+    async function getData(){
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
+
+        const themeFilters = data.filters.themeFilters;
+        const allThemeFilters = loadThemeFilters(themeFilters);
+      
     const markup = `
-        <div class="pop-up-container">
+        <div id="theme-pop-up" class="pop-up-container">
+            <div class="pop-up" style="transform: translate(248.8px, 93.6px);">
+                <div class="pop-up-background">
+                    <div class="scrollbar-section"></div>
+                    <div class="btn-section">
+                        <hr class="horizontal-line">
+                        <div class="btn-container">
+                            <button class="clear-btn">
+                                <span class="clear-text">Clear</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    const popUpEl = document.querySelector('.pop-up-container');
+    const themePopUp = document.getElementById('theme-pop-up');
+    
+    if(!themePopUp){
+
+        if(popUpEl){
+            popUpEl.remove();
+        }
+
+        bodyEl.insertAdjacentHTML("afterbegin", markup);
+        const themesWrapper = document.querySelector('.scrollbar-section');
+        themesWrapper.appendChild(allThemeFilters);
+
+        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkMarks = bodyEl.querySelectorAll('.check-mark');
+        hoverCheckMarks(styleCategoryLabels,checkMarks);
+
+        // --------------filtering themes-----------------
+    }else{
+        themePopUp.remove();
+    }
+}
+});
+
+// ------------------feature-filter-btn----------------------
+function loadFeatureFilters(featureFilters){
+    
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('scroll-item-container');
+
+    featureFilters.forEach((featureFilter) => {
+        for(let key in featureFilter){
+            stylesContainer.innerHTML += `
+                <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${featureFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
+
+featureBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    getData();
+    async function getData(){
+
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
+
+        const featureFilters = data.filters.featureFilters;
+        const allFeaturesFilters = loadFeatureFilters(featureFilters);
+       
+    const markup = `
+        <div id="feature-pop-up" class="pop-up-container">
+        <div class="pop-up" style="transform: translate(348px, 520px);">
+            <div class="pop-up-background">
+                <div class="scrollbar-section"></div>
+                <div class="btn-section">
+                    <hr class="horizontal-line">
+                    <div class="btn-container">
+                        <button class="clear-btn">
+                            <span class="clear-text">Clear</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    const popUpEl = document.querySelector('.pop-up-container');
+    const featurePopUp = document.getElementById("feature-pop-up");
+
+    if(!featurePopUp){
+        
+        if(popUpEl){
+            popUpEl.remove();
+        }
+
+        bodyEl.insertAdjacentHTML("afterbegin", markup);
+
+        const featuresWrapper = document.querySelector('.scrollbar-section');
+        featuresWrapper.appendChild(allFeaturesFilters);
+
+        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkMarks = bodyEl.querySelectorAll('.check-mark');
+        hoverCheckMarks(styleCategoryLabels,checkMarks);
+       
+        // --------------------feature filtering----------------
+    }else{
+        featurePopUp.remove();
+    }
+}
+});
+
+// ---------------------price-filter-btn------------------------------
+function loadPriceFilters(priceFilters){
+
+    const pricesContainer = document.createElement('div');
+    pricesContainer.classList.add('price-filter-grid');
+
+    priceFilters.forEach((priceFilter) => {
+
+        for(let key in priceFilter){
+            pricesContainer.innerHTML += `
+            <button id="${key}" class="price-filter-btn">
+                <div class="price-filter-wrapper">
+                    <div class="filter-btn-contents-grid">
+                        <span class="price-filter-icon">
+                            <img src="assets/svgs/${priceFilter[key]}" alt="${key}-icon">
+                        </span>
+                        <p class="price-text">${key}</p>
+                    </div>
+                </div>
+            </button>
+        `;
+        }
+    });
+    return pricesContainer;
+}
+
+priceBtn.addEventListener("click" , (e) => {
+    e.stopPropagation();
+
+    getData();
+    async function getData(){
+
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
+
+        const priceFilters = data.filters.priceFilters;
+        const allpricesFilters = loadPriceFilters(priceFilters);
+       
+    const markup = `
+        <div id="price-pop-up" class="pop-up-container">
+            <div class="pop-up" style="transform: translate(453.6px, 520px);">
+                <div class="pop-up-background">
+                    <div class="price-filter-container"></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const popUpEl = document.querySelector('.pop-up-container');
+    const pricePopUp = document.getElementById("price-pop-up");
+
+    if(!pricePopUp){
+        
+        if(popUpEl){
+            popUpEl.remove();
+        }
+
+        bodyEl.insertAdjacentHTML("afterbegin", markup);
+        const pricesWrapper = document.querySelector('.price-filter-container');
+        pricesWrapper.appendChild(allpricesFilters);
+
+        // --------------------price filtering----------------
+        const freeBtn = document.getElementById("Free");
+        const proBtn = document.getElementById("Pro");   
+        
+        freeBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates('Free');
+        });
+        proBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates('Pro');
+        });
+    }else{
+        pricePopUp.remove();
+    }
+}
+});
+
+async function getFilteredResumeTemplates(filterType){
+
+    const res = await fetch('resumedata.json');
+    const data = await res.json();
+
+    const resumes = data.resumes;
+    let filteredResumes;
+
+    if(filterType === 'Pro') {
+        filteredResumes = resumes.filter(resume => resume.pricePlan === "Pro");
+    }else if(filterType === 'Free') {
+        filteredResumes = resumes.filter(resume => resume.pricePlan === "Free");
+    }else if(filterType === 'Professional'){
+        filteredResumes = resumes.filter(resume => resume.filters?.includes('Professional'));
+    }else if(filterType === 'Modern'){
+        filteredResumes = resumes.filter(resume => resume.filters?.includes('Modern'));
+    }else if(filterType === 'Simple'){
+        filteredResumes = resumes.filter(resume => resume.filters?.includes('Simple'));
+    }else {
+        filteredResumes = resumes;
+    }
+    
+    resumesGrid.innerHTML = '';
+    showResumeTemplates(filteredResumes);
+}
+// ---------------------color-filter-btn------------------------
+function loadColorFilters(colorFilters){
+
+    let markup="";
+    colorFilters.forEach((colorFilter) => {
+        for(let key in colorFilter){
+            markup += `
+                <button class="color-btn">
+                        <span id="${key}" class="color ${colorFilter[key]}"></span>
+                </button>
+           `;
+        }
+    });
+    return markup;
+}
+
+colorBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    getData();
+    async function getData(){
+
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
+
+        const colorFilters = data.filters.colorFilters;
+        const allcolorFilters = loadColorFilters(colorFilters);
+       
+    const markup = `
+        <div id="color-pop-up" class="pop-up-container">
         <div class="pop-up" style="transform: translate(541.6px, 520px);">
             <div class="pop-up-background">
                 <div class="colors-grid-container">
@@ -741,47 +699,32 @@ colorBtn.addEventListener("click", (e) => {
                             </span>
                         </span>
                     </button>
-                    <button class="color-btn">
-                        <span id="#15181B" class="color c-15181B"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#B612FB" class="color c-B612FB"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#4A66FB" class="color c-4A66FB"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#C1C6CB" class="color c-C1C6CB"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#FFFFFF"class="color c-FFFFFF"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#55DBE0" class="color c-55DBE0"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#74D353" class="color c-74D353"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#FED958" class="color c-FED958"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#FE884C" class="color c-FE884C"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#FD5152" class="color c-FD5152"></span>
-                    </button>
-                    <button class="color-btn">
-                        <span id="#FD5EBB" class="color c-FD5EBB"></span>
-                    </button>
                 </div>
             </div>
         </div>
     </div>
     `;
 
-    addPopUp(markup);
-}); 
+    const popUpEl = document.querySelector('.pop-up-container');
+    const colorPopUp = document.getElementById("color-pop-up");
+
+    if(!colorPopUp){
+        
+        if(popUpEl){
+            popUpEl.remove();
+        }
+
+        bodyEl.insertAdjacentHTML("afterbegin", markup);
+
+        const colorsWrapper = document.querySelector('.colors-grid-container');
+        colorsWrapper.insertAdjacentHTML("beforeend",allcolorFilters);
+
+        // ----------------colors filtering -------------------------
+    }else{
+        colorPopUp.remove();
+    }
+}
+});
 
 // --------------------all-filters-button------------------------------
 filterBtn.addEventListener("click", (e) => {
@@ -1549,10 +1492,10 @@ filterBtn.addEventListener("click", (e) => {
 function addPopUp(markup){
    
     const popUpEl = bodyEl.querySelector('.pop-up-container');
+
     if(!popUpEl){
 
         bodyEl.insertAdjacentHTML("beforeend", markup);
-
 
         if(bodyEl.querySelector('.pop-up-overlay')){
         
@@ -1740,7 +1683,6 @@ languageSelectBtn.addEventListener("click", (e) => {
         const searchbarContainer = bodyEl.querySelector('.searchbar-flex-container');
         const searchInput = bodyEl.querySelector('.search-input');
         languageSelectBoxEvents(searchbarContainer,searchInput);
-        
     }else{
 
         popUpEl.remove();

@@ -13,7 +13,8 @@
                 "bannerPic": "",
                 "followers" : "100K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Minimalist White and Grey Professional Resume",
@@ -28,7 +29,8 @@
                 "bannerPic":"",
                 "followers":"33K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "White Simple Student CV Resume",
@@ -43,7 +45,8 @@
                 "bannerPic":"",
                 "followers":"71K"
             },
-            "pricePlan" : "free"
+            "pricePlan" :"Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Blue Simple Professional CV Resume",
@@ -58,7 +61,8 @@
                 "bannerPic":"",
                 "followers" : "36K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters" : ["Professional","Simple"]
         },
         {
             "title" : "Black and White Simple Business School Graduate Corporate Resume",
@@ -73,7 +77,8 @@
                 "bannerPic":"",
                 "followers": "36K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters":[]
         },
         {
             "title" : "Gray and White Simple Clean Resume",
@@ -88,7 +93,8 @@
                 "bannerPic":"",
                 "followers": "27K"
             },
-            "pricePlan":"free"
+            "pricePlan":"Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Modern Minimalist cv Resume",
@@ -103,7 +109,8 @@
                 "bannerPic": "",
                 "followers" : "100K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional","Modern","Simple"]
         },
         {
             "title" : "Blue and White Professional Corporate Resume",
@@ -118,7 +125,8 @@
                 "bannerPic":"",
                 "followers":"13K"
             },
-            "pricePlan" : "pro"
+            "pricePlan" : "Pro",
+            "filters" : ["Simple"]
         },
         {
             "title" : "Elegant Minimalist cv Resume",
@@ -133,7 +141,8 @@
                 "bannerPic" : "",
                 "followers": "43K"
             },
-            "pricePlan": "pro"
+            "pricePlan": "Pro",
+            "filters": ["Professional","Modern","Simple"]
         },
         {
             "title" : "Blue and White Clean and Professional Resume",
@@ -148,7 +157,8 @@
                 "bannerPic":"",
                 "followers":"13K"
             },
-            "pricePlan": "pro"
+            "pricePlan": "Pro",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "blue professional modern cv Resume",
@@ -163,7 +173,8 @@
                 "bannerPic": "",
                 "followers": "159K"
             },
-            "pricePlan": "free"
+            "pricePlan": "Free",
+            "filters": ["Professional","Modern"]
         },
         {
             "title" : "Minimalist White and Grey Professional Resume",
@@ -178,7 +189,8 @@
                 "bannerPic":"",
                 "followers" : "36K"
             },
-            "pricePlan": "free"
+            "pricePlan": "Free",
+            "filters":["Simple"]
         },
         {
             "title" : "White and Green Simple Student CV Resume",
@@ -193,8 +205,8 @@
                 "bannerPic":"",
                 "followers":"71K"
             },
-            "pricePlan" : "free"
-
+            "pricePlan" : "Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Blue Simple Professional cv Resume",
@@ -209,7 +221,8 @@
                 "bannerPic":"",
                 "followers" : "36K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Black Modern Professional Resume",
@@ -224,7 +237,8 @@
                 "bannerPic": "",
                 "followers": "159K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional"]
         },
         {
             "title": "Purple and White Clean and Professional Resume",
@@ -239,7 +253,8 @@
                 "bannerPic":"",
                 "followers":"13K"
             },
-            "pricePlan": "free"
+            "pricePlan": "Free",
+            "filters": ["Professional"]
         },
         {
             "title": "Black and White Corporate Resume",
@@ -254,7 +269,8 @@
                 "bannerPic": "",
                 "followers" : "6.2K"
             },
-            "pricePlan" : "pro"
+            "pricePlan" : "Pro",
+            "filters": ["Simple"]
         },
         {
             "title" : "Black & White Minimalistic Professional Resume",
@@ -269,7 +285,8 @@
                 "bannerPic": "",
                 "followers":"36K"
             },
-            "pricePlan" : "free"
+            "pricePlan" : "Free",
+            "filters": ["Professional","Simple"]
         },
         {
             "title" : "Professional Minimalist CV Resume",
@@ -284,7 +301,8 @@
                 "bannerPic": "",
                 "followers" : "100K"
             },
-            "pricePlan" :"free"
+            "pricePlan" :"Free",
+            "filters": ["Professional","Modern","Simple"]
         }
     ],
     "resumeStyles" : [
@@ -377,6 +395,123 @@
         "WhatsApp Statuses",
         "Lemon8 Posts"
     ],
+    "filters" : {
+        "styleFilters": [
+            {
+                "Professional" : "(10K)"
+            },
+            {
+                "Modern" : "(9.2K)"
+            },
+            {
+                "Simple" : "(7.2K)"
+            },
+            {
+                "Minimalist" : "(7.2K)"
+            },
+            {
+                "Corporate" : "(5.3K)"
+            },
+            {
+                "Creative" : "(4.7K)"
+            },
+            {
+                "Elegant" : "(2.7K)"
+            },
+            {
+                "Clean" : "(2.4K)"
+            },
+            {
+                "Minimal" : "(1.5K)"
+            },
+            {
+                "Aesthetic" : "(1.1K)"
+            }
+        ],
+        "themeFilters" : [
+            {
+                "Work" : "(6K)"
+            },
+            {
+                "Corporate" : "(5.3K)"
+            },
+            {
+                "Business" : "(4.1K)"
+            },
+            {
+                "Black" : "(4K)"
+            },
+            {
+                "Portfolio" : "(2.8K)"
+            },
+            {
+                "hiring" : "(2.3K)"
+            },
+            {
+                "Company" : "(2.2K)"
+            },
+            {
+                "Career" : "(1.9K)"
+            },
+            {
+                "Graphic Design" : "(1.7K)"
+            },
+            {
+                "Pink" : "(1.3K)"
+            }
+        ],
+        "featureFilters" :[
+            {
+                "Animation" : "(4)"
+            },
+            {
+                "Audio" : "(1)"
+            }
+        ],
+        "priceFilters" : [
+            {
+                "Free" : "free-icon.svg"
+            },
+            {
+                "Pro" : "pro-icon.svg"
+            }
+        ],
+        "colorFilters" : [
+            {
+                "#15181b" : "c-15181B"
+            },
+            {
+                "#b612fb" : "c-B612FB"
+            },
+            {
+                "#4a66fb" : "c-4A66FB"
+            },
+            {
+                "#c1c6cb" : "c-C1C6CB"
+            },
+            {
+                "#ffffff" : "c-FFFFFF"
+            },
+            {
+                "#55dbe0" : "c-55DBE0"
+            },
+            {
+                "#74d353" : "c-74D353"
+            },
+            {
+                "#fed958" : "c-FED958"
+            },
+            {
+                "#fe884c" : "c-FE884C"
+            },
+            {
+                "#fd5152" : "c-FD5152"
+            },
+            {
+                "#fd5ebb" : "c-FD5EBB"
+            }
+        ]
+    },
     "Languages" : [
         "(العربية (مصر",
         "中文 (中國香港特別行政區)",
