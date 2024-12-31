@@ -265,26 +265,26 @@ function removeBackgroundToggleClass(){
 }
 
 // --------------------hovering checkmarks on pop-ups-----------------------------
-function hoverCheckMarks(styleCategoryLabels,checkMarks){
+// function hoverCheckMarks(styleCategoryLabels,checkMarks){
 
-    styleCategoryLabels.forEach((label,index) => {
+//     styleCategoryLabels.forEach((label,index) => {
         
-        label.addEventListener("mouseover", () => {
-            removeCheckMarks();
-            checkMarks[index].classList.add('check-mark-visible');
-        });
+//         label.addEventListener("mouseover", () => {
+//             removeCheckMarks();
+//             checkMarks[index].classList.add('check-mark-visible');
+//         });
     
-        label.addEventListener("mouseout", () => {
-            removeCheckMarks();
-        });
-    });
+//         label.addEventListener("mouseout", () => {
+//             removeCheckMarks();
+//         });
+//     });
 
-    function removeCheckMarks(){
-        checkMarks.forEach((checkMark) => {
-            checkMark.classList.remove('check-mark-visible');
-        });
-    }
-}
+//     function removeCheckMarks(){
+//         checkMarks.forEach((checkMark) => {
+//             checkMark.classList.remove('check-mark-visible');
+//         });
+//     }
+// }
 
 // -------------------style filter btn-------------------------------
 function loadStyleFilters(styleFilters){
@@ -294,13 +294,12 @@ function loadStyleFilters(styleFilters){
 
     styleFilters.forEach((styleFilter) => {
         for(let key in styleFilter) {
-            
             stylesContainer.innerHTML += `
                  <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
                         <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
-                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
                     </div>
                     <span class="small-width"></span>
@@ -357,8 +356,8 @@ styleBtn.addEventListener("click", (e) => {
         stylesWrapper.appendChild(allStyleFilters)
 
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
+        const checkBoxes = document.querySelectorAll('.checkbox-box')
+        hoverAndClickEventsOnLabels(styleCategoryLabels,checkBoxes);
 
         // ------------filtering styles----------------
         const professionalFilter = document.getElementById('Professional');
@@ -369,12 +368,10 @@ styleBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             getFilteredResumeTemplates("Professional");
         });
-
         modernFilter.addEventListener("click", (e) => {
             e.stopPropagation();
             getFilteredResumeTemplates("Modern");
         });
-
         simpleFilter.addEventListener("click", (e) => {
             e.stopPropagation();
             getFilteredResumeTemplates("Simple");
@@ -385,7 +382,59 @@ styleBtn.addEventListener("click", (e) => {
     }
 }
 });
+let activeFilters = ['professional'];
 
+function hoverAndClickEventsOnLabels(styleCategoryLabels,checkBoxes){
+    
+    const checkMarks = document.querySelectorAll('.check-mark');
+    const checkBoxIcons = document.querySelectorAll('.check-mark path');
+
+    styleCategoryLabels.forEach((label,index) => {
+
+        function removeCheckMarks(){
+            checkMarks.forEach((checkMark) => {
+                checkMark.classList.remove('check-mark-visible');
+            });
+        }
+
+        function onMouseover(){
+            removeCheckMarks()
+            checkMarks[index].classList.add('check-mark-visible');
+        }
+        function onMouseOut(){
+            if(activeFilters.includes('professional')){
+                return;
+            }
+            removeCheckMarks();
+        }
+
+        label.addEventListener("mouseover", onMouseover);
+        label.addEventListener("mouseout", onMouseOut);
+        
+        
+
+        label.addEventListener("click", () => {
+            // checkBoxes[index].classList.add('active');
+            // checkBoxIcons[index].classList.add('active');
+            // checkMarks[index].classList.add('check-mark-visible');
+        });
+
+    //    label.addEventListener("click", () => {
+    //     checkBoxes[index].classList.toggle('active');
+
+    //     // const isActive = checkBoxes[index].classList.contains('active');
+    //     // if (isActive) {
+    //     //     checkBoxes[index].classList.remove('active');
+    //     //     checkMarks[index].classList.remove('check-mark-visible');
+    //     //     checkBoxIcons[index].classList.remove('active');
+    //     // } else {
+    //     //     checkBoxes[index].classList.add('active');
+    //     //     checkBoxIcons[index].classList.add('active');
+    //     //     checkMarks[index].classList.add('check-mark-visible');
+    //     // }
+    // });
+});
+}
 // -------------------theme filter btn -------------------
 
 function loadThemeFilters(themeFilters){
@@ -543,6 +592,20 @@ featureBtn.addEventListener("click", (e) => {
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         hoverCheckMarks(styleCategoryLabels,checkMarks);
        
+        // --------making the pop-up scroll--------------
+        const popUp = document.querySelector('.pop-up'); 
+            const fixedY = 120; 
+            const initialY = 520;
+
+            window.addEventListener('scroll', () => {
+                const scrollOffset = window.scrollY;
+
+                if (scrollOffset < initialY - fixedY) {
+                    popUp.style.transform = `translate(348px, ${initialY - scrollOffset}px)`;
+                } else {
+                    popUp.style.transform = `translate(348px, ${fixedY}px)`;
+                }
+            });
         // --------------------feature filtering----------------
     }else{
         featurePopUp.remove();
@@ -610,6 +673,21 @@ priceBtn.addEventListener("click" , (e) => {
         bodyEl.insertAdjacentHTML("afterbegin", markup);
         const pricesWrapper = document.querySelector('.price-filter-container');
         pricesWrapper.appendChild(allpricesFilters);
+
+        // --------making the pop-up scroll--------------
+        const popUp = document.querySelector('.pop-up'); 
+            const fixedY = 120; 
+            const initialY = 520;
+
+            window.addEventListener('scroll', () => {
+                const scrollOffset = window.scrollY;
+
+                if (scrollOffset < initialY - fixedY) {
+                    popUp.style.transform = `translate(453.6px, ${initialY - scrollOffset}px)`;
+                } else {
+                    popUp.style.transform = `translate(453.6px, ${fixedY}px)`;
+                }
+            });
 
         // --------------------price filtering----------------
         const freeBtn = document.getElementById("Free");
@@ -718,6 +796,21 @@ colorBtn.addEventListener("click", (e) => {
 
         const colorsWrapper = document.querySelector('.colors-grid-container');
         colorsWrapper.insertAdjacentHTML("beforeend",allcolorFilters);
+
+        // --------making the pop-up scroll--------------
+        const popUp = document.querySelector('.pop-up'); 
+            const fixedY = 120; 
+            const initialY = 520;
+
+            window.addEventListener('scroll', () => {
+                const scrollOffset = window.scrollY;
+
+                if (scrollOffset < initialY - fixedY) {
+                    popUp.style.transform = `translate(541.6px, ${initialY - scrollOffset}px)`;
+                } else {
+                    popUp.style.transform = `translate(541.6px, ${fixedY}px)`;
+                }
+            });
 
         // ----------------colors filtering -------------------------
     }else{
