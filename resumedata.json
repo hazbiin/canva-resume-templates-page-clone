@@ -30,7 +30,7 @@
                 "followers":"33K"
             },
             "pricePlan" : "Free",
-            "filters": ["Professional","Simple"]
+            "filters": ["Professional","Simple","Work","Corporate"]
         },
         {
             "title" : "White Simple Student CV Resume",
@@ -46,7 +46,7 @@
                 "followers":"71K"
             },
             "pricePlan" :"Free",
-            "filters": ["Professional","Simple"]
+            "filters": ["Professional","Simple","Business"]
         },
         {
             "title" : "Blue Simple Professional CV Resume",
@@ -57,12 +57,12 @@
             "author" : {
                 "name" : "Qwaleb | قوالب",
                 "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
-                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/27777476-ba97-458f-8b79-c3f115334be1/50.png",
                 "bannerPic":"",
                 "followers" : "36K"
             },
             "pricePlan" : "Free",
-            "filters" : ["Professional","Simple"]
+            "filters" : ["Professional","Simple","Work"]
         },
         {
             "title" : "Black and White Simple Business School Graduate Corporate Resume",
@@ -78,7 +78,7 @@
                 "followers": "36K"
             },
             "pricePlan" : "Free",
-            "filters":[]
+            "filters":["Business","#15181B"]
         },
         {
             "title" : "Gray and White Simple Clean Resume",
@@ -126,7 +126,7 @@
                 "followers":"13K"
             },
             "pricePlan" : "Pro",
-            "filters" : ["Simple"]
+            "filters" : ["Simple","Corporate"]
         },
         {
             "title" : "Elegant Minimalist cv Resume",
@@ -142,7 +142,7 @@
                 "followers": "43K"
             },
             "pricePlan": "Pro",
-            "filters": ["Professional","Modern","Simple"]
+            "filters": ["Professional","Modern","Simple","Corporate","Business"]
         },
         {
             "title" : "Blue and White Clean and Professional Resume",
@@ -174,7 +174,7 @@
                 "followers": "159K"
             },
             "pricePlan": "Free",
-            "filters": ["Professional","Modern"]
+            "filters": ["Professional","Modern","Corporate","Business"]
         },
         {
             "title" : "Minimalist White and Grey Professional Resume",
@@ -185,7 +185,7 @@
            "author" : {
                 "name" : "Qwaleb | قوالب",
                 "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
-                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/27777476-ba97-458f-8b79-c3f115334be1/50.png",
                 "bannerPic":"",
                 "followers" : "36K"
             },
@@ -206,7 +206,7 @@
                 "followers":"71K"
             },
             "pricePlan" : "Free",
-            "filters": ["Professional","Simple"]
+            "filters": ["Professional","Simple","Business"]
         },
         {
             "title" : "Blue Simple Professional cv Resume",
@@ -217,12 +217,12 @@
             "author" : {
                 "name" : "Qwaleb | قوالب",
                 "bio": "قوالب متخصصة في انشاء القوالب الابداعية. ابدأ رحلتك الان مع قوالبنا الجاهزة! اختر من بين الآلاف من القوالب المجانية والمدفوعة الآن واستمتع بتصاميم احترافية في دقائق.Qwaleb is specializing in creating innovative templates. Start your journey now with our ready-made templates! Choose from thousands of free and paid templates and enjoy professional designs in minutes.",
-                "profilePic" : "https://avatar.canva.com/avatars/brands/718cde44-c289-4160-a41f-d081fe5d06ba/200.png",
+                "profilePic" : "https://avatar.canva.com/avatars/brands/27777476-ba97-458f-8b79-c3f115334be1/50.png",
                 "bannerPic":"",
                 "followers" : "36K"
             },
             "pricePlan" : "Free",
-            "filters": ["Professional","Simple"]
+            "filters": ["Professional","Simple","Business"]
         },
         {
             "title" : "Black Modern Professional Resume",
@@ -238,7 +238,7 @@
                 "followers": "159K"
             },
             "pricePlan" : "Free",
-            "filters": ["Professional"]
+            "filters": ["Professional","Work","Corporate","#15181B"]
         },
         {
             "title": "Purple and White Clean and Professional Resume",
@@ -270,7 +270,7 @@
                 "followers" : "6.2K"
             },
             "pricePlan" : "Pro",
-            "filters": ["Simple"]
+            "filters": ["Simple","#15181B"]
         },
         {
             "title" : "Black & White Minimalistic Professional Resume",
@@ -286,7 +286,7 @@
                 "followers":"36K"
             },
             "pricePlan" : "Free",
-            "filters": ["Professional","Simple"]
+            "filters": ["Professional","Simple","Work","#15181B"]
         },
         {
             "title" : "Professional Minimalist CV Resume",
@@ -303,7 +303,88 @@
             },
             "pricePlan" :"Free",
             "filters": ["Professional","Modern","Simple"]
+        },
+        {
+            "title" : "Khaki white corporate torn music resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAEt5o9nGAo/1/0/1131w/canva-khaki-white-corporate-torn-music-resume-StR7vZAeBPY.jpg 1131w, https://marketplace.canva.com/EAEt5o9nGAo/1/0/283w/canva-khaki-white-corporate-torn-music-resume-uxZvopLaspI.jpg 283w, https://marketplace.canva.com/EAEt5o9nGAo/1/0/566w/canva-khaki-white-corporate-torn-music-resume-C5KSjqjrLBo.jpg 566w, https://marketplace.canva.com/EAEt5o9nGAo/1/0/71w/canva-khaki-white-corporate-torn-music-resume-bmeO4f3Qzgs.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAEt5o9nGAo/1/0/1131w/canva-khaki-white-corporate-torn-music-resume-StR7vZAeBPY.jpg"
+            },
+            "author" : {
+                "name" : "Canva Creative Studio",
+                "bio" : "Be inspired by the freshest, trendiest templates courtesy of the Canva Creative Studio team.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/229868d0-4b3c-4da8-ab3a-12cb9bf3d12d/50.png",
+                "bannerPic": "",
+                "followers" : "1.4M"
+            },
+            "pricePlan" :"Pro",
+            "filters": ["Animation"]
+        },
+        {
+            "title" : "Brown Peach Simple Professional Web Developer Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAE3ILLhnmI/1/0/1131w/canva-brown-peach-simple-professional-web-developer-resume-zwkcpdhBSlI.jpg 1131w, https://marketplace.canva.com/EAE3ILLhnmI/1/0/283w/canva-brown-peach-simple-professional-web-developer-resume-0JGIPAmAukY.jpg 283w, https://marketplace.canva.com/EAE3ILLhnmI/1/0/566w/canva-brown-peach-simple-professional-web-developer-resume-CYCFhAPMjCg.jpg 566w, https://marketplace.canva.com/EAE3ILLhnmI/1/0/71w/canva-brown-peach-simple-professional-web-developer-resume-j-8NHWaOLoE.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAE3ILLhnmI/1/0/1131w/canva-brown-peach-simple-professional-web-developer-resume-zwkcpdhBSlI.jpg"
+            },
+            "author" : {
+                "name" : "Ara Creative",
+                "bio" : "Hi Canva Lovers! Please use our design template. Each design template has been carefully crafted to make your designs look beautiful. with style modern, minimalist, simple design will be perfect for any project!",
+                "profilePic":"https://avatar.canva.com/avatars/brands/f10f8a4e-d1c5-4944-92c9-cb48f6cbbaeb/50.jpg",
+                "bannerPic": "",
+                "followers" : "8.6K"
+            },
+            "pricePlan" :"Pro",
+            "filters": ["Animation"]
+        },
+        {
+            "title" : "Pink Beige Modern Gradient Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAE14APSFuQ/1/0/1131w/canva-pink-beige-modern-gradient-resume-vy-Acjyvuo8.jpg 1131w, https://marketplace.canva.com/EAE14APSFuQ/1/0/283w/canva-pink-beige-modern-gradient-resume-98a8e867kU4.jpg 283w, https://marketplace.canva.com/EAE14APSFuQ/1/0/566w/canva-pink-beige-modern-gradient-resume-3Bb0NxQAmWE.jpg 566w, https://marketplace.canva.com/EAE14APSFuQ/1/0/71w/canva-pink-beige-modern-gradient-resume-EjhLFwMUDzw.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAFuy_EwAJs/1/0/1131w/canva-professional-minimalist-cv-resume-SIuomcjZoUY.jpg"
+            },
+            "author" : {
+                "name" : "Daily Creative",
+                "bio" : "Hi! We changed our name from Logo and Art to Daily Creative! Every day, We provide high-quality designs and content that resonate with creativity.Drop by and explore a variety of designs from Instagram posts, reels, presentations, flyers, planners, brochures, and more!",
+                "profilePic":"https://avatar.canva.com/avatars/brands/44d4f527-b4c5-48c2-9608-d3478072c026/50.jpg",
+                "bannerPic": "",
+                "followers" : "47K"
+            },
+            "pricePlan" :"Pro",
+            "filters": ["Animation"]
+        },
+        {
+            "title" : "Nude Abstract Floral Graphic Designer Resume",
+            "image": {
+                "srcset" : "https://marketplace.canva.com/EAEqqDM0KcY/3/0/1131w/canva-nude-abstract-floral-graphic-designer-resume-yO4Qrhoan9E.jpg 1131w, https://marketplace.canva.com/EAEqqDM0KcY/3/0/283w/canva-nude-abstract-floral-graphic-designer-resume-ugDWfBuIr2s.jpg 283w, https://marketplace.canva.com/EAEqqDM0KcY/3/0/566w/canva-nude-abstract-floral-graphic-designer-resume-Yic9qvj3LWM.jpg 566w, https://marketplace.canva.com/EAEqqDM0KcY/3/0/71w/canva-nude-abstract-floral-graphic-designer-resume-dSLKpKl3kPA.jpg 71w",
+                "src" : "https://marketplace.canva.com/EAEqqDM0KcY/3/0/1131w/canva-nude-abstract-floral-graphic-designer-resume-yO4Qrhoan9E.jpg"
+            },
+            "author" : {
+                "name" : "Miss Jello",
+                "bio" : "Hello I'm jello, I made various interesting templates to be used according to your needs. Enjoy!",
+                "profilePic":"https://avatar.canva.com/avatars/brands/59eab0de-db4b-46cf-ba59-c8da2b07819e/50.jpg",
+                "bannerPic": "",
+                "followers" : "4.4K"
+            },
+            "pricePlan" :"Pro",
+            "filters": ["Animation"]
+        },
+        {
+            "title" : "Brown Minimalist Profile Resume",
+            "image": {
+                "srcset" : "",
+                "src" : "https://marketplace.canva.com/EAFDi2V-XsY/1/0/1131w/canva-brown-minimalist-profile-resume-KsEDPxQ5Aog.jpg"
+            },
+            "author" : {
+                "name" : "Fannan Studio",
+                "bio" : "Welcome to Fannan. We are a collective of creative minds and digital artisans operating under Notisnal Studio. Our team is dedicated to embracing traditional cultural values and heritage, and seamlessly blend these timeless elements with comtemporary visuals that resonate deeply with audiences.",
+                "profilePic":"https://avatar.canva.com/avatars/brands/308bb5d9-089a-4f7b-a3a9-770d73415aa1/50.png",
+                "bannerPic": "",
+                "followers" : "16K"
+            },
+            "pricePlan" :"Pro",
+            "filters": ["Audio"]
         }
+
     ],
     "resumeStyles" : [
         "Professional",
@@ -478,37 +559,37 @@
         ],
         "colorFilters" : [
             {
-                "#15181b" : "c-15181B"
+                "15181B": "C-15181B"
             },
             {
-                "#b612fb" : "c-B612FB"
+                "B612FB": "C-B612FB"
             },
             {
-                "#4a66fb" : "c-4A66FB"
+                "4A66FB": "C-4A66FB"
             },
             {
-                "#c1c6cb" : "c-C1C6CB"
+                "C1C6CB": "C-C1C6CB"
             },
             {
-                "#ffffff" : "c-FFFFFF"
+                "FFFFFF": "C-FFFFFF"
             },
             {
-                "#55dbe0" : "c-55DBE0"
+                "55DBE0": "C-55DBE0"
             },
             {
-                "#74d353" : "c-74D353"
+                "74D353": "C-74D353"
             },
             {
-                "#fed958" : "c-FED958"
+                "FED958": "C-FED958"
             },
             {
-                "#fe884c" : "c-FE884C"
+                "FE884C": "C-FE884C"
             },
             {
-                "#fd5152" : "c-FD5152"
+                "FD5152": "C-FD5152"
             },
             {
-                "#fd5ebb" : "c-FD5EBB"
+                "FD5EBB": "C-FD5EBB"
             }
         ]
     },

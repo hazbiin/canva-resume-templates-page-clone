@@ -1,3 +1,11 @@
+const headImageContainer = document.querySelector('.head-image-relative-container');
+const headBackGroundImage = document.querySelector('picture img');
+const imageRotatingContainer = document.querySelector('.actual-image-absolute-container');
+const actualImageContainer =  document.querySelector('.actual-image-container');
+const actualImage = document.querySelector('.actual-image-container img');
+
+const filtersStickyContainer = document.querySelector('.filters-sticky-container');
+
 const resumesGrid = document.getElementById('resumes-grid');
 const resumeStyles = document.getElementById('resume-styles');
 const navigationLinks = document.getElementById('navigation-links');
@@ -16,19 +24,71 @@ const slidingTabs = document.querySelectorAll('.nav-items-container');
 const nextBtns = document.querySelectorAll('.next');
 const prevBtns = document.querySelectorAll('.prev');
 
+// -----------------changing the styles of head image--------------------
+function changeHeadImage(){
+    if(window.innerWidth >= 768){
+        headImageContainer.style.width = `${330.6666666666667}px`;
+        headImageContainer.style.height = `${248}px`
 
-// const filtersStickyHeader = document.querySelector('.filters-sticky-container');
-// const stickyStart = 72;
-// window.addEventListener("scroll", () => {
+        headBackGroundImage.style.width = `${330.6666666666667}px`;
+        headBackGroundImage.style.height = `${248}px`;
 
-//     if (window.scrollY > stickyStart + 20) {
-//         filtersStickyHeader.classList.add('show-box-shadow');
-//     } else {
-//         filtersStickyHeader.classList.remove('show-box-shadow');
-//     }
+        imageRotatingContainer.style.transform = `matrix3d(0.5865753889083862, 0.10541275888681412, 0, -0.00006608919647987932, -0.18261802196502686, 0.49206262826919556, 0, -0.00016587467689532787, 0, 0, 1, 0, 110.22222137451172, 33.98518371582031, 0, 1)`;
+       
+        actualImageContainer.style.width = `${259.94074074074075}px`;
+        actualImageContainer.style.height = `${367.4074074074074}px`;
 
-// });
+        actualImage.style.width = `${259.94074074074075}px`;
+        actualImage.style.height = `${367.4074074074074}px`
+    }else{
+        headImageContainer.style.width = `${426.667}px`;
+        headImageContainer.style.height = `${320}px`;
 
+        headBackGroundImage.style.width = `${426.667}px`;
+        headBackGroundImage.style.height = `${320}px`;
+
+        imageRotatingContainer.style.transform = "transform: matrix3d(0.586575, 0.105413, 0, -5.12e-05, -0.182618, 0.492063, 0, -0.0001285, 0, 0, 1, 0, 142.222, 43.8519, 0, 1)";
+
+        actualImageContainer.style.width = `${335.407}px`;
+        actualImageContainer.style.height = `${474.074}px`;
+
+        actualImage.style.width = `${335.407}px`;
+        actualImage.style.height = `${474.074}px`;
+    }
+}
+window.onresize = changeHeadImage;
+window.onload = changeHeadImage;
+
+// ----------------------behaviour of sticky header---------------------
+let lastScorllY = window.scrollY;
+function stickyHeaderChanges(){
+
+    const currentScrollY = window.scrollY;
+    if(currentScrollY < 473) {
+
+        filtersStickyContainer.classList.remove('hide');
+        filtersStickyContainer.classList.remove('show-box-shadow');
+    }else {
+        filtersStickyContainer.classList.add('show-box-shadow');
+
+        const popUpEl = document.querySelector('.pop-up-container');
+        if(lastScorllY < currentScrollY && !popUpEl){
+            filtersStickyContainer.classList.add('hide');
+        }else {
+            filtersStickyContainer.classList.remove('hide');
+        }
+    }
+    lastScorllY = currentScrollY;
+}  
+window.addEventListener("scroll",stickyHeaderChanges);
+
+function removeStickyHeaderIfVisible(){
+    if(window.scrollY > 473){
+        filtersStickyContainer.classList.add('hide');
+    }
+}
+
+// -------------------initial fetch--------------------------
 getResumeTemplates();
 async function getResumeTemplates(){
 
@@ -95,8 +155,10 @@ slidingTabs.forEach((slidingTab) => {
         }
 
         let maxScrollWidth = slidingTab.scrollWidth - slidingTab.clientWidth;
+
         if(slidingTab.scrollLeft >= maxScrollWidth){
             nextBtns.forEach((nextBtn) => {
+                // console.log("scrollWidth:", slidingTab.scrollWidth, "clientWidth:", slidingTab.clientWidth);
                 nextBtn.classList.remove('active');
             });
         } else {
@@ -218,11 +280,11 @@ function showResumeTemplates(resumesData){
             `;
             imageAbsoluteContainer.insertAdjacentHTML("beforebegin", markup);
         }
-
         hoverOnResumeTemplates(resumeEl);
     });
 }
 
+// ----------------hover on resumes -------------------------
 function hoverOnResumeTemplates(resume){
 
     const resumeImage = resume.querySelector('.resume-image-section');
@@ -247,7 +309,7 @@ function hoverOnResumeTemplates(resume){
 filterCategoryBtns.forEach((filterCategoryBtn) => {
 
     filterCategoryBtn.addEventListener("click", () => {
-       
+
         if(filterCategoryBtn.classList.contains('background-toggle')){
             filterCategoryBtn.classList.remove('background-toggle');
         }else{
@@ -256,9 +318,7 @@ filterCategoryBtns.forEach((filterCategoryBtn) => {
         }
     });
 });
-
 function removeBackgroundToggleClass(){
-
     filterCategoryBtns.forEach((filterCategoryBtn) => {
         filterCategoryBtn.classList.remove("background-toggle");
     });
@@ -285,6 +345,120 @@ function removeBackgroundToggleClass(){
 //         });
 //     }
 // }
+// ----------------make the popups scroll ---------------------
+function makePopUpsScrollToo(popUp,xOffset){
+    window.addEventListener("scroll", () => {
+        // scrollp >=0 && scrollp < 85
+
+        const currentStickyHeaderBottom = filtersStickyContainer.getBoundingClientRect().bottom;
+        const fixedY = 120;
+        const scrollPosition = window.scrollY;
+
+        if(scrollPosition >= 0 && scrollPosition < 400){
+            popUp.style.transform = `translate(${xOffset}px, ${currentStickyHeaderBottom}px)`;
+        }else{
+            popUp.style.transform = `translate(${xOffset}px, ${fixedY}px)`;
+        }
+    });
+}
+
+// --------------------filtering function---------------------------
+
+let activeFilters = [];
+function updateActiveFilters(filterType){
+
+    const index = activeFilters.indexOf(filterType);
+    
+    if(index === -1){
+        activeFilters.push(filterType);
+    }
+    else {
+        activeFilters.splice(index,1);
+    }
+    
+    console.log(activeFilters);
+    getFilteredResumeTemplates();
+}
+
+async function getFilteredResumeTemplates(){
+    const res = await fetch('resumedata.json');
+    const data = await res.json();
+
+    const resumes= data.resumes;
+
+    if(activeFilters.length === 0){
+        console.log("here")
+        showResumeTemplates(resumes);
+        return;
+    }
+
+    const filteredResumes = resumes.filter(resume => {
+
+        return activeFilters.every(filter => {
+
+            if(filter === 'Pro' || filter === 'Free'){
+                return resume.pricePlan = filter;
+            }else {
+                return resume.filters?.includes(filter);
+            }
+
+        });
+    });
+
+    console.log(filteredResumes);
+    resumesGrid.innerHTML = ``;
+    showResumeTemplates(filteredResumes);
+}
+
+
+// async function getFilteredResumeTemplates(filterType){
+
+//     const res = await fetch('resumedata.json');
+//     const data = await res.json();
+
+//     const resumes = data.resumes;
+//     let filteredResumes;
+
+//     switch(filterType){
+//         case 'Pro' :
+//             filteredResumes = resumes.filter(resume => resume.pricePlan === "Pro");
+//             break;
+//         case 'Free':
+//             filteredResumes = resumes.filter(resume => resume.pricePlan === "Free");
+//             break;
+//         case 'Professional':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Professional'));
+//             break;
+//         case 'Modern':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Modern'));
+//             break;
+//         case 'Simple':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Simple'));
+//             break;
+//         case 'Corporate':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Corporate'));
+//             break;
+//         case 'Business':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Business'));
+//             break;
+//         case 'Animation':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Animation'));
+//             break;
+//         case 'Audio':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Audio'));
+//             break;
+//         case '#15181B':
+//             filteredResumes = resumes.filter(resume => resume.filters?.includes('#15181B'));
+//             break;
+//         default:
+//             filteredResumes = resumes;
+//     }
+    
+//     resumesGrid.innerHTML = '';
+//     showResumeTemplates(filteredResumes);
+// }
+
+
 
 // -------------------style filter btn-------------------------------
 function loadStyleFilters(styleFilters){
@@ -297,7 +471,6 @@ function loadStyleFilters(styleFilters){
             stylesContainer.innerHTML += `
                  <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
-                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
                             <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
@@ -327,7 +500,7 @@ styleBtn.addEventListener("click", (e) => {
         
     const markup = `
         <div id="style-pop-up" class="pop-up-container">
-            <div class="pop-up" style="transform: translate(160px, 93.6px);">
+            <div class="pop-up" data-x-offset="160" style="transform: translate(160px, 93.6px);">
                 <div class="pop-up-background">
                     <div class="scrollbar-section"></div>
                     <div class="btn-section">
@@ -355,86 +528,104 @@ styleBtn.addEventListener("click", (e) => {
         const stylesWrapper = document.querySelector('.scrollbar-section');
         stylesWrapper.appendChild(allStyleFilters)
 
+        const popUp = document.querySelector('.pop-up');
+        const xOffset = popUp.dataset.xOffset;
+        makePopUpsScrollToo(popUp,xOffset);
+
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkBoxes = document.querySelectorAll('.checkbox-box')
-        hoverAndClickEventsOnLabels(styleCategoryLabels,checkBoxes);
+        const checkBoxes = document.querySelectorAll('.checkbox-box');
+        const checkMarks = bodyEl.querySelectorAll('.check-mark');
+        const checkMarkIcons = document.querySelectorAll('.check-mark path');
+        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
+
+        // filterSelectEvents(styleCategoryLabels);
 
         // ------------filtering styles----------------
         const professionalFilter = document.getElementById('Professional');
         const modernFilter = document.getElementById('Modern');
         const simpleFilter = document.getElementById('Simple');
-
+        
+        
         professionalFilter.addEventListener("click", (e) => {
             e.stopPropagation();
-            getFilteredResumeTemplates("Professional");
+            updateActiveFilters('Professional');
         });
         modernFilter.addEventListener("click", (e) => {
             e.stopPropagation();
-            getFilteredResumeTemplates("Modern");
+            updateActiveFilters('Modern');
         });
         simpleFilter.addEventListener("click", (e) => {
             e.stopPropagation();
-            getFilteredResumeTemplates("Simple");
+            updateActiveFilters('Simple');
         });
-
     }else{
         stylePopUp.remove();
+        removeStickyHeaderIfVisible();
     }
 }
 });
-let activeFilters = ['professional'];
 
-function hoverAndClickEventsOnLabels(styleCategoryLabels,checkBoxes){
-    
-    const checkMarks = document.querySelectorAll('.check-mark');
-    const checkBoxIcons = document.querySelectorAll('.check-mark path');
-
+function hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons){
     styleCategoryLabels.forEach((label,index) => {
 
-        function removeCheckMarks(){
-            checkMarks.forEach((checkMark) => {
-                checkMark.classList.remove('check-mark-visible');
-            });
-        }
+        let isChecked = false;
 
-        function onMouseover(){
-            removeCheckMarks()
-            checkMarks[index].classList.add('check-mark-visible');
-        }
-        function onMouseOut(){
-            if(activeFilters.includes('professional')){
-                return;
-            }
-            removeCheckMarks();
-        }
+        label.addEventListener("click", (e) => {
+            e.stopPropagation();
 
-        label.addEventListener("mouseover", onMouseover);
-        label.addEventListener("mouseout", onMouseOut);
-        
-        
+            isChecked = !isChecked;
 
-        label.addEventListener("click", () => {
-            // checkBoxes[index].classList.add('active');
-            // checkBoxIcons[index].classList.add('active');
-            // checkMarks[index].classList.add('check-mark-visible');
+            checkBoxes[index].classList.toggle('active',isChecked);
+            checkMarks[index].classList.toggle('check-mark-visible',isChecked);
+            checkMarkIcons[index].classList.toggle('active',isChecked);
+          
         });
 
-    //    label.addEventListener("click", () => {
-    //     checkBoxes[index].classList.toggle('active');
-
-    //     // const isActive = checkBoxes[index].classList.contains('active');
-    //     // if (isActive) {
-    //     //     checkBoxes[index].classList.remove('active');
-    //     //     checkMarks[index].classList.remove('check-mark-visible');
-    //     //     checkBoxIcons[index].classList.remove('active');
-    //     // } else {
-    //     //     checkBoxes[index].classList.add('active');
-    //     //     checkBoxIcons[index].classList.add('active');
-    //     //     checkMarks[index].classList.add('check-mark-visible');
-    //     // }
-    // });
-});
+        label.addEventListener("mouseover", () => {
+            if(!isChecked){
+                checkMarks[index].classList.add('check-mark-visible');
+            }
+        });
+    
+        label.addEventListener("mouseout", () => {
+            if(!isChecked){
+                checkMarks[index].classList.remove('check-mark-visible');
+            }
+        });
+    });
 }
+
+
+
+
+// function filterSelectEvents(styleCategoryLabels){
+
+//     styleCategoryLabels.forEach((label) => {
+//         label.addEventListener("click", (e) => {
+//             e.stopPropagation();
+
+//             window.scrollTo({
+//                 top: 400,
+//                 behavior:'smooth'
+//             });
+    
+//             const filterBtnsContainer = document.querySelector('.filters');
+//             const clearBtn = document.createElement('button');
+//             clearBtn.classList.add('filters-clear-btn');
+
+//             clearBtn.innerHTML = `
+//                 <span class="selected-filters-number">Clear all (1)</span>
+//             `;
+            
+//             filterBtnsContainer.appendChild(clearBtn);
+//             // const exisistingClearBtn = document.querySelector('.filters-clear-btn');
+//             // if(!exisistingClearBtn){
+//             //     filterBtnsContainer.appendChild(clearBtn);
+//             // }
+//     });
+// });
+// }
+
 // -------------------theme filter btn -------------------
 
 function loadThemeFilters(themeFilters){
@@ -447,9 +638,8 @@ function loadThemeFilters(themeFilters){
             stylesContainer.innerHTML += `
                 <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
-                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
-                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
                     </div>
                     <span class="small-width"></span>
@@ -477,7 +667,7 @@ themeBtn.addEventListener("click", (e) => {
       
     const markup = `
         <div id="theme-pop-up" class="pop-up-container">
-            <div class="pop-up" style="transform: translate(248.8px, 93.6px);">
+            <div class="pop-up" data-x-offset="248.8" style="transform: translate(248.8px, 93.6px);">
                 <div class="pop-up-background">
                     <div class="scrollbar-section"></div>
                     <div class="btn-section">
@@ -505,13 +695,36 @@ themeBtn.addEventListener("click", (e) => {
         const themesWrapper = document.querySelector('.scrollbar-section');
         themesWrapper.appendChild(allThemeFilters);
 
+        const popUp = document.querySelector('.pop-up');
+        const xOffset = popUp.dataset.xOffset;
+        makePopUpsScrollToo(popUp,xOffset);
+
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
+        const checkMarkIcons = document.querySelectorAll('.check-mark path');
+        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
 
         // --------------filtering themes-----------------
+        const workFilter = document.getElementById('Work');
+        const corporateFilter = document.getElementById('Corporate');
+        const businessFilter = document.getElementById('Business');
+        
+        workFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Work");
+        });
+        corporateFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Corporate");
+        });
+        businessFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Business");
+        });
     }else{
         themePopUp.remove();
+        removeStickyHeaderIfVisible();
     }
 }
 });
@@ -527,9 +740,8 @@ function loadFeatureFilters(featureFilters){
             stylesContainer.innerHTML += `
                 <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
-                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
-                            <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
                     </div>
                     <span class="small-width"></span>
@@ -555,10 +767,12 @@ featureBtn.addEventListener("click", (e) => {
 
         const featureFilters = data.filters.featureFilters;
         const allFeaturesFilters = loadFeatureFilters(featureFilters);
-       
+
+        const stickyHeaderBottom = filtersStickyContainer.getBoundingClientRect().bottom;
+
     const markup = `
         <div id="feature-pop-up" class="pop-up-container">
-        <div class="pop-up" style="transform: translate(348px, 520px);">
+        <div class="pop-up" data-x-offset="348" style="transform: translate(348px,${stickyHeaderBottom}px)";>
             <div class="pop-up-background">
                 <div class="scrollbar-section"></div>
                 <div class="btn-section">
@@ -584,35 +798,38 @@ featureBtn.addEventListener("click", (e) => {
         }
 
         bodyEl.insertAdjacentHTML("afterbegin", markup);
-
         const featuresWrapper = document.querySelector('.scrollbar-section');
         featuresWrapper.appendChild(allFeaturesFilters);
 
+        const popUp = document.querySelector('.pop-up');
+        const xOffset = popUp.dataset.xOffset;
+        makePopUpsScrollToo(popUp,xOffset);
+
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        hoverCheckMarks(styleCategoryLabels,checkMarks);
+        const checkMarkIcons = document.querySelectorAll('.check-mark path');
+        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
        
-        // --------making the pop-up scroll--------------
-        const popUp = document.querySelector('.pop-up'); 
-            const fixedY = 120; 
-            const initialY = 520;
 
-            window.addEventListener('scroll', () => {
-                const scrollOffset = window.scrollY;
-
-                if (scrollOffset < initialY - fixedY) {
-                    popUp.style.transform = `translate(348px, ${initialY - scrollOffset}px)`;
-                } else {
-                    popUp.style.transform = `translate(348px, ${fixedY}px)`;
-                }
-            });
         // --------------------feature filtering----------------
+        const animationFilter = document.getElementById('Animation');
+        const audioFilter = document.getElementById('Audio');
+        
+        animationFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Animation");
+        });
+        audioFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("Audio");
+        });
     }else{
         featurePopUp.remove();
+        removeStickyHeaderIfVisible();
     }
 }
 });
-
 // ---------------------price-filter-btn------------------------------
 function loadPriceFilters(priceFilters){
 
@@ -650,10 +867,12 @@ priceBtn.addEventListener("click" , (e) => {
 
         const priceFilters = data.filters.priceFilters;
         const allpricesFilters = loadPriceFilters(priceFilters);
+
+        const stickyHeaderBottom = filtersStickyContainer.getBoundingClientRect().bottom;
        
     const markup = `
         <div id="price-pop-up" class="pop-up-container">
-            <div class="pop-up" style="transform: translate(453.6px, 520px);">
+            <div class="pop-up" data-x-offset="453.6" style="transform: translate(453.6px, ${stickyHeaderBottom}px);">
                 <div class="pop-up-background">
                     <div class="price-filter-container"></div>
                 </div>
@@ -674,20 +893,9 @@ priceBtn.addEventListener("click" , (e) => {
         const pricesWrapper = document.querySelector('.price-filter-container');
         pricesWrapper.appendChild(allpricesFilters);
 
-        // --------making the pop-up scroll--------------
-        const popUp = document.querySelector('.pop-up'); 
-            const fixedY = 120; 
-            const initialY = 520;
-
-            window.addEventListener('scroll', () => {
-                const scrollOffset = window.scrollY;
-
-                if (scrollOffset < initialY - fixedY) {
-                    popUp.style.transform = `translate(453.6px, ${initialY - scrollOffset}px)`;
-                } else {
-                    popUp.style.transform = `translate(453.6px, ${fixedY}px)`;
-                }
-            });
+        const popUp = document.querySelector('.pop-up');
+        const xOffset = popUp.dataset.xOffset;
+        makePopUpsScrollToo(popUp,xOffset);
 
         // --------------------price filtering----------------
         const freeBtn = document.getElementById("Free");
@@ -703,35 +911,10 @@ priceBtn.addEventListener("click" , (e) => {
         });
     }else{
         pricePopUp.remove();
+        removeStickyHeaderIfVisible();
     }
 }
 });
-
-async function getFilteredResumeTemplates(filterType){
-
-    const res = await fetch('resumedata.json');
-    const data = await res.json();
-
-    const resumes = data.resumes;
-    let filteredResumes;
-
-    if(filterType === 'Pro') {
-        filteredResumes = resumes.filter(resume => resume.pricePlan === "Pro");
-    }else if(filterType === 'Free') {
-        filteredResumes = resumes.filter(resume => resume.pricePlan === "Free");
-    }else if(filterType === 'Professional'){
-        filteredResumes = resumes.filter(resume => resume.filters?.includes('Professional'));
-    }else if(filterType === 'Modern'){
-        filteredResumes = resumes.filter(resume => resume.filters?.includes('Modern'));
-    }else if(filterType === 'Simple'){
-        filteredResumes = resumes.filter(resume => resume.filters?.includes('Simple'));
-    }else {
-        filteredResumes = resumes;
-    }
-    
-    resumesGrid.innerHTML = '';
-    showResumeTemplates(filteredResumes);
-}
 // ---------------------color-filter-btn------------------------
 function loadColorFilters(colorFilters){
 
@@ -739,7 +922,7 @@ function loadColorFilters(colorFilters){
     colorFilters.forEach((colorFilter) => {
         for(let key in colorFilter){
             markup += `
-                <button class="color-btn">
+                <button id="${key}" class="color-btn">
                         <span id="${key}" class="color ${colorFilter[key]}"></span>
                 </button>
            `;
@@ -759,28 +942,30 @@ colorBtn.addEventListener("click", (e) => {
 
         const colorFilters = data.filters.colorFilters;
         const allcolorFilters = loadColorFilters(colorFilters);
-       
+
+        const stickyHeaderBottom = filtersStickyContainer.getBoundingClientRect().bottom;
+
     const markup = `
         <div id="color-pop-up" class="pop-up-container">
-        <div class="pop-up" style="transform: translate(541.6px, 520px);">
-            <div class="pop-up-background">
-                <div class="colors-grid-container">
-                    <button class="color-btn">
-                        <span class="color choose-color">
-                            <span class="multi-color"></span>
-                            <span class="plus-sign-absolute-container">
-                                <span class="plus-sign-container">
-                                    <span class="plus-svg">
-                                        <img src="assets/svgs/color-plus-sign.svg" alt="plus-sign">
+            <div class="pop-up" data-x-offset="541.6" style="transform: translate(541.6px, ${stickyHeaderBottom}px);">
+                <div class="pop-up-background">
+                    <div class="colors-grid-container">
+                        <button class="color-btn">
+                            <span class="color choose-color">
+                                <span class="multi-color"></span>
+                                <span class="plus-sign-absolute-container">
+                                    <span class="plus-sign-container">
+                                        <span class="plus-svg">
+                                            <img src="assets/svgs/color-plus-sign.svg" alt="plus-sign">
+                                        </span>
                                     </span>
                                 </span>
                             </span>
-                        </span>
-                    </button>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     `;
 
     const popUpEl = document.querySelector('.pop-up-container');
@@ -797,24 +982,31 @@ colorBtn.addEventListener("click", (e) => {
         const colorsWrapper = document.querySelector('.colors-grid-container');
         colorsWrapper.insertAdjacentHTML("beforeend",allcolorFilters);
 
-        // --------making the pop-up scroll--------------
-        const popUp = document.querySelector('.pop-up'); 
-            const fixedY = 120; 
-            const initialY = 520;
-
-            window.addEventListener('scroll', () => {
-                const scrollOffset = window.scrollY;
-
-                if (scrollOffset < initialY - fixedY) {
-                    popUp.style.transform = `translate(541.6px, ${initialY - scrollOffset}px)`;
-                } else {
-                    popUp.style.transform = `translate(541.6px, ${fixedY}px)`;
-                }
-            });
-
+        const popUp = document.querySelector('.pop-up');
+        const xOffset = popUp.dataset.xOffset;
+        makePopUpsScrollToo(popUp,xOffset);
+       
         // ----------------colors filtering -------------------------
+        const blackFilter = document.getElementById("15181B");
+        const purpleFilter = document.getElementById("B612FB");
+        const blueFilter = document.getElementById("4A66FB");
+
+        blackFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("#15181B");
+        });
+        purpleFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("#B612FB");
+        });
+        blueFilter.addEventListener("click", (e) => {
+            e.stopPropagation();
+            getFilteredResumeTemplates("#4A66FB");
+        });
+
     }else{
         colorPopUp.remove();
+        removeStickyHeaderIfVisible();
     }
 }
 });
@@ -1681,8 +1873,10 @@ function addPopUp(markup){
             });
 
             const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+            const checkBoxes = document.querySelectorAll('.checkbox-box');
             const checkMarks = bodyEl.querySelectorAll('.check-mark');
-            hoverCheckMarks(styleCategoryLabels,checkMarks);
+            const checkMarkIcons = document.querySelectorAll('.check-mark path');
+            hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
         }
     }
 }
@@ -1843,11 +2037,10 @@ window.addEventListener("click", (e) => {
     if(popUpEl && !popUpEl.contains(e.target)){
         popUpEl.remove();
         removeBackgroundToggleClass();
+        removeStickyHeaderIfVisible();
 
         if(bodyEl.contains(languageSelectBtn)){
             languageSelectBtn.classList.remove('select-box-btn-active-border');
         }
-
     }
-
 });

@@ -340,6 +340,7 @@ main{
     opacity: 0;
     transform: translateY(-100%);
 }
+
 .filters-section-wrapper{
     background:#Fff;
     margin: 0 -16px;
@@ -2202,37 +2203,37 @@ main{
     border-radius: 9999px;
     position: relative;
 }
-.c-15181B{
+.C-15181B{
     background-image: linear-gradient(to right, rgb(21, 24, 27), rgb(21, 24, 27));
 }
-.c-B612FB{
+.C-B612FB{
     background-image: linear-gradient(to right, rgb(182, 18, 251), rgb(182, 18, 251));;
 }
-.c-4A66FB{
+.C-4A66FB{
     background-image:  linear-gradient(to right, rgb(74, 102, 251), rgb(74, 102, 251));;
 }
-.c-C1C6CB{
+.C-C1C6CB{
     background-image: linear-gradient(to right, rgb(193, 198, 203), rgb(193, 198, 203));
 }
-.c-FFFFFF{
+.C-FFFFFF{
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));
 }
-.c-55DBE0{
+.C-55DBE0{
     background-image: linear-gradient(to right, rgb(85, 219, 224), rgb(85, 219, 224));
 }
-.c-74D353{
+.C-74D353{
     background-image: linear-gradient(to right, rgb(116, 211, 83), rgb(116, 211, 83));
 }
-.c-FED958{
+.C-FED958{
     background-image: linear-gradient(to right, rgb(254, 217, 88), rgb(254, 217, 88));
 }
-.c-FE884C{
+.C-FE884C{
     background-image: linear-gradient(to right, rgb(254, 136, 76), rgb(254, 136, 76));
 }
-.c-FD5152{
+.C-FD5152{
     background-image: linear-gradient(to right, rgb(253, 81, 82), rgb(253, 81, 82));
 }
-.c-FD5EBB{
+.C-FD5EBB{
     background-image: linear-gradient(to right, rgb(253, 94, 187), rgb(253, 94, 187));
 }
 .color::after{
@@ -2680,4 +2681,42 @@ main{
     cursor: not-allowed;
     background-color: rgba(13,18,22,0);
     color: rgba(36,49,61,.4);
+}
+/* --------------new clear btn------------- */
+.filters-clear-btn{
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    max-width: 100%;
+    height: 40px;
+    min-width: 0;
+    outline: none;
+    padding: 0 10px;
+    transition: background-color .1s linear, border-color .1s linear, color .1s linear;
+    font-family: 'canva-font-2';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    font-variation-settings: "opsz" 0;
+    text-size-adjust: none;
+    color: rgb(139, 61, 255);
+}
+.filters-clear-btn:hover{
+    color: rgb(119, 49, 216);
+    text-decoration: underline;
+}
+.selected-filters-number{
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: auto;
+    transition: opacity .15s ease-in-out;
+
 }
