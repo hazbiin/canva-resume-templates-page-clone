@@ -323,28 +323,6 @@ function removeBackgroundToggleClass(){
         filterCategoryBtn.classList.remove("background-toggle");
     });
 }
-
-// --------------------hovering checkmarks on pop-ups-----------------------------
-// function hoverCheckMarks(styleCategoryLabels,checkMarks){
-
-//     styleCategoryLabels.forEach((label,index) => {
-        
-//         label.addEventListener("mouseover", () => {
-//             removeCheckMarks();
-//             checkMarks[index].classList.add('check-mark-visible');
-//         });
-    
-//         label.addEventListener("mouseout", () => {
-//             removeCheckMarks();
-//         });
-//     });
-
-//     function removeCheckMarks(){
-//         checkMarks.forEach((checkMark) => {
-//             checkMark.classList.remove('check-mark-visible');
-//         });
-//     }
-// }
 // ----------------make the popups scroll ---------------------
 function makePopUpsScrollToo(popUp,xOffset){
     window.addEventListener("scroll", () => {
@@ -362,107 +340,141 @@ function makePopUpsScrollToo(popUp,xOffset){
     });
 }
 
-// --------------------filtering function---------------------------
-
+// --------------------filtering functions---------------------------
 let activeFilters = [];
-function updateActiveFilters(filterType){
-
-    const index = activeFilters.indexOf(filterType);
-    
-    if(index === -1){
-        activeFilters.push(filterType);
-    }
-    else {
-        activeFilters.splice(index,1);
-    }
-    
-    console.log(activeFilters);
-    getFilteredResumeTemplates();
-}
-
 async function getFilteredResumeTemplates(){
     const res = await fetch('resumedata.json');
     const data = await res.json();
-
     const resumes= data.resumes;
 
     if(activeFilters.length === 0){
-        console.log("here")
         showResumeTemplates(resumes);
         return;
     }
 
     const filteredResumes = resumes.filter(resume => {
-
         return activeFilters.every(filter => {
-
             if(filter === 'Pro' || filter === 'Free'){
-                return resume.pricePlan = filter;
+                return resume.pricePlan === filter;
             }else {
                 return resume.filters?.includes(filter);
             }
-
         });
     });
 
-    console.log(filteredResumes);
     resumesGrid.innerHTML = ``;
     showResumeTemplates(filteredResumes);
 }
 
+function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs){
+    styleCategoryLabels.forEach((label,index) => {
+        //assig all filters to the filter variable
+        const filter = label.id;
+        
+        // initial check for the filter in the activeFilters array and apply the necessary visual states 
+        if(activeFilters.includes((filter))){
+            checkboxInputs[index].checked = true;
+            checkBoxes[index].classList.add('active');
+            checkMarks[index].classList.add('check-mark-visible');
+            checkMarkIcons[index].classList.add('active');
+        }else {
+            checkboxInputs[index].checked = false;
+            checkBoxes[index].classList.remove('active');
+            checkMarks[index].classList.remove('check-mark-visible');
+            checkMarkIcons[index].classList.remove('active');
+        }
 
-// async function getFilteredResumeTemplates(filterType){
+        label.addEventListener("click", (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+           
+            // ---------------------------visual changes to happen------------------------
+            // toggle the checked state of checkboxes
+            checkboxInputs[index].checked = !checkboxInputs[index].checked;
+            const isChecked = checkboxInputs[index].checked;
+            
+            // update the activeFilters array on label clicking
+            if(isChecked){
+                activeFilters.push(filter);
+            }else {
+                const filterIndex = activeFilters.indexOf(filter);
+                if(filterIndex !== -1){
+                    activeFilters.splice(filterIndex,1);
+                }
+            }
 
-//     const res = await fetch('resumedata.json');
-//     const data = await res.json();
+            // toggle the classes on clicking the label
+            checkBoxes[index].classList.toggle('active', isChecked);
+            checkMarks[index].classList.toggle('check-mark-visible', isChecked);
+            checkMarkIcons[index].classList.toggle('active', isChecked);
 
-//     const resumes = data.resumes;
-//     let filteredResumes;
+            // --------screen moving up--------
+            window.scrollTo({
+                top: 400,
+                behavior:'smooth'
+            });
 
-//     switch(filterType){
-//         case 'Pro' :
-//             filteredResumes = resumes.filter(resume => resume.pricePlan === "Pro");
-//             break;
-//         case 'Free':
-//             filteredResumes = resumes.filter(resume => resume.pricePlan === "Free");
-//             break;
-//         case 'Professional':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Professional'));
-//             break;
-//         case 'Modern':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Modern'));
-//             break;
-//         case 'Simple':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Simple'));
-//             break;
-//         case 'Corporate':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Corporate'));
-//             break;
-//         case 'Business':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Business'));
-//             break;
-//         case 'Animation':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Animation'));
-//             break;
-//         case 'Audio':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('Audio'));
-//             break;
-//         case '#15181B':
-//             filteredResumes = resumes.filter(resume => resume.filters?.includes('#15181B'));
-//             break;
-//         default:
-//             filteredResumes = resumes;
-//     }
-    
-//     resumesGrid.innerHTML = '';
-//     showResumeTemplates(filteredResumes);
-// }
+            // ---------adding clear btn----------
+            const filterBtnsContainer = document.querySelector('.filters');
+            let clearBtn = document.querySelector('.filters-clear-btn');
 
+            if(!clearBtn){
+                clearBtn = document.createElement('button');
+                clearBtn.classList.add('filters-clear-btn');
+                filterBtnsContainer.appendChild(clearBtn); 
+            }
+            if(activeFilters.length < 1){
+                clearBtn.remove();
+            }else {
+                clearBtn.innerHTML = `
+                    <span class="selected-filters-number">Clear all (${activeFilters.length})</span>
+                `;
+            }
+            clearBtn.addEventListener("click", () => {
+                activeFilters = [];
+                clearBtn.remove();
+                allFiltersCount.remove();
+                getFilteredResumeTemplates();
+            });
 
+            // --------updating all filters btn------------
+            const allFiltersBtnContainer = document.querySelector('.all-filters-text');
+
+            let allFiltersCount = document.querySelector('.all-filters-count');
+            if(!allFiltersCount){
+                allFiltersCount = document.createElement('span');
+                allFiltersCount.classList.add('all-filters-count');
+                allFiltersBtnContainer.appendChild(allFiltersCount);
+            }
+
+            if(activeFilters.length < 1){
+                allFiltersCount.remove();
+            }else {
+                allFiltersCount.innerHTML = `
+                    <span class="all-filters-count-number">${activeFilters.length}</span>
+                `;
+            }
+            // ---------------------------filter resumes---------------------------------
+            // filter resumes based on the active filters
+            getFilteredResumeTemplates();
+        });
+
+        label.addEventListener("mouseover", () => {
+            if (!checkboxInputs[index].checked) {
+                checkMarks[index].classList.add('check-mark-visible');
+            }
+        });
+            
+        label.addEventListener("mouseout", () => {
+            if (!checkboxInputs[index].checked) {
+                checkMarks[index].classList.remove('check-mark-visible');
+            }
+        });
+    });
+}
 
 // -------------------style filter btn-------------------------------
 function loadStyleFilters(styleFilters){
-
     const stylesContainer = document.createElement('div');
     stylesContainer.classList.add('scroll-item-container');
 
@@ -471,6 +483,7 @@ function loadStyleFilters(styleFilters){
             stylesContainer.innerHTML += `
                  <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
                             <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
@@ -486,7 +499,6 @@ function loadStyleFilters(styleFilters){
     });
     return stylesContainer;
 }
-
 styleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
@@ -526,108 +538,26 @@ styleBtn.addEventListener("click", (e) => {
 
         bodyEl.insertAdjacentHTML("afterbegin", markup);
         const stylesWrapper = document.querySelector('.scrollbar-section');
-        stylesWrapper.appendChild(allStyleFilters)
-
+        stylesWrapper.appendChild(allStyleFilters);
+        
         const popUp = document.querySelector('.pop-up');
         const xOffset = popUp.dataset.xOffset;
         makePopUpsScrollToo(popUp,xOffset);
 
-        const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-        const checkBoxes = document.querySelectorAll('.checkbox-box');
-        const checkMarks = bodyEl.querySelectorAll('.check-mark');
-        const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
-
-        // filterSelectEvents(styleCategoryLabels);
-
         // ------------filtering styles----------------
-        const professionalFilter = document.getElementById('Professional');
-        const modernFilter = document.getElementById('Modern');
-        const simpleFilter = document.getElementById('Simple');
-        
-        
-        professionalFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            updateActiveFilters('Professional');
-        });
-        modernFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            updateActiveFilters('Modern');
-        });
-        simpleFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            updateActiveFilters('Simple');
-        });
+        const styleCategoryLabels = document.querySelectorAll('.style-category-label');
+        const checkBoxes = document.querySelectorAll('.checkbox-box');
+        const checkboxInputs = document.querySelectorAll('.checkbox');
+        const checkMarks = document.querySelectorAll('.check-mark');
+        const checkMarkIcons = document.querySelectorAll('.check-mark path');
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         stylePopUp.remove();
         removeStickyHeaderIfVisible();
     }
 }
 });
-
-function hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons){
-    styleCategoryLabels.forEach((label,index) => {
-
-        let isChecked = false;
-
-        label.addEventListener("click", (e) => {
-            e.stopPropagation();
-
-            isChecked = !isChecked;
-
-            checkBoxes[index].classList.toggle('active',isChecked);
-            checkMarks[index].classList.toggle('check-mark-visible',isChecked);
-            checkMarkIcons[index].classList.toggle('active',isChecked);
-          
-        });
-
-        label.addEventListener("mouseover", () => {
-            if(!isChecked){
-                checkMarks[index].classList.add('check-mark-visible');
-            }
-        });
-    
-        label.addEventListener("mouseout", () => {
-            if(!isChecked){
-                checkMarks[index].classList.remove('check-mark-visible');
-            }
-        });
-    });
-}
-
-
-
-
-// function filterSelectEvents(styleCategoryLabels){
-
-//     styleCategoryLabels.forEach((label) => {
-//         label.addEventListener("click", (e) => {
-//             e.stopPropagation();
-
-//             window.scrollTo({
-//                 top: 400,
-//                 behavior:'smooth'
-//             });
-    
-//             const filterBtnsContainer = document.querySelector('.filters');
-//             const clearBtn = document.createElement('button');
-//             clearBtn.classList.add('filters-clear-btn');
-
-//             clearBtn.innerHTML = `
-//                 <span class="selected-filters-number">Clear all (1)</span>
-//             `;
-            
-//             filterBtnsContainer.appendChild(clearBtn);
-//             // const exisistingClearBtn = document.querySelector('.filters-clear-btn');
-//             // if(!exisistingClearBtn){
-//             //     filterBtnsContainer.appendChild(clearBtn);
-//             // }
-//     });
-// });
-// }
-
 // -------------------theme filter btn -------------------
-
 function loadThemeFilters(themeFilters){
 
     const stylesContainer = document.createElement('div');
@@ -638,6 +568,7 @@ function loadThemeFilters(themeFilters){
             stylesContainer.innerHTML += `
                 <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
                             <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
@@ -699,29 +630,13 @@ themeBtn.addEventListener("click", (e) => {
         const xOffset = popUp.dataset.xOffset;
         makePopUpsScrollToo(popUp,xOffset);
 
+        // --------------filtering themes-----------------
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkboxInputs = document.querySelectorAll('.checkbox');
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
-
-        // --------------filtering themes-----------------
-        const workFilter = document.getElementById('Work');
-        const corporateFilter = document.getElementById('Corporate');
-        const businessFilter = document.getElementById('Business');
-        
-        workFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("Work");
-        });
-        corporateFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("Corporate");
-        });
-        businessFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("Business");
-        });
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         themePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -740,6 +655,7 @@ function loadFeatureFilters(featureFilters){
             stylesContainer.innerHTML += `
                 <label id="${key}" class="style-category-label">
                     <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
                         <span class="checkbox-box">
                             <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
                         </span>
@@ -755,7 +671,6 @@ function loadFeatureFilters(featureFilters){
     });
     return stylesContainer;
 }
-
 featureBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
@@ -805,34 +720,22 @@ featureBtn.addEventListener("click", (e) => {
         const xOffset = popUp.dataset.xOffset;
         makePopUpsScrollToo(popUp,xOffset);
 
+        // --------------------feature filtering----------------
         const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+        const checkboxInputs = document.querySelectorAll('.checkbox');
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
-       
-
-        // --------------------feature filtering----------------
-        const animationFilter = document.getElementById('Animation');
-        const audioFilter = document.getElementById('Audio');
-        
-        animationFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("Animation");
-        });
-        audioFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("Audio");
-        });
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         featurePopUp.remove();
         removeStickyHeaderIfVisible();
     }
 }
 });
+
 // ---------------------price-filter-btn------------------------------
 function loadPriceFilters(priceFilters){
-
     const pricesContainer = document.createElement('div');
     pricesContainer.classList.add('price-filter-grid');
 
@@ -855,7 +758,6 @@ function loadPriceFilters(priceFilters){
     });
     return pricesContainer;
 }
-
 priceBtn.addEventListener("click" , (e) => {
     e.stopPropagation();
 
@@ -897,17 +799,20 @@ priceBtn.addEventListener("click" , (e) => {
         const xOffset = popUp.dataset.xOffset;
         makePopUpsScrollToo(popUp,xOffset);
 
+        const priceFilterBtns = document.querySelectorAll('.price-filter-btn');
+        checkActivePriceFilters(priceFilterBtns);
+
         // --------------------price filtering----------------
         const freeBtn = document.getElementById("Free");
         const proBtn = document.getElementById("Pro");   
         
         freeBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            getFilteredResumeTemplates('Free');
+            toggleClassesForPriceFilters(freeBtn);
         });
         proBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            getFilteredResumeTemplates('Pro');
+            toggleClassesForPriceFilters(proBtn);
         });
     }else{
         pricePopUp.remove();
@@ -915,9 +820,95 @@ priceBtn.addEventListener("click" , (e) => {
     }
 }
 });
+// ------------updating active filters for price and color filters ---------------
+function updateActiveFilters(filterType,category){
+    const isPriceFilter = category === 'price';
+    const isColorFilter = category === 'color';
+
+    if (isPriceFilter) {
+        if (activeFilters.includes(filterType)) {
+            activeFilters = activeFilters.filter((filter) => filter !== filterType);
+        } else {
+            activeFilters = activeFilters.filter((filter) => filter !== 'Free' && filter !== 'Pro');
+            activeFilters.push(filterType);
+        }
+    } 
+    if(isColorFilter) {
+        if(activeFilters.includes(filterType)){
+            activeFilters = activeFilters.filter((filter) => filter !== filterType);
+        }else {
+            activeFilters = activeFilters.filter((filter) => !filter.startsWith('#'));
+            activeFilters.push(filterType);
+        }
+    }
+    console.log("current active Filters",activeFilters);
+    getFilteredResumeTemplates();
+}
+// ------------------checking active filters of color and price filter before each popups
+function checkActivePriceFilters(priceFilterBtns){
+    const priceFilterWrappers = document.querySelectorAll('.price-filter-wrapper');
+    
+    priceFilterBtns.forEach((priceFilterBtn,index) => {
+        const filterType = priceFilterBtn.id;
+        
+        if(activeFilters.includes(filterType)){
+            priceFilterWrappers[index].classList.add('active');
+        } else {
+            priceFilterWrappers[index].classList.remove('active');
+        }
+    });
+}
+function checkActiveColorFilters(colorBtns){
+    colorBtns.forEach((colorBtn) => {
+        const filterType = `#${colorBtn.id}`;
+
+        if(activeFilters.includes(filterType)){
+            colorBtn.classList.add('active');
+        }else {
+            colorBtn.classList.remove('active');
+        }
+    });
+}
+// -----------------toggling classes for price and color filters based on the active filters---------------
+function toggleClassesForPriceFilters(button) {
+    const priceFilterWrapper = button.querySelector('.price-filter-wrapper');
+    const filterType = button.id;
+
+    if (priceFilterWrapper) {
+        const isActive = priceFilterWrapper.classList.contains('active');
+
+        // Remove all active classes before adding any
+        document.querySelectorAll('.price-filter-wrapper').forEach((wrapper) => {
+            wrapper.classList.remove('active');
+        });
+
+        if (!isActive) {
+            priceFilterWrapper.classList.add('active');
+            updateActiveFilters(filterType,'price');
+        } else {
+            updateActiveFilters(filterType,'price');
+        }
+    }
+}
+function toggleClassesForColorFilters(colorFilterBtn,colorBtns){
+    const filterType = `#${colorFilterBtn.id}`;
+    const isActive = colorFilterBtn.classList.contains('active');
+
+    // removes all the active filters
+    colorBtns.forEach((colorBtn) => {
+        colorBtn.classList.remove('active');
+    });
+
+    if(!isActive){
+        colorFilterBtn.classList.add('active');
+        updateActiveFilters(filterType,'color');
+    }else {
+        updateActiveFilters(filterType,'color')
+    }
+}
+
 // ---------------------color-filter-btn------------------------
 function loadColorFilters(colorFilters){
-
     let markup="";
     colorFilters.forEach((colorFilter) => {
         for(let key in colorFilter){
@@ -930,7 +921,6 @@ function loadColorFilters(colorFilters){
     });
     return markup;
 }
-
 colorBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
@@ -967,7 +957,6 @@ colorBtn.addEventListener("click", (e) => {
             </div>
         </div>
     `;
-
     const popUpEl = document.querySelector('.pop-up-container');
     const colorPopUp = document.getElementById("color-pop-up");
 
@@ -986,24 +975,16 @@ colorBtn.addEventListener("click", (e) => {
         const xOffset = popUp.dataset.xOffset;
         makePopUpsScrollToo(popUp,xOffset);
        
-        // ----------------colors filtering -------------------------
-        const blackFilter = document.getElementById("15181B");
-        const purpleFilter = document.getElementById("B612FB");
-        const blueFilter = document.getElementById("4A66FB");
+        const colorBtns = document.querySelectorAll('.color-btn');
+        checkActiveColorFilters(colorBtns);
 
-        blackFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("#15181B");
+        // ----------color filtering----------
+        colorBtns.forEach((colorFilterBtn) => {
+            colorFilterBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleClassesForColorFilters(colorFilterBtn,colorBtns);
+            });
         });
-        purpleFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("#B612FB");
-        });
-        blueFilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            getFilteredResumeTemplates("#4A66FB");
-        });
-
     }else{
         colorPopUp.remove();
         removeStickyHeaderIfVisible();
@@ -1011,7 +992,45 @@ colorBtn.addEventListener("click", (e) => {
 }
 });
 
+
 // --------------------all-filters-button------------------------------
+
+// function hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInput){
+
+//     styleCategoryLabels.forEach((label,index) => {
+
+//         label.addEventListener("click", (e) => {
+
+//             console.log(label.id)
+//             e.stopPropagation();
+//             e.preventDefault();
+
+//             // giving the checkbox checked attribute when clicked 
+//             checkboxInput[index].checked = !checkboxInput[index].checked;
+
+//             // variable to manage the checked state and toggle classes
+//             const isChecked = checkboxInput[index].checked;
+
+//             checkBoxes[index].classList.toggle('active',isChecked);
+//             checkMarks[index].classList.toggle('check-mark-visible',isChecked);
+//             checkMarkIcons[index].classList.toggle('active',isChecked);
+//         });
+
+//         label.addEventListener("mouseover", () => {
+//             if (!checkboxInput[index].checked) {
+//                 checkMarks[index].classList.add('check-mark-visible');
+//             }
+//         });
+
+//         label.addEventListener("mouseout", () => {
+//             if (!checkboxInput[index].checked) {
+//                 checkMarks[index].classList.remove('check-mark-visible');
+//             }
+//         });
+//     });
+// }
+
+
 filterBtn.addEventListener("click", (e) => {
 
     e.stopPropagation();
@@ -1873,10 +1892,11 @@ function addPopUp(markup){
             });
 
             const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+            const checkboxInput = document.querySelectorAll('.checkbox');
             const checkBoxes = document.querySelectorAll('.checkbox-box');
             const checkMarks = bodyEl.querySelectorAll('.check-mark');
             const checkMarkIcons = document.querySelectorAll('.check-mark path');
-            hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons);
+            hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInput);
         }
     }
 }

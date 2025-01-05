@@ -2023,6 +2023,9 @@ main{
     outline: none;
     outline-offset: 2px;
 }
+/* .checkbox-box.active:hover{
+    color: #7731d8;
+} */
 .check-mark path.active{
     fill:#fff;
 }
@@ -2133,6 +2136,9 @@ main{
 .price-filter-wrapper:hover{
     box-shadow: 0 0 0 2px rgba(28,39,48,.5);
 }
+.price-filter-wrapper.active{
+    box-shadow: 0 0 0 2px #8b3dff;
+}
 .filter-btn-contents-grid{
     display: grid;
     grid-template-columns: minmax(0,1fr);
@@ -2181,6 +2187,10 @@ main{
     vertical-align: middle;
     position: relative;
 }
+.color-btn:first-child{
+    cursor:not-allowed;
+    pointer-events: none;
+}
 .color-btn::after{
     content: "";
     position: absolute;
@@ -2194,6 +2204,11 @@ main{
 .color-btn:hover::after{
     box-shadow: 0 0 0 1px rgba(28,39,48,.5),
                 inset 0 0 0 2px rgba(28,39,48,.5),
+                inset 0 0 0 4px #fff;
+}
+.color-btn.active::after {
+    box-shadow: 0 0 0 1px #8b3dff,
+                inset 0 0 0 2px #8b3dff,
                 inset 0 0 0 4px #fff;
 }
 .color{
@@ -2718,5 +2733,26 @@ main{
     white-space: nowrap;
     margin: auto;
     transition: opacity .15s ease-in-out;
-
+}
+.all-filters-count{
+    margin-left: 8px;
+    margin-top: 8px;
+    min-width: 0;
+    pointer-events: auto;
+}
+.all-filters-count-number{
+    display: inline-flex;
+    justify-content: center;
+    padding: 0 3px;
+    height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    background-color: rgba(64,87,109,.07);
+    color: #0d1216;
+    border-radius: 9999px;
+    font-family: 'canva-font-2';
+    font-size: 11px;
+    font-weight: 600;
+    font-variation-settings: "opsz" 0;
+    text-size-adjust: none;
 }
