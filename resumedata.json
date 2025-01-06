@@ -549,6 +549,63 @@
                 "Audio" : "(1)"
             }
         ],
+        "gradeFilters": [
+            {
+                "Pre-school" : "(2)"
+            },
+            {
+                "Kindergarten" : "(1)"
+            }
+        ],
+        "subjectFilters" : [
+            {
+                "Business": "(120)"
+            },
+            {
+                "Design": "(29)"
+            },
+            {
+                "Social Studies": "(2)"
+            },
+            {
+                "Science" : "(1)"
+            },
+            {
+                "Technology": "(1)"
+            }
+        ],
+        "topicFilters" : [
+            {
+                "Graphic Design" : "(770)"
+            },
+            {
+                "Digital Marketing" : "(84)"
+            },
+            {
+                "Finance": "(21)"
+            },
+            {
+                "Accounting": "20"
+            },
+            {
+                "Social Media Marketing" : "(10)"
+            },
+            {
+                "Advertising": "(8)"
+            },
+            {
+                "Brand" : "(8)"
+            },
+            {
+                "Public Relations" : "(4)"
+            },
+            {
+                "Digital Media" : "(2)"
+            },
+            {
+                "Engineering" : "(2)"
+            }
+        ],
         "priceFilters" : [
             {
                 "Free" : "free-icon.svg"

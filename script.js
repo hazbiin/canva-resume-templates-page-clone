@@ -474,9 +474,15 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
 }
 
 // -------------------style filter btn-------------------------------
-function loadStyleFilters(styleFilters){
+function loadStyleFilters(styleFilters,popupType){
     const stylesContainer = document.createElement('div');
-    stylesContainer.classList.add('scroll-item-container');
+
+    if(popupType === 'individual'){
+        stylesContainer.classList.add('scroll-item-container');
+    }else if(popupType === 'all-filters-style'){
+        stylesContainer.classList.add('inner-filters');
+        stylesContainer.id = 'style-filters';
+    }
 
     styleFilters.forEach((styleFilter) => {
         for(let key in styleFilter) {
@@ -508,7 +514,7 @@ styleBtn.addEventListener("click", (e) => {
         const data = await res.json();
 
         const styleFilters = data.filters.styleFilters;
-        const allStyleFilters = loadStyleFilters(styleFilters);
+        const allStyleFilters = loadStyleFilters(styleFilters,'individual');
         
     const markup = `
         <div id="style-pop-up" class="pop-up-container">
@@ -558,10 +564,16 @@ styleBtn.addEventListener("click", (e) => {
 }
 });
 // -------------------theme filter btn -------------------
-function loadThemeFilters(themeFilters){
+function loadThemeFilters(themeFilters,popupType){
 
     const stylesContainer = document.createElement('div');
-    stylesContainer.classList.add('scroll-item-container');
+
+    if(popupType === 'individual'){
+        stylesContainer.classList.add('scroll-item-container');
+    }else if(popupType === 'all-filters-theme'){
+        stylesContainer.classList.add('inner-filters');
+        stylesContainer.id = 'theme-filters';
+    }
 
     themeFilters.forEach((themeFilter) => {
         for(let key in themeFilter){
@@ -594,7 +606,7 @@ themeBtn.addEventListener("click", (e) => {
         const data = await res.json();
 
         const themeFilters = data.filters.themeFilters;
-        const allThemeFilters = loadThemeFilters(themeFilters);
+        const allThemeFilters = loadThemeFilters(themeFilters,'individual');
       
     const markup = `
         <div id="theme-pop-up" class="pop-up-container">
@@ -645,10 +657,15 @@ themeBtn.addEventListener("click", (e) => {
 });
 
 // ------------------feature-filter-btn----------------------
-function loadFeatureFilters(featureFilters){
+function loadFeatureFilters(featureFilters,popupType){
     
     const stylesContainer = document.createElement('div');
-    stylesContainer.classList.add('scroll-item-container');
+
+    if(popupType === 'individual'){
+        stylesContainer.classList.add('scroll-item-container');
+    }else if(popupType === 'all-filters'){
+        stylesContainer.classList.add('inner-filters');
+    }
 
     featureFilters.forEach((featureFilter) => {
         for(let key in featureFilter){
@@ -681,7 +698,7 @@ featureBtn.addEventListener("click", (e) => {
         const data = await res.json();
 
         const featureFilters = data.filters.featureFilters;
-        const allFeaturesFilters = loadFeatureFilters(featureFilters);
+        const allFeaturesFilters = loadFeatureFilters(featureFilters,'individual');
 
         const stickyHeaderBottom = filtersStickyContainer.getBoundingClientRect().bottom;
 
@@ -992,917 +1009,440 @@ colorBtn.addEventListener("click", (e) => {
 }
 });
 
-
-// --------------------all-filters-button------------------------------
-
-// function hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInput){
-
-//     styleCategoryLabels.forEach((label,index) => {
-
-//         label.addEventListener("click", (e) => {
-
-//             console.log(label.id)
-//             e.stopPropagation();
-//             e.preventDefault();
-
-//             // giving the checkbox checked attribute when clicked 
-//             checkboxInput[index].checked = !checkboxInput[index].checked;
-
-//             // variable to manage the checked state and toggle classes
-//             const isChecked = checkboxInput[index].checked;
-
-//             checkBoxes[index].classList.toggle('active',isChecked);
-//             checkMarks[index].classList.toggle('check-mark-visible',isChecked);
-//             checkMarkIcons[index].classList.toggle('active',isChecked);
-//         });
-
-//         label.addEventListener("mouseover", () => {
-//             if (!checkboxInput[index].checked) {
-//                 checkMarks[index].classList.add('check-mark-visible');
-//             }
-//         });
-
-//         label.addEventListener("mouseout", () => {
-//             if (!checkboxInput[index].checked) {
-//                 checkMarks[index].classList.remove('check-mark-visible');
-//             }
-//         });
-//     });
-// }
-
+// -------------------------------price filter button ---------------------------------
+function loadGradeFilters(gradeFilters){
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('inner-filters');
+   
+    gradeFilters.forEach((gradeFilter) => {
+        for(let key in gradeFilter){
+            stylesContainer.innerHTML += `
+                <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${gradeFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
+function loadSubjectFilters(subjectFilters){
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('inner-filters');
+   
+    subjectFilters.forEach((subjectFilter) => {
+        for(let key in subjectFilter){
+            stylesContainer.innerHTML += `
+                <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${subjectFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
+function loadTopicFilters(topicFilters){
+    const stylesContainer = document.createElement('div');
+    stylesContainer.classList.add('inner-filters');
+    stylesContainer.id = 'topic-filters';
+   
+    topicFilters.forEach((topicFilter) => {
+        for(let key in topicFilter){
+            stylesContainer.innerHTML += `
+                <label id="${key}" class="style-category-label">
+                    <div class="checkbox-section">
+                        <input class="checkbox" type="checkbox">
+                        <span class="checkbox-box">
+                            <svg class="check-mark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#0d121645" d="m5.72 12.53-3.26-3.3c-.7-.72.36-1.77 1.06-1.06l2.73 2.77 6.35-6.35a.75.75 0 0 1 1.06 1.06l-6.88 6.88a.78.78 0 0 1-.5.23.83.83 0 0 1-.56-.23z"></path></svg>
+                        </span>
+                    </div>
+                    <span class="small-width"></span>
+                    <div class="text-section">
+                        <p>${key}</p>
+                        <p class="style-count">&nbsp;${topicFilter[key]}</p>
+                    </div>
+                </label>
+            `;
+        }
+    });
+    return stylesContainer;
+}
 
 filterBtn.addEventListener("click", (e) => {
-
     e.stopPropagation();
-    const markup = `
-        <div class="pop-up-container">
-        <div class="pop-up-overlay">
-            <div class="all-filters-absolute-container">
-                <div class="all-filters-flex-wrapper">
-                    <div class="all-filters-overflow-container">
-                        <div class="container-head-section">
-                            <div class="filters-head-flex-container">
-                                <div class="filters-heading">
-                                    <h5>Filters</h5>
+
+    getData();
+    async function getData(){
+
+        const res = await fetch('resumedata.json');
+        const data = await res.json();
+
+        const styleFilters = data.filters.styleFilters;
+        const allStyleFilters = loadStyleFilters(styleFilters,'all-filters-style');
+
+        const themeFilters = data.filters.themeFilters;
+        const allThemeFilters = loadThemeFilters(themeFilters,'all-filters-theme');
+
+        const featureFilters = data.filters.featureFilters;
+        const allFeatureFilters = loadFeatureFilters(featureFilters,'all-filters');
+
+        const gradeFilters = data.filters.gradeFilters;
+        const allgradeFilters = loadGradeFilters(gradeFilters);
+
+        const subjectFilters = data.filters.subjectFilters;
+        const allSubjectFilters = loadSubjectFilters(subjectFilters);
+
+        const topicFilters = data.filters.topicFilters;
+        const allTopicFilters = loadTopicFilters(topicFilters);
+    
+        const priceFilters = data.filters.priceFilters;
+        const allpricesFilters = loadPriceFilters(priceFilters);
+    
+        const colorFilters = data.filters.colorFilters;
+        const allcolorFilters = loadColorFilters(colorFilters);
+        
+        const markup = `
+            <div class="pop-up-container">
+                <div class="pop-up-overlay">
+                    <div class="all-filters-absolute-container">
+                        <div class="all-filters-flex-wrapper">
+                            <div class="all-filters-overflow-container">
+                                <div class="container-head-section">
+                                    <div class="filters-head-flex-container">
+                                        <div class="filters-heading">
+                                            <h5>Filters</h5>
+                                        </div>
+                                        <div class="close-btn-container">
+                                            <button id="close-btn" class="close-btn">
+                                                <span class="close-icon">
+                                                    <img src="assets/svgs/close-icon.svg" alt="close-icon">
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
                                 </div>
-                                <div class="close-btn-container">
-                                    <button id="close-btn" class="close-btn">
-                                        <span class="close-icon">
-                                            <img src="assets/svgs/close-icon.svg" alt="close-icon">
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="container-middle-section">
-                            <ul>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Style</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div id="style-filters" class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                                <div class="container-middle-section">
+                                    <ul>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Style</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
                                                     </span>
                                                 </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Professional</p>
-                                                    <p class="style-count">&nbsp;(10K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Modern</p>
-                                                    <p class="style-count">&nbsp;(9.2K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Simple</p>
-                                                    <p class="style-count">&nbsp;(7.2K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Minimalist</p>
-                                                    <p class="style-count">&nbsp;(7.2K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Corporate</p>
-                                                    <p class="style-count">&nbsp;(5.3K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Creative</p>
-                                                    <p class="style-count">&nbsp;(4.7K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Elegant</p>
-                                                    <p class="style-count">&nbsp;(2.7K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Clean</p>
-                                                    <p class="style-count">&nbsp;(2.4K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Minimal</p>
-                                                    <p class="style-count">&nbsp;(1.5K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Aesthetic</p>
-                                                    <p class="style-count">&nbsp;(1.1K)</p>
-                                                </div>
-                                            </label>
-                                            <button id="style-view-more-btn" class="view-more-btn">
-                                                <span class="view-more-icon">
-                                                    <img src="assets/svgs/view-more-plus-sign.svg" alt="view-more-plus-sign">
-                                                </span>
-                                                <span class="view-more-text">View more</span>
                                             </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Theme</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div id="theme-filters" class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                                            <div id="style-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Theme</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
                                                     </span>
                                                 </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Work</p>
-                                                    <p class="style-count">&nbsp;(6K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Corporate</p>
-                                                    <p class="style-count">&nbsp;(5.3K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Business</p>
-                                                    <p class="style-count">&nbsp;(4.1K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Black</p>
-                                                    <p class="style-count">&nbsp;(4K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Portfolio</p>
-                                                    <p class="style-count">&nbsp;(2.8K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>hiring</p>
-                                                    <p class="style-count">&nbsp;(2.3K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Company</p>
-                                                    <p class="style-count">&nbsp;(2.2K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Career</p>
-                                                    <p class="style-count">&nbsp;(1.9K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Graphic Design</p>
-                                                    <p class="style-count">&nbsp;(1.7K)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Pink</p>
-                                                    <p class="style-count">&nbsp;(1.3K)</p>
-                                                </div>
-                                            </label>
-                                            <button id="theme-view-more-btn" class="view-more-btn">
-                                                <span class="view-more-icon">
-                                                    <img src="assets/svgs/view-more-plus-sign.svg" alt="view-more-plus-sign">
-                                                </span>
-                                                <span class="view-more-text">View more</span>
                                             </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Feature</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
+                                            <div id="theme-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Feature</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
                                                     </span>
                                                 </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Animation</p>
-                                                    <p class="style-count">&nbsp;(4)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Audio</p>
-                                                    <p class="style-count">&nbsp;(1)</p>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Grade</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Pre-school</p>
-                                                    <p class="style-count">&nbsp;(2)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Kindergarten</p>
-                                                    <p class="style-count">&nbsp;(1)</p>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Subject</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Business</p>
-                                                    <p class="style-count">&nbsp;(120)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Design</p>
-                                                    <p class="style-count">&nbsp;(29)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Social Studies</p>
-                                                    <p class="style-count">&nbsp;(2)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Science</p>
-                                                    <p class="style-count">&nbsp;(1)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Technology</p>
-                                                    <p class="style-count">&nbsp;(1)</p>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Topic</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div id="topic-filters" class="inner-filters">
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Graphic Design</p>
-                                                    <p class="style-count">&nbsp;(770)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Digital Marketing</p>
-                                                    <p class="style-count">&nbsp;(84)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Finance</p>
-                                                    <p class="style-count">&nbsp;(21)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Accounting</p>
-                                                    <p class="style-count">&nbsp;(20)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Social Media Marketing</p>
-                                                    <p class="style-count">&nbsp;(10)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Advertising</p>
-                                                    <p class="style-count">&nbsp;(8)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Brand</p>
-                                                    <p class="style-count">&nbsp;(8)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Public Relations</p>
-                                                    <p class="style-count">&nbsp;(4)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Digital Media</p>
-                                                    <p class="style-count">&nbsp;(2)</p>
-                                                </div>
-                                            </label>
-                                            <label class="style-category-label">
-                                                <div class="checkbox-section">
-                                                    <input class="checkbox" type="checkbox">
-                                                    <span class="checkbox-box">
-                                                        <img class="check-mark" src="assets/svgs/checkbox.svg" alt="">
-                                                    </span>
-                                                </div>
-                                                <span class="small-width"></span>
-                                                <div class="text-section">
-                                                    <p>Engineering</p>
-                                                    <p class="style-count">&nbsp;(2)</p>
-                                                </div>
-                                            </label>
-                                            <button id="topic-view-more-btn" class="view-more-btn">
-                                                <span class="view-more-icon">
-                                                    <img src="assets/svgs/view-more-plus-sign.svg" alt="view-more-plus-sign">
-                                                </span>
-                                                <span class="view-more-text">View more</span>
                                             </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Price</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div class="price-filter-container">
-                                            <div class="price-filter-grid">
-                                                <div class="free-section">
-                                                    <button class="price-filter-btn">
-                                                        <div class="price-filter-wrapper">
-                                                            <div class="filter-btn-contents-grid">
-                                                                <span class="price-filter-icon">
-                                                                    <img src="assets/svgs/free-icon.svg" alt="free-icon">
+                                            <div id="feature-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Grade</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                                                    </span>
+                                                </div>
+                                            </button>
+                                            <div id="grade-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Subject</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                                                    </span>
+                                                </div>
+                                            </button>
+                                            <div id="subject-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Topic</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                                                    </span>
+                                                </div>
+                                            </button>
+                                            <div id="topic-filters-container" class="inner-filters-container"></div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Price</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                                                    </span>
+                                                </div>
+                                            </button>
+                                            <div class="inner-filters-container">
+                                                <div id="price-filters-container" class="price-filter-container"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button class="inner-filter-btn">
+                                                <div class="btn-contents-flex-container">
+                                                    <h3>Color</h3>
+                                                    <span class="filter-nav-icon">
+                                                        <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                                                    </span>
+                                                </div>
+                                            </button>
+                                            <div class="inner-filters-container">
+                                                <div id="colors-grid-container" class="colors-grid-container">
+                                                    <button class="color-btn">
+                                                        <span class="color choose-color">
+                                                            <span class="multi-color"></span>
+                                                            <span class="plus-sign-absolute-container">
+                                                                <span class="plus-sign-container">
+                                                                    <span class="plus-svg">
+                                                                        <img src="assets/svgs/color-plus-sign.svg" alt="plus-sign">
+                                                                    </span>
                                                                 </span>
-                                                                <p class="price-text">Free</p>
-                                                            </div>
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                                <div class="pro-section">
-                                                    <button class="price-filter-btn">
-                                                        <div class="price-filter-wrapper">
-                                                            <div class="filter-btn-contents-grid">
-                                                                <span class="price-filter-icon">
-                                                                    <img src="assets/svgs/pro-icon.svg" alt="pro-icon">
-                                                                </span>
-                                                                <p class="price-text">Pro</p>
-                                                            </div>
-                                                        </div>
+                                                            </span>
+                                                        </span>
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container-bottom-section">
+                                    <div class="filters-btn-container">
+                                        <button class="btn login-btn">
+                                            <span class="header-btn-text login-text">Clear all</span>
+                                        </button>
+                                        <button class="btn signup-btn">
+                                            <span class="header-btn-text signup-text">Apply</span>
+                                        </button>
                                     </div>
-                                </li>
-                                <li>
-                                    <button class="inner-filter-btn">
-                                        <div class="btn-contents-flex-container">
-                                            <h3>Color</h3>
-                                            <span class="filter-nav-icon">
-                                                <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                                            </span>
-                                        </div>
-                                    </button>
-                                    <div class="inner-filters-container">
-                                        <div class="colors-grid-container">
-                                            <button class="color-btn">
-                                                <span class="color choose-color">
-                                                    <span class="multi-color"></span>
-                                                    <span class="plus-sign-absolute-container">
-                                                        <span class="plus-sign-container">
-                                                            <span class="plus-svg">
-                                                                <img src="assets/svgs/color-plus-sign.svg" alt="plus-sign">
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#15181B" class="color c-15181B"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#B612FB" class="color c-B612FB"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#4A66FB" class="color c-4A66FB"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#C1C6CB" class="color c-C1C6CB"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#FFFFFF"class="color c-FFFFFF"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#55DBE0" class="color c-55DBE0"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#74D353" class="color c-74D353"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#FED958" class="color c-FED958"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#FE884C" class="color c-FE884C"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#FD5152" class="color c-FD5152"></span>
-                                            </button>
-                                            <button class="color-btn">
-                                                <span id="#FD5EBB" class="color c-FD5EBB"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="container-bottom-section">
-                            <div class="filters-btn-container">
-                                <button class="btn login-btn">
-                                    <span class="header-btn-text login-text">Clear all</span>
-                                </button>
-                                <button class="btn signup-btn">
-                                    <span class="header-btn-text signup-text">Apply</span>
-                                </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    `;
+        `;
+        addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgradeFilters,allSubjectFilters,allTopicFilters,allpricesFilters,allcolorFilters);
 
-    addPopUp(markup);
-
-    const popUpOverlay = bodyEl.querySelector('.pop-up-overlay');
-    const filtersContainer = bodyEl.querySelector('.all-filters-absolute-container')
-    const closeBtn = document.getElementById('close-btn');
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
-    removeFiltersPopUp(popUpOverlay,popUpEl,filtersContainer,closeBtn);
+        const popUpOverlay = bodyEl.querySelector('.pop-up-overlay');
+        const filtersContainer = bodyEl.querySelector('.all-filters-absolute-container')
+        const closeBtn = document.getElementById('close-btn');
+        const popUpEl = bodyEl.querySelector('.pop-up-container');
+        removeFiltersPopUp(popUpOverlay,popUpEl,filtersContainer,closeBtn);
+    }
 });
 
-function addPopUp(markup){
-   
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
+function createViewMoreBtn(filterType){
+    const viewMoreBtn = document.createElement('button');
+    viewMoreBtn.classList.add('view-more-btn');
 
-    if(!popUpEl){
-
-        bodyEl.insertAdjacentHTML("beforeend", markup);
-
-        if(bodyEl.querySelector('.pop-up-overlay')){
-        
-            const filtersContainer = bodyEl.querySelector('.all-filters-absolute-container');
-            setTimeout(() => {
-                filtersContainer.classList.toggle('show');
-            }, 10);
-
-
-            const filterBtns = document.querySelectorAll('.inner-filter-btn');
-            const filtersLists = document.querySelectorAll('.inner-filters-container');
-
-            filterBtns.forEach((filterBtn,index) => {
-
-                let isFiltersListVisible = false;
-                filterBtn.addEventListener("click",(e) => {
-
-                    e.stopPropagation();
-
-                    isFiltersListVisible = !isFiltersListVisible;
-
-                    if(isFiltersListVisible){
-
-                        filtersLists[index].style.display = "none";
-
-                        const btnIcon = filterBtn.querySelector('.filter-nav-icon');
-                        btnIcon.innerHTML = `
-                            <img src="assets/svgs/filter-down-arrow.svg" alt="down-arrow-icon">
-                        `;
-                    } else {
-                        filtersLists[index].style.display = "block";
-
-                        const btnIcon = filterBtn.querySelector('.filter-nav-icon');
-                        btnIcon.innerHTML = `
-                            <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
-                        `;
-                    }
-                });
-            });
-
-            let areLabelsVisible = false;
-            const styleViewMoreBtn = document.getElementById('style-view-more-btn');
-            const themeViewMoreBtn = document.getElementById('theme-view-more-btn');
-            const topicViewMoreBtn = document.getElementById('topic-view-more-btn');
-           
-            styleViewMoreBtn.addEventListener("click", (e) => {
-
-                e.stopPropagation();
-                const styleFilters = document.getElementById('style-filters');
-                const styleNewLabels = styleFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
-                
-                areLabelsVisible = !areLabelsVisible;
-                if(areLabelsVisible) {
-
-                    viewMore(styleViewMoreBtn,styleNewLabels);
-                } else {
-
-                    viewLess(styleViewMoreBtn,styleNewLabels);
-                }
-            });
-            themeViewMoreBtn.addEventListener("click", (e) => {
-
-                e.stopPropagation();
-                const themeFilters = document.getElementById('theme-filters');
-                const themeNewLabels = themeFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
-
-                areLabelsVisible = !areLabelsVisible;
-                if(areLabelsVisible) {
-
-                    viewMore(themeViewMoreBtn,themeNewLabels);
-                } else {
-
-                    viewLess(themeViewMoreBtn,themeNewLabels);
-                }
-            });
-            topicViewMoreBtn.addEventListener("click", (e) => {
-
-                e.stopPropagation();
-                const topicFilters = document.getElementById('topic-filters');
-                const topicNewLabels = topicFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
-
-                areLabelsVisible = !areLabelsVisible;
-                if(areLabelsVisible) {
-
-                    viewMore(topicViewMoreBtn,topicNewLabels);
-                } else {
-
-                    viewLess(topicViewMoreBtn,topicNewLabels);
-                }
-            });
-
-            const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-            const checkboxInput = document.querySelectorAll('.checkbox');
-            const checkBoxes = document.querySelectorAll('.checkbox-box');
-            const checkMarks = bodyEl.querySelectorAll('.check-mark');
-            const checkMarkIcons = document.querySelectorAll('.check-mark path');
-            hoverAndClickEvents(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInput);
-        }
+    if(filterType === 'style'){
+        viewMoreBtn.id = `${filterType}-view-more-btn`;
+    }else if(filterType === 'theme'){
+        viewMoreBtn.id = `${filterType}-view-more-btn`;
+    }else if(filterType === 'topic'){
+        viewMoreBtn.id = `${filterType}-view-more-btn`;
     }
+    viewMoreBtn.innerHTML = `
+        <span class="view-more-icon">
+            <img src="assets/svgs/view-more-plus-sign.svg" alt="view-more-plus-sign">
+        </span>
+        <span class="view-more-text">View more</span>
+    `;
+    return viewMoreBtn;
+}
+
+function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgradeFilters,allSubjectFilters,allTopicFilters,allpricesFilters,allcolorFilters){
+
+    const popUpEl = bodyEl.querySelector('.pop-up-container');
+    if(popUpEl){
+        popUpEl.remove();
+        removeBackgroundToggleClass();
+    }
+
+    bodyEl.insertAdjacentHTML("beforeend", markup);
+
+    const styleFiltersContainer = document.getElementById('style-filters-container');
+    styleFiltersContainer.appendChild(allStyleFilters);
+    styleFiltersContainer.insertAdjacentElement("beforeend",createViewMoreBtn('style'));
+
+    const themeFiltersContainer = document.getElementById('theme-filters-container');
+    themeFiltersContainer.appendChild(allThemeFilters);
+    themeFiltersContainer.insertAdjacentElement("beforeend",createViewMoreBtn('theme'));
+
+    const featureFiltersContainer = document.getElementById('feature-filters-container');
+    featureFiltersContainer.appendChild(allFeatureFilters);
+
+    const gradeFiltersContainer = document.getElementById('grade-filters-container');
+    gradeFiltersContainer.appendChild(allgradeFilters);
+
+    const subjectFiltersContainer = document.getElementById('subject-filters-container');
+    subjectFiltersContainer.appendChild(allSubjectFilters);
+
+    const topicFiltersContainer = document.getElementById('topic-filters-container');
+    topicFiltersContainer.appendChild(allTopicFilters);
+    topicFiltersContainer.insertAdjacentElement("beforeend",createViewMoreBtn('topic'));
+
+    const priceFiltersContainer = document.getElementById('price-filters-container');
+    priceFiltersContainer.appendChild(allpricesFilters);
+    // --------------------price filtering----------------
+    const priceFilterBtns = document.querySelectorAll('.price-filter-btn');
+    checkActivePriceFilters(priceFilterBtns);
+     
+    const freeBtn = document.getElementById("Free");
+    const proBtn = document.getElementById("Pro");   
+     
+    freeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleClassesForPriceFilters(freeBtn);
+    });
+    proBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleClassesForPriceFilters(proBtn);
+    });
+
+    const colorFiltersContainer = document.querySelector('.colors-grid-container');
+    colorFiltersContainer.insertAdjacentHTML("beforeend",allcolorFilters);
+    // ----------color filtering----------
+    const colorBtns = document.querySelectorAll('.color-btn');
+    checkActiveColorFilters(colorBtns);
+
+    colorBtns.forEach((colorFilterBtn) => {
+        colorFilterBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleClassesForColorFilters(colorFilterBtn,colorBtns);
+        });
+    });
+   
+    // --------------view-more btn and dropdown inside the all-filters popup--------------
+    const filtersContainer = bodyEl.querySelector('.all-filters-absolute-container');
+    setTimeout(() => {
+        filtersContainer.classList.toggle('show');
+    }, 10);
+
+    const filterBtns = document.querySelectorAll('.inner-filter-btn');
+    const filtersLists = document.querySelectorAll('.inner-filters-container');
+    filterBtns.forEach((filterBtn,index) => {
+
+        let isFiltersListVisible = false;
+        filterBtn.addEventListener("click",(e) => {
+            e.stopPropagation();
+
+            isFiltersListVisible = !isFiltersListVisible;
+
+            if(isFiltersListVisible){
+                filtersLists[index].style.display = "none";
+
+                const btnIcon = filterBtn.querySelector('.filter-nav-icon');
+                btnIcon.innerHTML = `
+                    <img src="assets/svgs/filter-down-arrow.svg" alt="down-arrow-icon">
+                `;
+            } else {
+                filtersLists[index].style.display = "block";
+
+                const btnIcon = filterBtn.querySelector('.filter-nav-icon');
+                btnIcon.innerHTML = `
+                    <img src="assets/svgs/filter-up-arrow.svg" alt="up-arrow-icon">
+                `;
+            }
+        });
+    });
+
+    let areLabelsVisible = false;
+    const styleViewMoreBtn = document.getElementById('style-view-more-btn');
+    const themeViewMoreBtn = document.getElementById('theme-view-more-btn');
+    const topicViewMoreBtn = document.getElementById('topic-view-more-btn');
+   
+    styleViewMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const styleFilters = document.getElementById('style-filters');
+        const styleNewLabels = styleFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
+        
+        areLabelsVisible = !areLabelsVisible;
+        if(areLabelsVisible) {
+            viewMore(styleViewMoreBtn,styleNewLabels);
+        } else {
+            viewLess(styleViewMoreBtn,styleNewLabels);
+        }
+    });
+    themeViewMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const themeFilters = document.getElementById('theme-filters');
+        const themeNewLabels = themeFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
+
+        areLabelsVisible = !areLabelsVisible;
+        if(areLabelsVisible) {
+            viewMore(themeViewMoreBtn,themeNewLabels);
+        } else {
+            viewLess(themeViewMoreBtn,themeNewLabels);
+        }
+    });
+    topicViewMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const topicFilters = document.getElementById('topic-filters');
+        const topicNewLabels = topicFilters.querySelectorAll(".style-category-label:nth-child(n+7):nth-child(-n+10)");
+
+        areLabelsVisible = !areLabelsVisible;
+        if(areLabelsVisible) {
+            viewMore(topicViewMoreBtn,topicNewLabels);
+        } else {
+            viewLess(topicViewMoreBtn,topicNewLabels);
+        }
+    });
+
+    const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+    const checkboxInputs = document.querySelectorAll('.checkbox');
+    const checkBoxes = document.querySelectorAll('.checkbox-box');
+    const checkMarks = bodyEl.querySelectorAll('.check-mark');
+    const checkMarkIcons = document.querySelectorAll('.check-mark path');
+    showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
 }
 
 function viewMore(viewMoreBtn,newLabels){
-
     newLabels.forEach((newLabel) => {
         newLabel.style.display = "flex";
     });
@@ -1930,7 +1470,6 @@ function viewLess(viewMoreBtn,newLabels){
 }
 
 function removeFiltersPopUp(popUpOverlay,popUpEl,filtersContainer,closeBtn){
-
     popUpOverlay.addEventListener("click", (e) => {
         
         if(!filtersContainer.contains(e.target) || closeBtn.contains(e.target)){
