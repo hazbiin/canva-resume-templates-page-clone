@@ -434,6 +434,7 @@ main{
     font-weight: 400;
     transition: .15s ease-in-out;
     transition-property: color, background-color, color, box-shadow;
+    color: #0d1216;
 }
 .filter-category-btn:hover{
     background-color: rgba(64,87,109,.07);
@@ -441,6 +442,11 @@ main{
 .filter-category-btn.background-toggle{
     background-color: rgba(57,76,96,.15);
     box-shadow: inset 0 0 0 1px rgba(28, 39, 48, 0.5);
+}
+.filter-category-btn.active{
+    background-color: rgba(165,112,255,.2);
+    box-shadow: inset 0 0 0 1px #8b3dff;
+    color: #612dae;
 }
 .filter-btn-text{
     text-align: start;
@@ -1559,7 +1565,7 @@ main{
         position: relative;
         width: 100%;
     }
-    .header-nav-container nav ul {
+    .header-nav-ul {
         display: flex;
         font-family: 'canva-font-2';
         font-size: 14px;
@@ -1702,6 +1708,220 @@ main{
         width: 100%;
     }
 
+    /* -------------------design spotlight hover card--------------- */
+    .dummy-area{
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        height: 8px;
+        width: 100%;
+    }
+    .design-spotlight-hover-card{
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 0px 0px 1px rgba(64,87,109,.04),0px 6px 20px -4px rgba(64,87,109,.3);
+        margin: 8px 0;
+        max-width: calc(-185px + 100vw);
+        overflow-x: auto;
+        width: max-content;
+        position: absolute;
+        top: 40px;
+        opacity: 0;
+        display: none;
+    }
+    .design-spotlight-hover-card.visible{
+        opacity: 1;
+        display: block;
+    }
+    .hover-card-contents-flex-container{
+        display: flex;
+        min-height: 400px;
+    }
+    .hover-card-content{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .hover-card-content:nth-child(2){
+        flex-grow: unset;
+        border-left: 1px solid rgba(57,76,96,.15);
+    }
+    .lists-grid-container{
+        list-style: none;
+        overflow-wrap: normal;
+        display: grid;
+        grid-auto-flow: column;
+        grid-column-gap: 48px;
+        align-self: auto;
+        width: auto;
+        padding: 16px;
+    }
+    .list-head{
+        padding: 0 8px;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        height: 25px;
+    }
+    .list-head h2{
+        font-family: 'canva-font-2';
+        font-size: 16px;
+        font-weight: 700;
+        font-variation-settings: "opsz" 0;
+        text-size-adjust: none;
+        line-height: 24px;
+        color: #0d1216;
+        text-align: start;
+    }
+    .lists-grid-container li:nth-child(3) .list-head:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .hover-card-right-arrow{
+        display: inline-flex;
+        align-items: center;
+        height:24px;
+        width: 24px;
+    }
+    .hover-card-right-arrow img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .list-ul{
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(9,auto);
+        grid-column-gap: 48px;
+        width: auto;
+        padding: 8px 0;
+        list-style: none;
+        overflow-wrap: normal;
+    }
+    .list-ul li a{
+        text-decoration: none;
+        display: flex;
+        padding: 0 8px;
+        height: 32px;
+        border-radius: 4px;
+    }
+    .list-ul li a:hover{
+        background-color: rgba(64, 87, 109, .07);
+    }
+    .hover-card-list-text{
+        flex: 1;
+       font-family: 'canva-font-2';
+       font-size: 14px;
+       font-weight: 400;
+       font-variation-settings: "opsz" 0;
+       text-size-adjust: none;
+       color: #0d1216;
+       display: flex;
+       align-items: center;
+       justify-content: flex-start;
+       max-width: 100%;
+       height: 100%;
+       text-align: start;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+    }
+    .images-flex-ul{
+        list-style: none;
+        display: flex;
+        align-self: flex-start;
+        overflow-wrap: normal;
+        padding: 16px;
+        /* width: auto; */
+        width: 448px;
+    }
+    .images-flex-ul a{
+        max-width: 256px;
+        min-width: 192px;
+        /* width: 256px; */
+        padding: 8px;
+        text-decoration: none;
+    }
+    .empty-div{
+        font-size: 128px;
+        height: 0;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        visibility: hidden;
+    }
+    .image-section{
+        padding-bottom: 75%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .hover-card-image{
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .1s linear;
+        will-change: transform;
+    }
+    .hover-card-image img{
+        transition: opacity .1s ease-in-out;
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        margin: 0 auto;
+        opacity: 1;
+    }
+    .image-description-section{
+        margin-top: 16px;
+    }
+    .image-description-head{
+        font-family: 'canva-font-2';
+        font-size: 16px;
+        line-height: 26px;
+        font-weight: 600;
+        font-variation-settings: "opsz" 0;
+        text-size-adjust: none;
+        color: #0d1216;
+        text-align: start;
+        overflow-wrap: break-word;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+    .description-head-container{
+        font-family: 'canva-font-2';
+        font-size: 16px;
+        line-height: 26px;
+        font-weight: 600;
+        font-variation-settings: "opsz" 0;
+        text-size-adjust: none;
+        color: #0d1216;
+        text-align: start;
+        overflow-wrap: break-word;
+    }
+    .hover-card-right-arrow-container{
+        white-space: nowrap;
+    }
+    .nbsp{
+        font-size: 0;
+    }
+    .image-description-head .hover-card-right-arrow{
+        vertical-align: -1px;
+    }
+    .hover-card-image-text{
+        font-family: 'canva-font-2';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        font-variation-settings: "opsz" 0;
+        text-size-adjust: none;
+        color: #0d1216;
+        text-align: start;
+        overflow-wrap: break-word;
+    }
+
     .header-searchbar-container{
         margin-left: auto;
         min-width: 240px;
@@ -1749,7 +1969,9 @@ main{
         margin-left: 8px;
         margin-top: 8px;
     }
-
+    .not-allowed-color{
+        color: rgba(36,49,61,.4);
+    }
     .resumes-grid{
         grid-template-columns: repeat(4, minmax(0px, 1fr));
         column-gap: 24px;
@@ -1886,7 +2108,7 @@ main{
     }
 }
 @media screen and (min-width:967px){
-    .header-nav-container nav ul .nav-list-item:nth-child(2) {
+    .header-nav-ul .nav-list-item:nth-child(2) {
         visibility: visible;
     }
     .show-more-btn-container{
@@ -1895,7 +2117,7 @@ main{
 }
 
 @media screen and (min-width:1090px){
-    .header-nav-container nav ul .nav-list-item:nth-child(3){
+    .header-nav-ul .nav-list-item:nth-child(3){
         visibility: visible;
     }
     .show-more-btn-container{
@@ -1921,7 +2143,7 @@ main{
     }
 }
 @media screen and (min-width:1261px){
-    .header-nav-container nav ul .nav-list-item:nth-child(4){
+    .header-nav-ul .nav-list-item:nth-child(4){
         visibility: visible;
     }
     .show-more-btn-container{
@@ -1930,7 +2152,7 @@ main{
 }
 
 @media screen and (min-width:1316px){
-    .header-nav-container nav ul .nav-list-item:nth-child(5){
+    .header-nav-ul .nav-list-item:nth-child(5){
         visibility: visible;
     }
     .show-more-btn-container{

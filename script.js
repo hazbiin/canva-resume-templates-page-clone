@@ -4,6 +4,10 @@ const imageRotatingContainer = document.querySelector('.actual-image-absolute-co
 const actualImageContainer =  document.querySelector('.actual-image-container');
 const actualImage = document.querySelector('.actual-image-container img');
 
+const designSpotlightBtn = document.getElementById('design-spotlight');
+const dummyArea = document.querySelector('.dummy-area');
+const designSpotlightHoverCard = document.getElementById('design-spotlight-hover-card');
+
 const filtersStickyContainer = document.querySelector('.filters-sticky-container');
 
 const resumesGrid = document.getElementById('resumes-grid');
@@ -11,6 +15,7 @@ const resumeStyles = document.getElementById('resume-styles');
 const navigationLinks = document.getElementById('navigation-links');
 
 const bodyEl = document.body;
+const allfiltersPopup = document.querySelector('.pop-up-overlay');
 const filterCategoryBtns = document.querySelectorAll('.filter-category-btn');
 const filterBtn = document.getElementById("filter-btn");
 const styleBtn = document.getElementById('style-btn');
@@ -20,9 +25,13 @@ const priceBtn = document.getElementById('price-btn');
 const colorBtn = document.getElementById('color-btn');
 const languageSelectBtn = document.getElementById('language-select-btn');
 
-const slidingTabs = document.querySelectorAll('.nav-items-container');
-const nextBtns = document.querySelectorAll('.next');
-const prevBtns = document.querySelectorAll('.prev');
+const slidingTabTop = document.getElementById('resume-styles');
+const topNextBtn = document.getElementById('top-next-button');
+const topPrevBtn = document.getElementById('top-prev-button');
+
+const slidingTabBottom = document.getElementById('navigation-links');
+const bottomNextBtn = document.getElementById('bottom-next-button');
+const bottomPrevBtn = document.getElementById('bottom-prev-button');
 
 // -----------------changing the styles of head image--------------------
 function changeHeadImage(){
@@ -58,6 +67,22 @@ function changeHeadImage(){
 }
 window.onresize = changeHeadImage;
 window.onload = changeHeadImage;
+
+// ------------------header button hovers------------------------
+function showHoverCard(){
+    designSpotlightHoverCard.classList.add('visible');
+}
+function hideHoverCard(e){
+    if(!designSpotlightBtn.contains(e.relatedTarget) && !designSpotlightHoverCard.contains(e.relatedTarget) && !dummyArea.contains(e.relatedTarget)){
+        designSpotlightHoverCard.classList.remove('visible');
+    }
+}
+
+designSpotlightBtn.addEventListener('mouseenter', showHoverCard);
+designSpotlightBtn.addEventListener('mouseleave', hideHoverCard);
+
+designSpotlightHoverCard.addEventListener('mouseenter', showHoverCard);
+designSpotlightHoverCard.addEventListener('mouseleave', hideHoverCard);
 
 // ----------------------behaviour of sticky header---------------------
 let lastScorllY = window.scrollY;
@@ -137,48 +162,37 @@ function showNavigationLinks(navigationLinksData){
 }
 
 // ---------------------navigations slider----------------------------
-nextBtns.forEach((nextBtn) => {
-    nextBtn.classList.add('active');
-});
+topNextBtn.classList.add('active');
+bottomNextBtn.classList.add('active');
 
-slidingTabs.forEach((slidingTab) => {
-
-    slidingTab.addEventListener("scroll" , () => {
-        if(slidingTab.scrollLeft > 0){
-            prevBtns.forEach((prevBtn) => {
-                prevBtn.classList.add('active');
-            });
-        } else {
-            prevBtns.forEach((prevBtn) => {
-                prevBtn.classList.remove('active');
-            });
-        }
-
+function handleSlider(slidingTab,prevBtn,nextBtn){
+    slidingTab.addEventListener("scroll",() => {
         let maxScrollWidth = slidingTab.scrollWidth - slidingTab.clientWidth;
 
+        // toggling previous btns visibility
+        if(slidingTab.scrollLeft > 0){
+            prevBtn.classList.add('active');
+        }else {
+            prevBtn.classList.remove('active');
+        }
+        //toggling next btns visibility
         if(slidingTab.scrollLeft >= maxScrollWidth){
-            nextBtns.forEach((nextBtn) => {
-                // console.log("scrollWidth:", slidingTab.scrollWidth, "clientWidth:", slidingTab.clientWidth);
-                nextBtn.classList.remove('active');
-            });
-        } else {
-            nextBtns.forEach((nextBtn) => {
-                nextBtn.classList.add('active');
-            });
+            nextBtn.classList.remove('active');
+        }else {
+            nextBtn.classList.add('active');
         }
     });
 
-    nextBtns.forEach((nextBtn) => {
-        nextBtn.addEventListener("click", () => {
-            slidingTab.scrollLeft += 1341;
-        });
+    // next and previous btns functionality
+    nextBtn.addEventListener("click", () => {
+        slidingTab.scrollLeft += 1341;
     });
-    prevBtns.forEach((prevBtn) => {
-        prevBtn.addEventListener("click", () => {
-            slidingTab.scrollLeft -= 1382;
-        });
+    prevBtn.addEventListener("click", () => {
+        slidingTab.scrollLeft -= 1382;
     });
-});
+}
+handleSlider(slidingTabTop,topPrevBtn,topNextBtn);
+handleSlider(slidingTabBottom,bottomPrevBtn,bottomNextBtn);
 
 // ---------------------------updating resumes templates gird---------------------------
 function addBlankResumeContainer(){
@@ -283,7 +297,6 @@ function showResumeTemplates(resumesData){
         hoverOnResumeTemplates(resumeEl);
     });
 }
-
 // ----------------hover on resumes -------------------------
 function hoverOnResumeTemplates(resume){
 
@@ -304,7 +317,6 @@ function hoverOnResumeTemplates(resume){
         }
     });
 }
-
 // ------------------------click events on filter category buttons ------------------
 filterCategoryBtns.forEach((filterCategoryBtn) => {
 
@@ -339,10 +351,10 @@ function makePopUpsScrollToo(popUp,xOffset){
         }
     });
 }
-
 // --------------------filtering functions---------------------------
 let activeFilters = [];
 async function getFilteredResumeTemplates(){
+
     const res = await fetch('resumedata.json');
     const data = await res.json();
     const resumes= data.resumes;
@@ -362,13 +374,14 @@ async function getFilteredResumeTemplates(){
         });
     });
 
-    resumesGrid.innerHTML = ``;
-    showResumeTemplates(filteredResumes);
+    if(!document.getElementById('all-filters-popup')){
+        resumesGrid.innerHTML = ``;
+        showResumeTemplates(filteredResumes);
+    }
 }
 
-function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs){
+function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,clickedFilterCategory){
     styleCategoryLabels.forEach((label,index) => {
-        //assig all filters to the filter variable
         const filter = label.id;
         
         // initial check for the filter in the activeFilters array and apply the necessary visual states 
@@ -408,54 +421,21 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
             checkMarks[index].classList.toggle('check-mark-visible', isChecked);
             checkMarkIcons[index].classList.toggle('active', isChecked);
 
-            // --------screen moving up--------
-            window.scrollTo({
-                top: 400,
-                behavior:'smooth'
-            });
+            console.log("current active Filters",activeFilters);
 
-            // ---------adding clear btn----------
-            const filterBtnsContainer = document.querySelector('.filters');
-            let clearBtn = document.querySelector('.filters-clear-btn');
-
-            if(!clearBtn){
-                clearBtn = document.createElement('button');
-                clearBtn.classList.add('filters-clear-btn');
-                filterBtnsContainer.appendChild(clearBtn); 
-            }
-            if(activeFilters.length < 1){
-                clearBtn.remove();
-            }else {
-                clearBtn.innerHTML = `
-                    <span class="selected-filters-number">Clear all (${activeFilters.length})</span>
-                `;
-            }
-            clearBtn.addEventListener("click", () => {
-                activeFilters = [];
-                clearBtn.remove();
-                allFiltersCount.remove();
-                getFilteredResumeTemplates();
-            });
-
-            // --------updating all filters btn------------
-            const allFiltersBtnContainer = document.querySelector('.all-filters-text');
-
-            let allFiltersCount = document.querySelector('.all-filters-count');
-            if(!allFiltersCount){
-                allFiltersCount = document.createElement('span');
-                allFiltersCount.classList.add('all-filters-count');
-                allFiltersBtnContainer.appendChild(allFiltersCount);
+            // --------window moving up and adding clearall btn--------
+            if(!document.getElementById('all-filters-popup')){
+                makeWindowScrollUp();
+                addClearAllBtn();
             }
 
-            if(activeFilters.length < 1){
-                allFiltersCount.remove();
-            }else {
-                allFiltersCount.innerHTML = `
-                    <span class="all-filters-count-number">${activeFilters.length}</span>
-                `;
+            // ------------changing color of the filter button-------------
+            clickedFilterCategory.classList.add('active');
+            if(activeFilters.length === 0){
+                clickedFilterCategory.classList.remove('active');
             }
-            // ---------------------------filter resumes---------------------------------
-            // filter resumes based on the active filters
+
+            // ---------filter resumes based on selected one-------------
             getFilteredResumeTemplates();
         });
 
@@ -473,6 +453,68 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
     });
 }
 
+
+
+function makeWindowScrollUp(){
+    window.scrollTo({
+        top: 400,
+        behavior:'smooth'
+    });
+}
+function addClearAllBtn(){
+    //update the count in allfilters btn too
+    updateAllFiltersBtn();
+
+    const filterBtnsContainer = document.querySelector('.filters');
+    let allFiltersCount = document.querySelector('.all-filters-count');
+
+    let clearBtn = document.querySelector('.filters-clear-btn');
+    if(!clearBtn){
+        clearBtn = document.createElement('button');
+        clearBtn.classList.add('filters-clear-btn');
+        filterBtnsContainer.appendChild(clearBtn); 
+    }
+
+    if(activeFilters.length < 1){
+        clearBtn.remove();
+    }else {
+        clearBtn.innerHTML = `
+            <span class="selected-filters-number">Clear all (${activeFilters.length})</span>
+        `;
+    }
+
+    clearBtn.addEventListener("click", () => {
+        activeFilters = [];
+        clearBtn.remove();
+        allFiltersCount.remove();
+       
+        filterCategoryBtns.forEach(filterCategoryBtn => {
+            if(filterCategoryBtn.classList.contains('active')){
+                filterCategoryBtn.classList.remove('active');
+            }
+        });
+        
+        getFilteredResumeTemplates();
+    });
+}
+function updateAllFiltersBtn(){
+    const allFiltersBtnContainer = document.querySelector('.all-filters-text');
+
+    let allFiltersCount = document.querySelector('.all-filters-count');
+    if(!allFiltersCount){
+        allFiltersCount = document.createElement('span');
+        allFiltersCount.classList.add('all-filters-count');
+        allFiltersBtnContainer.appendChild(allFiltersCount);
+    }
+
+    if(activeFilters.length < 1){
+        allFiltersCount.remove();
+    }else {
+        allFiltersCount.innerHTML = `
+            <span class="all-filters-count-number">${activeFilters.length}</span>
+        `;
+    }
+}
 // -------------------style filter btn-------------------------------
 function loadStyleFilters(styleFilters,popupType){
     const stylesContainer = document.createElement('div');
@@ -556,7 +598,7 @@ styleBtn.addEventListener("click", (e) => {
         const checkboxInputs = document.querySelectorAll('.checkbox');
         const checkMarks = document.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,styleBtn);
     }else{
         stylePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -648,7 +690,7 @@ themeBtn.addEventListener("click", (e) => {
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,themeBtn);
     }else{
         themePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -743,7 +785,7 @@ featureBtn.addEventListener("click", (e) => {
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,featureBtn);
     }else{
         featurePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -825,11 +867,11 @@ priceBtn.addEventListener("click" , (e) => {
         
         freeBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForPriceFilters(freeBtn);
+            toggleClassesForPriceFilters(freeBtn,priceBtn);
         });
         proBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForPriceFilters(proBtn);
+            toggleClassesForPriceFilters(proBtn,priceBtn);
         });
     }else{
         pricePopUp.remove();
@@ -837,93 +879,6 @@ priceBtn.addEventListener("click" , (e) => {
     }
 }
 });
-// ------------updating active filters for price and color filters ---------------
-function updateActiveFilters(filterType,category){
-    const isPriceFilter = category === 'price';
-    const isColorFilter = category === 'color';
-
-    if (isPriceFilter) {
-        if (activeFilters.includes(filterType)) {
-            activeFilters = activeFilters.filter((filter) => filter !== filterType);
-        } else {
-            activeFilters = activeFilters.filter((filter) => filter !== 'Free' && filter !== 'Pro');
-            activeFilters.push(filterType);
-        }
-    } 
-    if(isColorFilter) {
-        if(activeFilters.includes(filterType)){
-            activeFilters = activeFilters.filter((filter) => filter !== filterType);
-        }else {
-            activeFilters = activeFilters.filter((filter) => !filter.startsWith('#'));
-            activeFilters.push(filterType);
-        }
-    }
-    console.log("current active Filters",activeFilters);
-    getFilteredResumeTemplates();
-}
-// ------------------checking active filters of color and price filter before each popups
-function checkActivePriceFilters(priceFilterBtns){
-    const priceFilterWrappers = document.querySelectorAll('.price-filter-wrapper');
-    
-    priceFilterBtns.forEach((priceFilterBtn,index) => {
-        const filterType = priceFilterBtn.id;
-        
-        if(activeFilters.includes(filterType)){
-            priceFilterWrappers[index].classList.add('active');
-        } else {
-            priceFilterWrappers[index].classList.remove('active');
-        }
-    });
-}
-function checkActiveColorFilters(colorBtns){
-    colorBtns.forEach((colorBtn) => {
-        const filterType = `#${colorBtn.id}`;
-
-        if(activeFilters.includes(filterType)){
-            colorBtn.classList.add('active');
-        }else {
-            colorBtn.classList.remove('active');
-        }
-    });
-}
-// -----------------toggling classes for price and color filters based on the active filters---------------
-function toggleClassesForPriceFilters(button) {
-    const priceFilterWrapper = button.querySelector('.price-filter-wrapper');
-    const filterType = button.id;
-
-    if (priceFilterWrapper) {
-        const isActive = priceFilterWrapper.classList.contains('active');
-
-        // Remove all active classes before adding any
-        document.querySelectorAll('.price-filter-wrapper').forEach((wrapper) => {
-            wrapper.classList.remove('active');
-        });
-
-        if (!isActive) {
-            priceFilterWrapper.classList.add('active');
-            updateActiveFilters(filterType,'price');
-        } else {
-            updateActiveFilters(filterType,'price');
-        }
-    }
-}
-function toggleClassesForColorFilters(colorFilterBtn,colorBtns){
-    const filterType = `#${colorFilterBtn.id}`;
-    const isActive = colorFilterBtn.classList.contains('active');
-
-    // removes all the active filters
-    colorBtns.forEach((colorBtn) => {
-        colorBtn.classList.remove('active');
-    });
-
-    if(!isActive){
-        colorFilterBtn.classList.add('active');
-        updateActiveFilters(filterType,'color');
-    }else {
-        updateActiveFilters(filterType,'color')
-    }
-}
-
 // ---------------------color-filter-btn------------------------
 function loadColorFilters(colorFilters){
     let markup="";
@@ -999,7 +954,7 @@ colorBtn.addEventListener("click", (e) => {
         colorBtns.forEach((colorFilterBtn) => {
             colorFilterBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
-                toggleClassesForColorFilters(colorFilterBtn,colorBtns);
+                toggleClassesForColorFilters(colorFilterBtn,colorBtns,colorBtn);
             });
         });
     }else{
@@ -1009,7 +964,149 @@ colorBtn.addEventListener("click", (e) => {
 }
 });
 
-// -------------------------------price filter button ---------------------------------
+// ------------updating active filters for price and color filters ---------------
+function updateActiveFilters(filterType,category){
+    const isPriceFilter = category === 'price';
+    const isColorFilter = category === 'color';
+
+    if (isPriceFilter) {
+        if (activeFilters.includes(filterType)) {
+            activeFilters = activeFilters.filter((filter) => filter !== filterType);
+        } else {
+            activeFilters = activeFilters.filter((filter) => filter !== 'Free' && filter !== 'Pro');
+            activeFilters.push(filterType);
+        }
+    } 
+    if(isColorFilter) {
+        if(activeFilters.includes(filterType)){
+            activeFilters = activeFilters.filter((filter) => filter !== filterType);
+        }else {
+            activeFilters = activeFilters.filter((filter) => !filter.startsWith('#'));
+            activeFilters.push(filterType);
+        }
+    }
+    console.log("current active Filters",activeFilters);
+    getFilteredResumeTemplates();
+}
+// ------------------checking active filters of color and price filter before each popups
+function checkActivePriceFilters(priceFilterBtns){
+    const priceFilterWrappers = document.querySelectorAll('.price-filter-wrapper');
+    
+    priceFilterBtns.forEach((priceFilterBtn,index) => {
+        const filterType = priceFilterBtn.id;
+        
+        if(activeFilters.includes(filterType)){
+            priceFilterWrappers[index].classList.add('active');
+        } else {
+            priceFilterWrappers[index].classList.remove('active');
+        }
+    });
+}
+function checkActiveColorFilters(colorBtns){
+    colorBtns.forEach((colorBtn) => {
+        const filterType = `#${colorBtn.id}`;
+
+        if(activeFilters.includes(filterType)){
+            colorBtn.classList.add('active');
+        }else {
+            colorBtn.classList.remove('active');
+        }
+    });
+}
+// -----------------toggling classes for price and color filters based on the active filters---------------
+function toggleClassesForPriceFilters(button,filterCategoryBtn) {
+    const filterBtnText = filterCategoryBtn.querySelector('.filter-btn-text');
+
+    // --------screen moving up and adding clearall btn--------
+    if(!document.getElementById('all-filters-popup')){
+        makeWindowScrollUp();
+        addClearAllBtn();
+
+        // ------------changing color and innertext of the filter button-------------
+        filterCategoryBtn.classList.toggle('active');
+        
+        filterBtnText.innerText = button.id;
+        if(activeFilters.length === 0){
+            filterCategoryBtn.classList.remove('active');
+            filterBtnText.innerText = 'Price';
+        }
+    }
+
+    const priceFilterWrapper = button.querySelector('.price-filter-wrapper');
+    const filterType = button.id;
+
+    if (priceFilterWrapper) {
+        const isActive = priceFilterWrapper.classList.contains('active');
+
+        // Remove all active classes before adding any
+        document.querySelectorAll('.price-filter-wrapper').forEach((wrapper) => {
+            wrapper.classList.remove('active');
+        });
+
+        if (!isActive) {
+            priceFilterWrapper.classList.add('active');
+            updateActiveFilters(filterType,'price');
+        } else {
+            updateActiveFilters(filterType,'price');
+        }
+    }
+
+    //update the clear btn after updating the active filters in this case
+    if(!document.getElementById('all-filters-popup')){
+        addClearAllBtn();
+
+        // ------------changing color and innertext of the filter button-------------
+        filterCategoryBtn.classList.toggle('active');
+        
+        filterBtnText.innerText = button.id;
+        if(activeFilters.length === 0){
+            filterCategoryBtn.classList.remove('active');
+            filterBtnText.innerText = 'Price';
+        }
+    }
+}
+
+function toggleClassesForColorFilters(colorFilterBtn,colorBtns,filterCategoryBtn){
+    // --------screen moving up and adding clearall btn--------
+    if(!document.getElementById('all-filters-popup')){
+        makeWindowScrollUp();
+        addClearAllBtn();
+
+        // toggling class of the filter category btn
+        filterCategoryBtn.classList.toggle('active');
+        if(activeFilters.length === 0){
+            filterCategoryBtn.classList.remove('active');
+        }
+    }
+
+    const filterType = `#${colorFilterBtn.id}`;
+    const isActive = colorFilterBtn.classList.contains('active');
+
+    // removes all the active filters
+    colorBtns.forEach((colorBtn) => {
+        colorBtn.classList.remove('active');
+    });
+
+    if(!isActive){
+        colorFilterBtn.classList.add('active');
+        updateActiveFilters(filterType,'color');
+    }else {
+        updateActiveFilters(filterType,'color')
+    }
+
+    //update the clear btn after updating the active filters in this case
+    if(!document.getElementById('all-filters-popup')){
+        addClearAllBtn();
+
+        // toggling class of the filter category btn
+        filterCategoryBtn.classList.toggle('active');
+        if(activeFilters.length === 0){
+            filterCategoryBtn.classList.remove('active');
+        }
+    }
+}
+
+// -------------------------------all-filters button ---------------------------------
 function loadGradeFilters(gradeFilters){
     const stylesContainer = document.createElement('div');
     stylesContainer.classList.add('inner-filters');
@@ -1121,7 +1218,7 @@ filterBtn.addEventListener("click", (e) => {
         const allcolorFilters = loadColorFilters(colorFilters);
         
         const markup = `
-            <div class="pop-up-container">
+            <div id="all-filters-popup" class="pop-up-container">
                 <div class="pop-up-overlay">
                     <div class="all-filters-absolute-container">
                         <div class="all-filters-flex-wrapper">
@@ -1253,7 +1350,7 @@ filterBtn.addEventListener("click", (e) => {
                                 <div class="container-bottom-section">
                                     <div class="filters-btn-container">
                                         <button class="btn login-btn">
-                                            <span class="header-btn-text login-text">Clear all</span>
+                                            <span class="header-btn-text login-text not-allowed-color">Clear all</span>
                                         </button>
                                         <button class="btn signup-btn">
                                             <span class="header-btn-text signup-text">Apply</span>
@@ -1327,6 +1424,14 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
     topicFiltersContainer.appendChild(allTopicFilters);
     topicFiltersContainer.insertAdjacentElement("beforeend",createViewMoreBtn('topic'));
 
+    // -----------------------filtering----------------------------
+    const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
+    const checkboxInputs = document.querySelectorAll('.checkbox');
+    const checkBoxes = document.querySelectorAll('.checkbox-box');
+    const checkMarks = bodyEl.querySelectorAll('.check-mark');
+    const checkMarkIcons = document.querySelectorAll('.check-mark path');
+    showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
+
     const priceFiltersContainer = document.getElementById('price-filters-container');
     priceFiltersContainer.appendChild(allpricesFilters);
     // --------------------price filtering----------------
@@ -1338,11 +1443,11 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
      
     freeBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        toggleClassesForPriceFilters(freeBtn);
+        toggleClassesForPriceFilters(freeBtn,priceBtn);
     });
     proBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        toggleClassesForPriceFilters(proBtn);
+        toggleClassesForPriceFilters(proBtn,priceBtn);
     });
 
     const colorFiltersContainer = document.querySelector('.colors-grid-container');
@@ -1354,7 +1459,7 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
     colorBtns.forEach((colorFilterBtn) => {
         colorFilterBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForColorFilters(colorFilterBtn,colorBtns);
+            toggleClassesForColorFilters(colorFilterBtn,colorBtns,colorBtn);
         });
     });
    
@@ -1434,12 +1539,6 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
         }
     });
 
-    const styleCategoryLabels = bodyEl.querySelectorAll('.style-category-label');
-    const checkboxInputs = document.querySelectorAll('.checkbox');
-    const checkBoxes = document.querySelectorAll('.checkbox-box');
-    const checkMarks = bodyEl.querySelectorAll('.check-mark');
-    const checkMarkIcons = document.querySelectorAll('.check-mark path');
-    showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
 }
 
 function viewMore(viewMoreBtn,newLabels){
@@ -1483,6 +1582,21 @@ function removeFiltersPopUp(popUpOverlay,popUpEl,filtersContainer,closeBtn){
     });
 }
 
+// ----------------removing popups on window click --------------
+window.addEventListener("click", (e) => {
+    const popUpEl = bodyEl.querySelector('.pop-up-container');
+
+    if(popUpEl && !popUpEl.contains(e.target)){
+        popUpEl.remove();
+        removeBackgroundToggleClass();
+        removeStickyHeaderIfVisible();
+
+        if(bodyEl.contains(languageSelectBtn)){
+            languageSelectBtn.classList.remove('select-box-btn-active-border');
+        }
+    }
+});
+
 // ---------------------language-select-box-----------------------------
 languageSelectBtn.addEventListener("click", (e) => {
 
@@ -1494,6 +1608,11 @@ languageSelectBtn.addEventListener("click", (e) => {
         const data = await res.json();
         
         const languageList = loadLanguages(data.Languages);
+
+        // const desktopFooterBottom = document.querySelector('.desktop-footer-bottom');
+        // console.log(desktopFooterBottom)
+        // const desktopFooterBottomTop = desktopFooterBottom.getBoundingClientRect().top;
+        // console.log(desktopFooterBottomTop)
     
     const markup = ` 
         <div class="pop-up-container">
@@ -1516,9 +1635,7 @@ languageSelectBtn.addEventListener("click", (e) => {
     `;
 
     const popUpEl = bodyEl.querySelector('.pop-up-container');
-        
     if(!popUpEl){
-
         bodyEl.insertAdjacentHTML("afterbegin", markup);
         languageSelectBtn.classList.add('select-box-btn-active-border');
 
@@ -1530,7 +1647,6 @@ languageSelectBtn.addEventListener("click", (e) => {
         const searchInput = bodyEl.querySelector('.search-input');
         languageSelectBoxEvents(searchbarContainer,searchInput);
     }else{
-
         popUpEl.remove();
         languageSelectBtn.classList.remove('select-box-btn-active-border');
     }
@@ -1538,7 +1654,6 @@ languageSelectBtn.addEventListener("click", (e) => {
 });
 
 function loadLanguages(Languages){
-
     const ulEl = document.createElement('ul');
     Languages.forEach((language) =>{
 
@@ -1575,7 +1690,6 @@ function loadLanguages(Languages){
 }
 
 function languageSelectBoxEvents(searchbarContainer, searchInput){
-
     searchInput.focus();
     searchbarContainer.style.borderColor = "#8b3dff";
 
@@ -1587,19 +1701,3 @@ function languageSelectBoxEvents(searchbarContainer, searchInput){
         searchbarContainer.style.borderColor = "rgba(53,71,90,.2)"; 
     });
 }
-
-// ----------------removing popups on window click --------------
-window.addEventListener("click", (e) => {
-
-    const popUpEl = bodyEl.querySelector('.pop-up-container');
-
-    if(popUpEl && !popUpEl.contains(e.target)){
-        popUpEl.remove();
-        removeBackgroundToggleClass();
-        removeStickyHeaderIfVisible();
-
-        if(bodyEl.contains(languageSelectBtn)){
-            languageSelectBtn.classList.remove('select-box-btn-active-border');
-        }
-    }
-});
