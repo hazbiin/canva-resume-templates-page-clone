@@ -429,12 +429,6 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
                 addClearAllBtn();
             }
 
-            // ------------changing color of the filter button-------------
-            clickedFilterCategory.classList.add('active');
-            if(activeFilters.length === 0){
-                clickedFilterCategory.classList.remove('active');
-            }
-
             // ---------filter resumes based on selected one-------------
             getFilteredResumeTemplates();
         });
@@ -444,7 +438,6 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
                 checkMarks[index].classList.add('check-mark-visible');
             }
         });
-            
         label.addEventListener("mouseout", () => {
             if (!checkboxInputs[index].checked) {
                 checkMarks[index].classList.remove('check-mark-visible');
@@ -452,8 +445,6 @@ function showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIc
         });
     });
 }
-
-
 
 function makeWindowScrollUp(){
     window.scrollTo({
@@ -487,13 +478,6 @@ function addClearAllBtn(){
         activeFilters = [];
         clearBtn.remove();
         allFiltersCount.remove();
-       
-        filterCategoryBtns.forEach(filterCategoryBtn => {
-            if(filterCategoryBtn.classList.contains('active')){
-                filterCategoryBtn.classList.remove('active');
-            }
-        });
-        
         getFilteredResumeTemplates();
     });
 }
@@ -598,7 +582,7 @@ styleBtn.addEventListener("click", (e) => {
         const checkboxInputs = document.querySelectorAll('.checkbox');
         const checkMarks = document.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,styleBtn);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         stylePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -690,7 +674,7 @@ themeBtn.addEventListener("click", (e) => {
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,themeBtn);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         themePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -785,7 +769,7 @@ featureBtn.addEventListener("click", (e) => {
         const checkBoxes = document.querySelectorAll('.checkbox-box');
         const checkMarks = bodyEl.querySelectorAll('.check-mark');
         const checkMarkIcons = document.querySelectorAll('.check-mark path');
-        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs,featureBtn);
+        showActiveFilters(styleCategoryLabels,checkBoxes,checkMarks,checkMarkIcons,checkboxInputs);
     }else{
         featurePopUp.remove();
         removeStickyHeaderIfVisible();
@@ -867,11 +851,11 @@ priceBtn.addEventListener("click" , (e) => {
         
         freeBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForPriceFilters(freeBtn,priceBtn);
+            toggleClassesForPriceFilters(freeBtn);
         });
         proBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForPriceFilters(proBtn,priceBtn);
+            toggleClassesForPriceFilters(proBtn);
         });
     }else{
         pricePopUp.remove();
@@ -954,7 +938,7 @@ colorBtn.addEventListener("click", (e) => {
         colorBtns.forEach((colorFilterBtn) => {
             colorFilterBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
-                toggleClassesForColorFilters(colorFilterBtn,colorBtns,colorBtn);
+                toggleClassesForColorFilters(colorFilterBtn,colorBtns);
             });
         });
     }else{
@@ -1014,22 +998,11 @@ function checkActiveColorFilters(colorBtns){
     });
 }
 // -----------------toggling classes for price and color filters based on the active filters---------------
-function toggleClassesForPriceFilters(button,filterCategoryBtn) {
-    const filterBtnText = filterCategoryBtn.querySelector('.filter-btn-text');
-
+function toggleClassesForPriceFilters(button) {
     // --------screen moving up and adding clearall btn--------
     if(!document.getElementById('all-filters-popup')){
         makeWindowScrollUp();
         addClearAllBtn();
-
-        // ------------changing color and innertext of the filter button-------------
-        filterCategoryBtn.classList.toggle('active');
-        
-        filterBtnText.innerText = button.id;
-        if(activeFilters.length === 0){
-            filterCategoryBtn.classList.remove('active');
-            filterBtnText.innerText = 'Price';
-        }
     }
 
     const priceFilterWrapper = button.querySelector('.price-filter-wrapper');
@@ -1054,29 +1027,14 @@ function toggleClassesForPriceFilters(button,filterCategoryBtn) {
     //update the clear btn after updating the active filters in this case
     if(!document.getElementById('all-filters-popup')){
         addClearAllBtn();
-
-        // ------------changing color and innertext of the filter button-------------
-        filterCategoryBtn.classList.toggle('active');
-        
-        filterBtnText.innerText = button.id;
-        if(activeFilters.length === 0){
-            filterCategoryBtn.classList.remove('active');
-            filterBtnText.innerText = 'Price';
-        }
     }
 }
 
-function toggleClassesForColorFilters(colorFilterBtn,colorBtns,filterCategoryBtn){
+function toggleClassesForColorFilters(colorFilterBtn,colorBtns){
     // --------screen moving up and adding clearall btn--------
     if(!document.getElementById('all-filters-popup')){
         makeWindowScrollUp();
         addClearAllBtn();
-
-        // toggling class of the filter category btn
-        filterCategoryBtn.classList.toggle('active');
-        if(activeFilters.length === 0){
-            filterCategoryBtn.classList.remove('active');
-        }
     }
 
     const filterType = `#${colorFilterBtn.id}`;
@@ -1097,12 +1055,6 @@ function toggleClassesForColorFilters(colorFilterBtn,colorBtns,filterCategoryBtn
     //update the clear btn after updating the active filters in this case
     if(!document.getElementById('all-filters-popup')){
         addClearAllBtn();
-
-        // toggling class of the filter category btn
-        filterCategoryBtn.classList.toggle('active');
-        if(activeFilters.length === 0){
-            filterCategoryBtn.classList.remove('active');
-        }
     }
 }
 
@@ -1443,11 +1395,11 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
      
     freeBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        toggleClassesForPriceFilters(freeBtn,priceBtn);
+        toggleClassesForPriceFilters(freeBtn);
     });
     proBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        toggleClassesForPriceFilters(proBtn,priceBtn);
+        toggleClassesForPriceFilters(proBtn);
     });
 
     const colorFiltersContainer = document.querySelector('.colors-grid-container');
@@ -1459,7 +1411,7 @@ function addPopUp(markup,allStyleFilters,allThemeFilters,allFeatureFilters,allgr
     colorBtns.forEach((colorFilterBtn) => {
         colorFilterBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            toggleClassesForColorFilters(colorFilterBtn,colorBtns,colorBtn);
+            toggleClassesForColorFilters(colorFilterBtn,colorBtns);
         });
     });
    
@@ -1599,7 +1551,6 @@ window.addEventListener("click", (e) => {
 
 // ---------------------language-select-box-----------------------------
 languageSelectBtn.addEventListener("click", (e) => {
-
     e.stopPropagation();
 
     getData();
@@ -1608,11 +1559,6 @@ languageSelectBtn.addEventListener("click", (e) => {
         const data = await res.json();
         
         const languageList = loadLanguages(data.Languages);
-
-        // const desktopFooterBottom = document.querySelector('.desktop-footer-bottom');
-        // console.log(desktopFooterBottom)
-        // const desktopFooterBottomTop = desktopFooterBottom.getBoundingClientRect().top;
-        // console.log(desktopFooterBottomTop)
     
     const markup = ` 
         <div class="pop-up-container">
